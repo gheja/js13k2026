@@ -3,63 +3,20 @@ class Puzzle {
 
     constructor(x: number, y: number) {
         let svg_data = `
-<svg
-   width="300"
-   height="300"
-   viewBox="0 0 264.58333 264.58333"
-   version="1.1"
-   id="asdf"
-   inkscape:version="1.4.4 (1:1.4.4+202605061436+dcaf3e7d9e)"
-   sodipodi:docname="drawing1.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:svg="http://www.w3.org/2000/svg">
+<svg width="300" height="300" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
   <filter id='shadow' color-interpolation-filters="sRGB">
     <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.7"/>
   </filter>
   <g id="layer1"></g>
   <g id="layer2">
-    <path
-       id="path1"
-       style="fill:#8ae234;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(1.2532734,0,0,1.2532734,-10.336337,-3.1892192)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
-    <path
-       id="path2"
-       style="fill:#4e9a06;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,127.81565,-56.917415)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
-    <path
-       id="path3"
-       style="fill:#5c3566;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,228.66402,-56.91742)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
-    <path
-       id="path4"
-       style="fill:#204a87;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(1.2532734,0,0,1.2532734,89.595245,-3.1892192)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
-    <path
-       id="path5"
-       style="fill:#8f5902;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(0.62663669,-1.0853666,-1.0853666,-0.62663669,128.27405,235.46331)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
-    <path
-       id="path6"
-       style="fill:#a40000;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(1.2532734,0,0,-1.2532734,90.053647,181.73512)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
-    <path
-       id="path7"
-       style="fill:#d45500;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,129.27587,116.0219)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
-    <path
-       id="path8"
-       style="fill:#ff7f2a;stroke:#000000;stroke-width:0.79375"
-       transform="matrix(1.2532734,0,0,1.2532734,91.055463,169.75008)"
-       d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#8ae234;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,1.2532734,-10.336337,-3.1892192)" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#4e9a06;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,127.81565,-56.917415)" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#5c3566;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,228.66402,-56.91742)" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#204a87;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,1.2532734,89.595245,-3.1892192)" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#8f5902;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,-1.0853666,-1.0853666,-0.62663669,128.27405,235.46331)" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#a40000;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,-1.2532734,90.053647,181.73512)" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#d45500;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,129.27587,116.0219)" />
+    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#ff7f2a;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,1.2532734,91.055463,169.75008)" />
   </g>
   <g id="layer3" filter="url(#shadow)"></g>
 </svg>
