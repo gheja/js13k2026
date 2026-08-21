@@ -74,9 +74,9 @@ class Puzzle {
     }
 
     swapPiecesInSlots(a: number, b: number) {
-        let n = this.slots[a].element_index
-        this.slots[a].element_index = this.slots[b].element_index
-        this.slots[b].element_index = n
+        let n = this.slots[a].piece_index
+        this.slots[a].piece_index = this.slots[b].piece_index
+        this.slots[b].piece_index = n
     }
 
     updateElementPositions() {
