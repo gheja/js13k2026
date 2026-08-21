@@ -22,7 +22,7 @@ class Gfx {
         this.target_y = y
         this.target_zoom = zoom
 
-        console.log([x, y, zoom])
+        // console.log([x, y, zoom])
     }
 
     render() {

@@ -241,13 +241,9 @@ class Puzzle {
             }
         }
 
-        console.log('won')
+        if (!IS_PROD_BUILD) {
+            console.log('won')
+        }
         this.state = PuzzleState.StoppedFinished
     }
-/*
-    use stroke="color" for highlight (it's over the fill, point test still completes, no shaking)
-
-    svg.addEventListener("mousemove", function(event) {
-
-*/
 }
