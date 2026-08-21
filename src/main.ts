@@ -5,6 +5,7 @@ function init() {
     // game.init()
     _game.start()
     zoom_reset()
+    document.getElementById("back").addEventListener("click", zoom_reset)
 }
 
 window.addEventListener("load", init)
