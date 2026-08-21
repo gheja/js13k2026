@@ -218,6 +218,7 @@ class Puzzle {
 
         // loop through all elements
         for (let obj of svg.querySelectorAll("path")) {
+            // @ts-ignore - "possibly null"
             var local_point = point.matrixTransform(obj.getScreenCTM().inverse())
             if (obj.isPointInFill(local_point)) {
                 for (let slot of this.slots)

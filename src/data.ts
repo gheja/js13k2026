@@ -1,47 +1,57 @@
 const SHAPES = [
     'M 0,-13 -15,13 h 30 z',
     'M 0,-3 -2,0 0,3 2,0 Z',
+    'M -13 -13 H 13 V 13 H -13 Z',
+    'M -5.6 -13 H 20.4 L 5.6 13 H -20.4 Z'
 ]
 
 enum ShapeIndex {
     Triangle1 = 0,
-    LockedIcon
+    LockedIcon,
+    Square1,
+    Paralellogram1
 }
 
 const PUZZLE1 =  [
     [
-        [ ShapeIndex.Triangle1, 30, 30, 0,   true  ],
-        [ ShapeIndex.Triangle1, 45, 30, 180, false ],
-        [ ShapeIndex.Triangle1, 60, 30, 0,   false ],
-        [ ShapeIndex.Triangle1, 75, 30, 180, false ],
-        [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
+        [ ShapeIndex.Square1, 30,  30,  0, true  ],
+        [ ShapeIndex.Square1, 56,  30,  0, false ],
+        [ ShapeIndex.Square1, 82,  30,  0, false ],
+        [ ShapeIndex.Square1, 108, 30,  0, false ],
+        [ ShapeIndex.Square1, 134, 30,  0, true  ],
     ],
-    [ "#ff0", "#f0f", "#ff0", "#f0f" ]
+    // [ "#ff0", "#f0f", "#f60", "#60f" ]
+    [ "#0ff", "#04f", "#0ff", "#04f", ]
 ]
 
 const PUZZLE2 =  [
     [
-        [ ShapeIndex.Triangle1, 30, 30, 0,   true  ],
-        [ ShapeIndex.Triangle1, 45, 30, 180, false ],
-        [ ShapeIndex.Triangle1, 60, 30, 0,   false ],
-        [ ShapeIndex.Triangle1, 75, 30, 180, false ],
-        [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
+        [ ShapeIndex.Square1, 30,  30,  0, true  ],
+        [ ShapeIndex.Square1, 56,  30,  0, false ],
+        [ ShapeIndex.Square1, 82,  30,  0, false ],
+        [ ShapeIndex.Square1, 108, 30,  0, false ],
+        [ ShapeIndex.Square1, 134, 30,  0, true  ],
 
-        [ ShapeIndex.Triangle1, 30, 56, 180, true  ],
-        [ ShapeIndex.Triangle1, 45, 56, 0,   false ],
-        [ ShapeIndex.Triangle1, 60, 56, 180, false ],
-        [ ShapeIndex.Triangle1, 75, 56, 0,   false ],
-        [ ShapeIndex.Triangle1, 90, 56, 180, true  ],
+        [ ShapeIndex.Square1, 30,  56,  0, true  ],
+        [ ShapeIndex.Square1, 56,  56,  0, true  ],
+        [ ShapeIndex.Square1, 82,  56,  0, true  ],
+        [ ShapeIndex.Square1, 108, 56,  0, true  ],
+        [ ShapeIndex.Square1, 134, 56,  0, true  ],
 
-/*
-        [ ShapeIndex.Triangle1, 30, 82, 0,   true  ],
-        [ ShapeIndex.Triangle1, 45, 82, 180, false ],
-        [ ShapeIndex.Triangle1, 60, 82, 0,   false ],
-        [ ShapeIndex.Triangle1, 75, 82, 180, false ],
-        [ ShapeIndex.Triangle1, 90, 82, 0,   true  ],
-*/
+        [ ShapeIndex.Square1, 30,  82,  0, true  ],
+        [ ShapeIndex.Square1, 56,  82,  0, true  ],
+        [ ShapeIndex.Square1, 82,  82,  0, true  ],
+        [ ShapeIndex.Square1, 108, 82,  0, true  ],
+        [ ShapeIndex.Square1, 134, 82,  0, true  ],
+
+        [ ShapeIndex.Square1, 30,  108, 0, true  ],
+        [ ShapeIndex.Square1, 56,  108, 0, false ],
+        [ ShapeIndex.Square1, 82,  108, 0, false ],
+        [ ShapeIndex.Square1, 108, 108, 0, false ],
+        [ ShapeIndex.Square1, 134, 108, 0, true  ],
     ],
-    [ "#ff0", "#f0f", "#f60", "#60f" ]
+    // [ "#ff0", "#f0f", "#f60", "#60f" ]
+    [ "#ff0", "#0f0", "#f00", "#0ff" ]
 ]
 
 const PUZZLE3 =  [
@@ -52,5 +62,36 @@ const PUZZLE3 =  [
         [ ShapeIndex.Triangle1, 75, 30, 180, false ],
         [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
     ],
-    [ "#00f", "#0ff", "#00f", "#0ff" ]
+    // [ "#ff0", "#f0f", "#ff0", "#f0f" ]
+    [ "#ff0", "#0ff", "#ff0", "#0ff" ]
+]
+
+const PUZZLE4 =  [
+    [
+        [ ShapeIndex.Paralellogram1, 30 +45, 30,  0, true  ],
+        [ ShapeIndex.Paralellogram1, 56 +45, 30,  0, false ],
+        [ ShapeIndex.Paralellogram1, 82 +45, 30,  0, false ],
+        [ ShapeIndex.Paralellogram1, 108+45, 30,  0, false ],
+        [ ShapeIndex.Paralellogram1, 134+45, 30,  0, true  ],
+
+        [ ShapeIndex.Paralellogram1, 30 +30, 56,  0, true  ],
+        [ ShapeIndex.Paralellogram1, 56 +30, 56,  0, false  ],
+        [ ShapeIndex.Paralellogram1, 82 +30, 56,  0, false  ],
+        [ ShapeIndex.Paralellogram1, 108+30, 56,  0, false  ],
+        [ ShapeIndex.Paralellogram1, 134+30, 56,  0, true  ],
+
+        [ ShapeIndex.Paralellogram1, 30 +15, 82,  0, true  ],
+        [ ShapeIndex.Paralellogram1, 56 +15, 82,  0, false ],
+        [ ShapeIndex.Paralellogram1, 82 +15, 82,  0, false ],
+        [ ShapeIndex.Paralellogram1, 108+15, 82,  0, false ],
+        [ ShapeIndex.Paralellogram1, 134+15, 82,  0, true  ],
+
+        [ ShapeIndex.Paralellogram1, 30 , 108, 0, true  ],
+        [ ShapeIndex.Paralellogram1, 56 , 108, 0, false ],
+        [ ShapeIndex.Paralellogram1, 82 , 108, 0, false ],
+        [ ShapeIndex.Paralellogram1, 108, 108, 0, false ],
+        [ ShapeIndex.Paralellogram1, 134, 108, 0, true  ],
+    ],
+    [ "#ff0", "#f0f", "#f60", "#60f" ]
+    // [ "#ff0", "#0f0", "#f00", "#0ff" ]
 ]

@@ -7,6 +7,7 @@ function init() {
     // game.init()
     _game.start()
     zoom_reset()
+    // @ts-ignore - "possibly null"
     document.getElementById("back").addEventListener("click", zoom_reset)
 }
 
