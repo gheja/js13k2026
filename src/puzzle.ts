@@ -1,7 +1,14 @@
 class Puzzle {
-    private svg_dom: SvgInHtml
+    public svg_dom: SvgInHtml
+    public left: number
+    public top: number
+    public width: number = 300
+    public height: number = 300
+    private active: boolean = false
 
     constructor(x: number, y: number) {
+        this.left = x
+        this.top = y
         let svg_data = `
 <svg width="300" height="300" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
   <filter id='shadow' color-interpolation-filters="sRGB">
@@ -25,11 +32,44 @@ class Puzzle {
         this.svg_dom = (new DOMParser()).parseFromString(svg_data, "image/svg+xml").documentElement as SvgInHtml
         document.getElementById("b").appendChild(this.svg_dom)
         this.svg_dom.addEventListener("mousemove", this.onMouseMove.bind(this))
+        this.svg_dom.addEventListener("click", this.onClick.bind(this))
     }
 
+    setActive(value: boolean) {
+        this.active = value
+    }
 
+    onClick(event: MouseEvent) {
+        if (_game.state == GameState.Initializing) {
+            return
+        }
+        else if (_game.state == GameState.MainScreen) {
+            this.onClick2(event)
+        }
+    }
+
+    onClick2(event: MouseEvent) {
+        _game.selectPuzzle(this)
+    }
 
     onMouseMove(event: MouseEvent) {
+        if (!this.active) {
+            return
+        }
+
+        if (_game.state == GameState.Initializing) {
+            return
+        }
+        else if (_game.state == GameState.MainScreen) {
+            // this.onMouseMove2(event)
+            return
+        }
+        else if (_game.state == GameState.PuzzleActive) {
+            this.onMouseMove3(event)
+        }
+    }
+
+    onMouseMove3(event: MouseEvent) {
         var svg = this.svg_dom
 
         var point = svg.createSVGPoint()
