@@ -4,7 +4,6 @@ class Puzzle {
     public top: number
     public width: number = 300
     public height: number = 300
-    private active: boolean = false
 
     private pieces: Array<any> = []
     private slots: Array<any> = []
@@ -93,13 +92,21 @@ class Puzzle {
     }
 
     setActive(value: boolean) {
+        if (this.state == PuzzleState.StoppedFinished)
+        {
+            return
+        }
+
         if (value) {
             this.state = PuzzleState.PickFirstPiece
         }
         else {
             this.state = PuzzleState.StoppedUnfinished
         }
-        this.active = value
+
+        // just to be sure it looks correct
+        this.updateElementPositions()
+        this.updatePieceVisuals()
     }
 
     onClick(event: MouseEvent) {
@@ -140,10 +147,11 @@ class Puzzle {
         // clear the hovered slot, so visuals reset (at least until the first move)
         this.slotHovered = null
         this.updatePieceVisuals()
+        this.checkWinCondition()
     }
 
     onMouseMove(event: MouseEvent) {
-        if (!this.active) {
+        if (this.state == PuzzleState.StoppedUnfinished || this.state == PuzzleState.StoppedFinished) {
             return
         }
 
@@ -224,6 +232,17 @@ class Puzzle {
                 obj.style.strokeWidth = "0"
             }
         }
+    }
+
+    checkWinCondition() {
+        for (var slot of this.slots) {
+            if (slot.piece_index != slot.correct_piece_index) {
+                return
+            }
+        }
+
+        console.log('won')
+        this.state = PuzzleState.StoppedFinished
     }
 /*
     use stroke="color" for highlight (it's over the fill, point test still completes, no shaking)
