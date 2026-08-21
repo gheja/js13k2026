@@ -24,6 +24,7 @@ class Puzzle {
             [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
         ]
 
+        // NOTE: the canvas will start at 0,0 which is some waste but easier than handling the offset
         // NOTE: coordinates of puzzles must always be positive
 
         let min_x = 1000
@@ -41,27 +42,27 @@ class Puzzle {
         const canvas = document.createElement("canvas")
         const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
 
+        // make sure the sampling is safe
         canvas.width = max_x + 1
         canvas.height = max_y + 1
 
-        createFourPointGradient(ctx, 0, 0, 30, 30, "#ff0", "#f0f", "#f00", "#00f")
+        // in case of 1D puzzles the min and max values are the same, which would mess up things, so add + 1 pixel
+        // NOTE: if I ever decide to get rid of the 1D puzzles, I can remove this I guess
+        createFourPointGradient(ctx, min_x, min_y, max_x - min_x + 1, max_y - min_y + 1, "#ff0", "#f0f", "#ff0", "#f0f")
         // ctx.createConicGradient() for U-shaped puzzles
+
+        let pixel_data = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
         _container.appendChild(canvas)
 
         let piece_index = 0
         for (let i=0; i<a.length; i++) {
             let b = a[i]
+            let n = (b[2] * canvas.width + b[1]) * 4
             this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: b[4]})
-            this.pieces.push({shape_index: b[0], color: '#ff0', dom: null})
+            this.pieces.push({shape_index: b[0], color: `rgb(${pixel_data.data[n]},${pixel_data.data[n+1]},${pixel_data.data[n+2]})`, dom: null})
             piece_index += 1
         }
-
-        this.pieces[0].color = '#ff0'
-        this.pieces[1].color = '#fb4'
-        this.pieces[2].color = '#f88'
-        this.pieces[3].color = '#f4b'
-        this.pieces[4].color = '#f0f'
 
         let path_data = ''
         let locked_path_data = ''
