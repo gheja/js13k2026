@@ -12,3 +12,8 @@ enum PuzzleState {
     PickFirstPiece,
     PickSecondPiece,
 }
+
+enum PuzzleDataIndex {
+    Pieces = 0,
+    Colors
+}

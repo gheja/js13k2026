@@ -5,9 +5,9 @@ class Game {
 
     constructor() {
         this.puzzles = [
-            new Puzzle(0, 0),
-            new Puzzle(300, 300),
-            new Puzzle(700, 0),
+            new Puzzle(0, 0, PUZZLE1),
+            new Puzzle(300, 300, PUZZLE2),
+            new Puzzle(700, 0, PUZZLE3),
         ]
         this.gfx = new Gfx()
         this.gfx.render()
