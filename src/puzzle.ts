@@ -84,8 +84,11 @@ class Puzzle {
             }
         }
 
+        this.width = max_x + 30
+        this.height = max_y + 30
+
         let svg_data = `
-<svg width="300" height="300" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
+<svg width="${this.width}" height="${this.height}" viewBox="0 0 ${this.width} ${this.height}" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
   <filter id="shadow" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.7"/>
   </filter>
