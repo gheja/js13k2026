@@ -16,14 +16,12 @@ class Puzzle {
   </filter>
   <g id="layer1"></g>
   <g id="layer2">
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#8ae234;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,1.2532734,-10.336337,-3.1892192)" />
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#4e9a06;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,127.81565,-56.917415)" />
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#5c3566;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,228.66402,-56.91742)" />
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#204a87;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,1.2532734,89.595245,-3.1892192)" />
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#8f5902;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,-1.0853666,-1.0853666,-0.62663669,128.27405,235.46331)" />
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#a40000;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,-1.2532734,90.053647,181.73512)" />
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#d45500;stroke:#000000;stroke-width:0.79375" transform="matrix(0.62663669,1.0853666,-1.0853666,0.62663669,129.27587,116.0219)" />
-    <path d="m 52.669954,4.3762054 40.239806,69.6973926 -80.479616,-2e-6 z" style="fill:#ff7f2a;stroke:#000000;stroke-width:0.79375" transform="matrix(1.2532734,0,0,1.2532734,91.055463,169.75008)" />
+    <path style="fill:#00ff00;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 24.596586,5 7.2760776,34.999998 42.000001,35 Z" />
+    <path style="fill:#008000;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 59.237601,5.000001 24.596586,5 41.958546,35.071801 Z" />
+    <path style="fill:#00ff00;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 59.237599,5 41.917091,34.999998 76.641014,35 Z" />
+    <path style="fill:#008000;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 93.878614,5.000001 59.237599,5 76.599559,35.071801 Z" />
+    <path style="fill:#00ff00;stroke:none;stroke-width:0;stroke-dasharray:none" d="m 93.920067,5.071803 -17.320508,29.999998 34.723921,2e-6 z" />
+    <path style="fill:#008000;stroke:none;stroke-width:0;stroke-dasharray:none" d="m 128.56108,5.071804 -34.641013,-1e-6 17.361963,30.071801 z" />
   </g>
   <g id="layer3" filter="url(#shadow)"></g>
 </svg>
