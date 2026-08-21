@@ -123,13 +123,23 @@ class Puzzle {
             if (!this.slotFirstPick) {
                 this.slotFirstPick = this.slotHovered
             }
+            else if (this.slotFirstPick == this.slotHovered) { // unselect
+                this.slotFirstPick = null
+            }
             else {
                 this.swapPiecesInSlots2(this.slotFirstPick, this.slotHovered)
                 this.updateElementPositions()
                 this.slotFirstPick = null
-                this.updatePieceVisuals()
             }
         }
+        else {
+            // clear selections
+            this.slotFirstPick = null
+        }
+
+        // clear the hovered slot, so visuals reset (at least until the first move)
+        this.slotHovered = null
+        this.updatePieceVisuals()
     }
 
     onMouseMove(event: MouseEvent) {
