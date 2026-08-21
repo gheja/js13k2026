@@ -9,20 +9,30 @@ class Puzzle {
     constructor(x: number, y: number) {
         this.left = x
         this.top = y
+
+        let a = [
+            [ ShapeIndex.Triangle1, 30, 30, 0 ],
+            [ ShapeIndex.Triangle1, 45, 30, 180 ],
+            [ ShapeIndex.Triangle1, 60, 30, 0 ],
+            [ ShapeIndex.Triangle1, 75, 30, 180 ],
+        ]
+
+        let path_data = ''
+
+        for (let b of a) {
+            // TODO: stroke is not correct, the last-first node is cut off
+            // TODO: drop shadow is cut off
+            // TODO: fix the tiny gaps between them
+            path_data += `<path style="fill:#008000" d="${SHAPES[b[0]]}" transform="translate(${b[1]}, ${b[2]}) rotate(${b[3]})"/>`
+        }
+
         let svg_data = `
-<svg width="300" height="300" viewBox="0 0 265 265" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
-  <filter id='shadow' color-interpolation-filters="sRGB">
+<svg width="300" height="300" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
+  <filter id="shadow" color-interpolation-filters="sRGB">
     <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.7"/>
   </filter>
   <g id="layer1"></g>
-  <g id="layer2">
-    <path style="fill:#00ff00;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 24.596586,5 7.2760776,34.999998 42.000001,35 Z" />
-    <path style="fill:#008000;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 59.237601,5.000001 24.596586,5 41.958546,35.071801 Z" />
-    <path style="fill:#00ff00;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 59.237599,5 41.917091,34.999998 76.641014,35 Z" />
-    <path style="fill:#008000;stroke:none;stroke-width:0;stroke-dasharray:none" d="M 93.878614,5.000001 59.237599,5 76.599559,35.071801 Z" />
-    <path style="fill:#00ff00;stroke:none;stroke-width:0;stroke-dasharray:none" d="m 93.920067,5.071803 -17.320508,29.999998 34.723921,2e-6 z" />
-    <path style="fill:#008000;stroke:none;stroke-width:0;stroke-dasharray:none" d="m 128.56108,5.071804 -34.641013,-1e-6 17.361963,30.071801 z" />
-  </g>
+  <g id="layer2">${path_data}</g>
   <g id="layer3" filter="url(#shadow)"></g>
 </svg>
         `;
