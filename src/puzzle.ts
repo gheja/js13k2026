@@ -38,6 +38,10 @@ class Puzzle {
         canvas.width = max_x + 1
         canvas.height = max_y + 1
 
+        // debug:
+        // ctx.fillStyle = "#f00"
+        // ctx.fillRect(0, 0, canvas.width, canvas.height)
+
         // in case of 1D puzzles the min and max values are the same, which would mess up things, so add + 1 pixel
         // NOTE: if I ever decide to get rid of the 1D puzzles, I can remove this I guess
         createFourPointGradient(ctx,
@@ -48,6 +52,9 @@ class Puzzle {
             data[PuzzleDataIndex.Colors][3]
         )
         // ctx.createConicGradient() for U-shaped puzzles
+
+        // debug:
+        // _container.appendChild(canvas)
 
         let pixel_data = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
