@@ -26,8 +26,22 @@ const PUZZLE2 =  [
         [ ShapeIndex.Triangle1, 60, 30, 0,   false ],
         [ ShapeIndex.Triangle1, 75, 30, 180, false ],
         [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
+
+        [ ShapeIndex.Triangle1, 30, 56, 180, true  ],
+        [ ShapeIndex.Triangle1, 45, 56, 0,   false ],
+        [ ShapeIndex.Triangle1, 60, 56, 180, false ],
+        [ ShapeIndex.Triangle1, 75, 56, 0,   false ],
+        [ ShapeIndex.Triangle1, 90, 56, 180, true  ],
+
+/*
+        [ ShapeIndex.Triangle1, 30, 82, 0,   true  ],
+        [ ShapeIndex.Triangle1, 45, 82, 180, false ],
+        [ ShapeIndex.Triangle1, 60, 82, 0,   false ],
+        [ ShapeIndex.Triangle1, 75, 82, 180, false ],
+        [ ShapeIndex.Triangle1, 90, 82, 0,   true  ],
+*/
     ],
-    [ "#f0f", "#0f0", "#f0f", "#0f0" ]
+    [ "#ff0", "#f0f", "#f60", "#60f" ]
 ]
 
 const PUZZLE3 =  [
