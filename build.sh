@@ -12,7 +12,7 @@ min_dir="${dir}/tmp/min"
 csv="${dir}/build_stats.csv"
 advzip_iterations="3000"
 
-if [ $TERM == "xterm" ] || [ $TERM == "screen" ]; then
+if [ $TERM == "xterm" ] || [ $TERM == "screen" ] || [ $TERM == "screen.xterm-256color" ]; then
 	color_error='\033[1;31m'
 	color_success='\033[1;32m'
 	color_title='\033[1;38m'
@@ -268,9 +268,7 @@ fi
 mkdir -p "${min_dir}"
 
 cd ${min_dir}
-
-# cp ${final_dir}/${zip_prefix}_twemoji.zip ./
-# unzip ${zip_prefix}_twemoji.zip
+unzip ${final_dir}/${zip_prefix}_advzip.zip
 
 
 _title "Some stats"
