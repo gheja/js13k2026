@@ -68,7 +68,7 @@ class Puzzle {
         `;
 
         this.svg_dom = (new DOMParser()).parseFromString(svg_data, "image/svg+xml").documentElement as SvgInHtml
-        document.getElementById("b").appendChild(this.svg_dom)
+        _container.appendChild(this.svg_dom)
 
         for (let i=0; i<this.pieces.length; i++) {
             this.pieces[i].dom = this.svg_dom.getElementById("e" + i)

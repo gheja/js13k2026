@@ -1,6 +1,8 @@
 let _game: Game
+let _container: HTMLDivElement
 
 function init() {
+    _container = document.getElementById("b") as HTMLDivElement
     _game = new Game()
     // game.init()
     _game.start()

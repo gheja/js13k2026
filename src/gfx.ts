@@ -9,10 +9,7 @@ class Gfx {
 
     private frame_number: number = 0
 
-    private screen_obj: HTMLDivElement
-
     constructor() {
-        this.screen_obj = document.getElementById("b") as HTMLDivElement
     }
 
     setTarget(x: number, y: number, zoom: number) {
@@ -52,7 +49,7 @@ class Gfx {
         var ax = -(this.view_x - bx) * this.view_zoom + (cx - bx)
         var ay = -(this.view_y - by) * this.view_zoom + (cy - by)
 
-        this.screen_obj.style.transform = "translate(" + (ax) + "px," + (ay) + "px) scale(" + this.view_zoom + ")"
+        _container.style.transform = "translate(" + (ax) + "px," + (ay) + "px) scale(" + this.view_zoom + ")"
 
         window.requestAnimationFrame(this.render.bind(this))
     }
