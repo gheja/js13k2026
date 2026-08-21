@@ -53,8 +53,6 @@ class Puzzle {
 
         let pixel_data = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
-        _container.appendChild(canvas)
-
         let piece_index = 0
         for (let i=0; i<a.length; i++) {
             let b = a[i]
