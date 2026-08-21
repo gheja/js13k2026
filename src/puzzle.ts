@@ -40,15 +40,13 @@ class Puzzle {
         for (let i=0; i<this.pieces.length; i++) {
             let b = this.pieces[i]
 
-            // TODO: stroke is not correct, the last-first node is cut off
-            // TODO: drop shadow is cut off
             // TODO: fix the tiny gaps between them
             path_data += `<path id="e${i}" style="fill:${b.color}" d="${SHAPES[b.shape_index]}"/>`
         }
 
         let svg_data = `
 <svg width="300" height="300" viewBox="0 0 300 300" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
-  <filter id="shadow" color-interpolation-filters="sRGB">
+  <filter id="shadow" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.7"/>
   </filter>
   <g id="layer1"></g>
