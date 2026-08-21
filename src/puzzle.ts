@@ -6,6 +6,9 @@ class Puzzle {
     public height: number = 300
     private active: boolean = false
 
+    private pieces: Array<any> = []
+    private slots: Array<any> = []
+
     constructor(x: number, y: number) {
         this.left = x
         this.top = y
@@ -15,15 +18,32 @@ class Puzzle {
             [ ShapeIndex.Triangle1, 45, 30, 180 ],
             [ ShapeIndex.Triangle1, 60, 30, 0 ],
             [ ShapeIndex.Triangle1, 75, 30, 180 ],
+            [ ShapeIndex.Triangle1, 90, 30, 0 ],
         ]
+
+        let piece_index = 0
+        for (let i=0; i<a.length; i++) {
+            let b = a[i]
+            this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: false})
+            this.pieces.push({shape_index: b[0], color: '#ff0', dom: null})
+            piece_index += 1
+        }
+
+        this.pieces[0].color = '#ff0'
+        this.pieces[1].color = '#fb4'
+        this.pieces[2].color = '#f88'
+        this.pieces[3].color = '#f4b'
+        this.pieces[4].color = '#f0f'
 
         let path_data = ''
 
-        for (let b of a) {
+        for (let i=0; i<this.pieces.length; i++) {
+            let b = this.pieces[i]
+
             // TODO: stroke is not correct, the last-first node is cut off
             // TODO: drop shadow is cut off
             // TODO: fix the tiny gaps between them
-            path_data += `<path style="fill:#008000" d="${SHAPES[b[0]]}" transform="translate(${b[1]}, ${b[2]}) rotate(${b[3]})"/>`
+            path_data += `<path id="e${i}" style="fill:${b.color}" d="${SHAPES[b.shape_index]}"/>`
         }
 
         let svg_data = `
@@ -39,8 +59,23 @@ class Puzzle {
 
         this.svg_dom = (new DOMParser()).parseFromString(svg_data, "image/svg+xml").documentElement as SvgInHtml
         document.getElementById("b").appendChild(this.svg_dom)
+
+        for (let i=0; i<this.pieces.length; i++) {
+            this.pieces[i].dom = this.svg_dom.getElementById("e" + i)
+        }
+
         this.svg_dom.addEventListener("mousemove", this.onMouseMove.bind(this))
         this.svg_dom.addEventListener("click", this.onClick.bind(this))
+
+        this.updateElementPositions()
+
+    }
+
+    updateElementPositions() {
+        for (let slot of this.slots) {
+            let el = this.pieces[slot.piece_index];
+            (el.dom as SVGPathElement).setAttribute("transform", `translate(${slot.x}, ${slot.y}) rotate(${slot.r})`)
+        }
     }
 
     setActive(value: boolean) {
