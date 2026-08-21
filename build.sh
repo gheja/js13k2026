@@ -7,9 +7,9 @@ source_dir="${dir}/src"
 target_dir="/tmp/build"
 # extra_dir="/home/gheja/works_local/extra"
 extra_dir="/home/gheja/works_local/js13k2026_build_extra"
-final_dir="${dir}"
+final_dir="${dir}/builds"
 min_dir="${dir}/tmp/min"
-csv="${final_dir}/build_stats.csv"
+csv="${dir}/build_stats.csv"
 advzip_iterations="3000"
 
 if [ $TERM == "xterm" ] || [ $TERM == "screen" ]; then
