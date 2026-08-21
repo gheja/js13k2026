@@ -38,6 +38,16 @@ class Puzzle {
             max_y = Math.max(max_y, b[2])
         }
 
+        const canvas = document.createElement("canvas")
+        const ctx = canvas.getContext("2d") as CanvasRenderingContext2D
+
+        canvas.width = max_x + 1
+        canvas.height = max_y + 1
+
+        createFourPointGradient(ctx, 0, 0, 30, 30, "#ff0", "#f0f", "#f00", "#00f")
+        // ctx.createConicGradient() for U-shaped puzzles
+
+        _container.appendChild(canvas)
 
         let piece_index = 0
         for (let i=0; i<a.length; i++) {
