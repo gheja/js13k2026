@@ -24,6 +24,21 @@ class Puzzle {
             [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
         ]
 
+        // NOTE: coordinates of puzzles must always be positive
+
+        let min_x = 1000
+        let min_y = 1000
+        let max_x = 0
+        let max_y = 0
+
+        for (let b of a) {
+            min_x = Math.min(min_x, b[1])
+            min_y = Math.min(min_y, b[2])
+            max_x = Math.max(max_x, b[1])
+            max_y = Math.max(max_y, b[2])
+        }
+
+
         let piece_index = 0
         for (let i=0; i<a.length; i++) {
             let b = a[i]
