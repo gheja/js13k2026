@@ -4,16 +4,16 @@ class Game {
     public state: GameState = GameState.Initializing
 
     constructor() {
+        this.puzzles = [
+            new Puzzle(0, 0),
+            new Puzzle(300, 300),
+            new Puzzle(700, 0),
+        ]
         this.gfx = new Gfx()
+        this.gfx.render()
     }
 
-    start() {
-        this.gfx.render()
-        this.puzzles = []
-        this.puzzles.push(new Puzzle(0, 0))
-        this.puzzles.push(new Puzzle(300, 300))
-        this.puzzles.push(new Puzzle(700, 0))
-    }
+    start() {}
 
     selectPuzzle(puzzle: Puzzle | null) {
         for (let p of this.puzzles) {
