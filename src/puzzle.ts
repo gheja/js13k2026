@@ -17,17 +17,17 @@ class Puzzle {
         this.top = y
 
         let a = [
-            [ ShapeIndex.Triangle1, 30, 30, 0 ],
-            [ ShapeIndex.Triangle1, 45, 30, 180 ],
-            [ ShapeIndex.Triangle1, 60, 30, 0 ],
-            [ ShapeIndex.Triangle1, 75, 30, 180 ],
-            [ ShapeIndex.Triangle1, 90, 30, 0 ],
+            [ ShapeIndex.Triangle1, 30, 30, 0,   true  ],
+            [ ShapeIndex.Triangle1, 45, 30, 180, false ],
+            [ ShapeIndex.Triangle1, 60, 30, 0,   false ],
+            [ ShapeIndex.Triangle1, 75, 30, 180, false ],
+            [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
         ]
 
         let piece_index = 0
         for (let i=0; i<a.length; i++) {
             let b = a[i]
-            this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: false})
+            this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: b[4]})
             this.pieces.push({shape_index: b[0], color: '#ff0', dom: null})
             piece_index += 1
         }
@@ -39,12 +39,20 @@ class Puzzle {
         this.pieces[4].color = '#f0f'
 
         let path_data = ''
+        let locked_path_data = ''
 
         for (let i=0; i<this.pieces.length; i++) {
             let b = this.pieces[i]
 
             // TODO: fix the tiny gaps between them
             path_data += `<path id="e${i}" style="fill:${b.color}" d="${SHAPES[b.shape_index]}"/>`
+        }
+
+        // draw the locked icon
+        for (let slot of this.slots) {
+            if (slot.locked) {
+                locked_path_data += `<path style="fill:#000a" d="${SHAPES[ShapeIndex.LockedIcon]}" transform="translate(${slot.x}, ${slot.y})"/>`
+            }
         }
 
         let svg_data = `
@@ -54,6 +62,7 @@ class Puzzle {
   </filter>
   <g id="layer1"></g>
   <g id="layer2">${path_data}</g>
+  <g id="layerx">${locked_path_data}</g>
   <g id="layer3" filter="url(#shadow)"></g>
 </svg>
         `;
@@ -184,7 +193,7 @@ class Puzzle {
             if (obj.isPointInFill(local_point)) {
                 for (let slot of this.slots)
                 {
-                    if (this.pieces[slot.piece_index].dom == obj)
+                    if (!slot.locked && this.pieces[slot.piece_index].dom == obj)
                     {
                         this.slotHovered = slot
                     }
