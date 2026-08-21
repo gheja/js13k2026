@@ -4,7 +4,7 @@ function createFourPointGradient(ctx: CanvasRenderingContext2D, left: number, to
     // color shades. See https://codepen.io/gheja/pen/YPKbxJx
 
     // gradient on top
-    var g1 = ctx.createLinearGradient(left, top, left + width, top)
+    var g1 = ctx.createLinearGradient(left, 0, left + width, 0)
     g1.addColorStop(0, c1)
     g1.addColorStop(1, c2)
 
@@ -12,7 +12,7 @@ function createFourPointGradient(ctx: CanvasRenderingContext2D, left: number, to
     ctx.fillRect(left, top, width, 1)
 
     // gradient on bottom
-    var g2 = ctx.createLinearGradient(left, top, left + width, top)
+    var g2 = ctx.createLinearGradient(left, 0, left + width, 0)
     g2.addColorStop(0, c3)
     g2.addColorStop(1, c4)
 
@@ -26,7 +26,7 @@ function createFourPointGradient(ctx: CanvasRenderingContext2D, left: number, to
         let m = ((height - 1) * width + x) * 4
 
         // vertical slices
-        var g3 = ctx.createLinearGradient(0, 0, 0, height)
+        var g3 = ctx.createLinearGradient(left, top, left, top + height)
         g3.addColorStop(0, `rgb(${pixel_data.data[n]},${pixel_data.data[n+1]},${pixel_data.data[n+2]})`)
         g3.addColorStop(1, `rgb(${pixel_data.data[m]},${pixel_data.data[m+1]},${pixel_data.data[m+2]})`)
 
