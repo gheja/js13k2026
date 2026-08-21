@@ -127,6 +127,7 @@ class Puzzle {
                 this.swapPiecesInSlots2(this.slotFirstPick, this.slotHovered)
                 this.updateElementPositions()
                 this.slotFirstPick = null
+                this.updatePieceVisuals()
             }
         }
     }
@@ -155,10 +156,6 @@ class Puzzle {
         point.x = event.clientX
         point.y = event.clientY
 
-        var layer1 = svg.getElementById("layer1")
-        var layer2 = svg.getElementById("layer2")
-        var layer3 = svg.getElementById("layer3")
-
         let selection_mode = (this.slotFirstPick != null ? 2 : 1)
         
         this.slotHovered = null
@@ -174,23 +171,41 @@ class Puzzle {
                         this.slotHovered = slot
                     }
                 }
-                if (selection_mode == 1) {
-                    if (obj.parentNode != layer3)
-                    {
-                        layer3.appendChild(obj)
-                    }
-                    obj.style.stroke = obj.style.fill
-                    obj.style.strokeWidth = "4px"
+            }
+        }
+
+        this.updatePieceVisuals()
+    }
+
+    updatePieceVisuals() {
+        let svg = this.svg_dom
+
+        var layer1 = svg.getElementById("layer1")
+        var layer2 = svg.getElementById("layer2")
+        var layer3 = svg.getElementById("layer3")
+
+        // loop through all elements
+        for (let obj of svg.querySelectorAll("path")) {
+            let hoveredPieceDom = this.slotHovered ? this.pieces[this.slotHovered.piece_index].dom : null
+            let firstPickedPieceDom = this.slotFirstPick ? this.pieces[this.slotFirstPick.piece_index].dom : null
+
+            if ((firstPickedPieceDom == null && hoveredPieceDom == obj) || (firstPickedPieceDom == obj)) {
+                if (obj.parentNode != layer3)
+                {
+                    layer3.appendChild(obj)
                 }
-                else {
-                    if (obj.parentNode != layer1)
-                    {
-                        layer1.appendChild(obj)
-                    }
-                    obj.style.stroke = "#111"
-                    obj.style.strokeWidth = "8px"                
+                obj.style.stroke = obj.style.fill
+                obj.style.strokeWidth = "4px"
+            }
+            else if (hoveredPieceDom == obj) {
+                if (obj.parentNode != layer1)
+                {
+                    layer1.appendChild(obj)
                 }
-            } else {
+                obj.style.stroke = "#111"
+                obj.style.strokeWidth = "4px"
+            }
+            else {
                 if (obj.parentNode != layer2)
                 {
                     layer2.appendChild(obj)
