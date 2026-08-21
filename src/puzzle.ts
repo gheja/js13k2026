@@ -67,8 +67,16 @@ class Puzzle {
         this.svg_dom.addEventListener("mousemove", this.onMouseMove.bind(this))
         this.svg_dom.addEventListener("click", this.onClick.bind(this))
 
+        this.swapPiecesInSlots(1, 3)
+
         this.updateElementPositions()
 
+    }
+
+    swapPiecesInSlots(a: number, b: number) {
+        let n = this.slots[a].element_index
+        this.slots[a].element_index = this.slots[b].element_index
+        this.slots[b].element_index = n
     }
 
     updateElementPositions() {
