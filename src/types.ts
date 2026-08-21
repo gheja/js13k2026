@@ -4,3 +4,11 @@ enum GameState {
     MainScreen,
     PuzzleActive,
 }
+
+enum PuzzleState {
+    StoppedUnfinished = 0,
+    StoppedFinished,
+//    Running,
+    PickFirstPiece,
+    PickSecondPiece,
+}

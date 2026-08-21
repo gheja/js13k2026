@@ -9,6 +9,10 @@ class Puzzle {
     private pieces: Array<any> = []
     private slots: Array<any> = []
 
+    private state: PuzzleState = PuzzleState.StoppedUnfinished
+    private slotHovered: any
+    private slotFirstPick: any
+
     constructor(x: number, y: number) {
         this.left = x
         this.top = y
@@ -71,10 +75,14 @@ class Puzzle {
 
     }
 
+    swapPiecesInSlots2(slot1: any, slot2: any) {
+        let n = slot1.piece_index
+        slot1.piece_index = slot2.piece_index
+        slot2.piece_index = n
+    }
+
     swapPiecesInSlots(a: number, b: number) {
-        let n = this.slots[a].piece_index
-        this.slots[a].piece_index = this.slots[b].piece_index
-        this.slots[b].piece_index = n
+        this.swapPiecesInSlots2(this.slots[a], this.slots[b])
     }
 
     updateElementPositions() {
@@ -85,6 +93,12 @@ class Puzzle {
     }
 
     setActive(value: boolean) {
+        if (value) {
+            this.state = PuzzleState.PickFirstPiece
+        }
+        else {
+            this.state = PuzzleState.StoppedUnfinished
+        }
         this.active = value
     }
 
@@ -95,10 +109,26 @@ class Puzzle {
         else if (_game.state == GameState.MainScreen) {
             this.onClick2(event)
         }
+        else if (_game.state == GameState.PuzzleActive) {
+            this.onClick3(event)
+        }
     }
 
     onClick2(event: MouseEvent) {
         _game.selectPuzzle(this)
+    }
+
+    onClick3(event: MouseEvent) {
+        if (this.slotHovered) {
+            if (!this.slotFirstPick) {
+                this.slotFirstPick = this.slotHovered
+            }
+            else {
+                this.swapPiecesInSlots2(this.slotFirstPick, this.slotHovered)
+                this.updateElementPositions()
+                this.slotFirstPick = null
+            }
+        }
     }
 
     onMouseMove(event: MouseEvent) {
@@ -129,12 +159,21 @@ class Puzzle {
         var layer2 = svg.getElementById("layer2")
         var layer3 = svg.getElementById("layer3")
 
-        let selection_mode = 1
+        let selection_mode = (this.slotFirstPick != null ? 2 : 1)
         
+        this.slotHovered = null
+
         // loop through all elements
         for (let obj of svg.querySelectorAll("path")) {
             var local_point = point.matrixTransform(obj.getScreenCTM().inverse())
             if (obj.isPointInFill(local_point)) {
+                for (let slot of this.slots)
+                {
+                    if (this.pieces[slot.piece_index].dom == obj)
+                    {
+                        this.slotHovered = slot
+                    }
+                }
                 if (selection_mode == 1) {
                     if (obj.parentNode != layer3)
                     {
