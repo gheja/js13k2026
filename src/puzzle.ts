@@ -62,7 +62,7 @@ class Puzzle {
   </filter>
   <g id="layer1"></g>
   <g id="layer2">${path_data}</g>
-  <g id="layerx">${locked_path_data}</g>
+  <g>${locked_path_data}</g>
   <g id="layer3" filter="url(#shadow)"></g>
 </svg>
         `;
