@@ -2,26 +2,28 @@ const SHAPES = [
     'M 0,-13 -15,13 h 30 z',
     'M 0,-3 -2,0 0,3 2,0 Z',
     'M -13 -13 H 13 V 13 H -13 Z',
-    'M -5.6 -13 H 20.4 L 5.6 13 H -20.4 Z'
+    'M -5.6 -13 H 20.4 L 5.6 13 H -20.4 Z',
+    'M -50 -13 h 100 v 26 h -100 Z',
 ]
 
 enum ShapeIndex {
     Triangle1 = 0,
     LockedIcon,
     Square1,
-    Paralellogram1
+    Paralellogram1,
+    WideRectangle,
 }
 
 const PUZZLE1 =  [
     [
-        [ ShapeIndex.Square1, 30,  30,  0, true  ],
-        [ ShapeIndex.Square1, 56,  30,  0, false ],
-        [ ShapeIndex.Square1, 82,  30,  0, false ],
-        [ ShapeIndex.Square1, 108, 30,  0, false ],
-        [ ShapeIndex.Square1, 134, 30,  0, true  ],
+        [ ShapeIndex.WideRectangle, 80, 30,  0, true  ],
+        [ ShapeIndex.WideRectangle, 80, 56,  0, false ],
+        [ ShapeIndex.WideRectangle, 80, 82,  0, false ],
+        [ ShapeIndex.WideRectangle, 80, 108, 0, false ],
+        [ ShapeIndex.WideRectangle, 80, 134, 0, true  ],
     ],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
-    [ "#0ff", "#04f", "#0ff", "#04f", ]
+    [ "#0ff", "#0ff", "#04f", "#04f" ],
 ]
 
 const PUZZLE2 =  [
@@ -51,7 +53,7 @@ const PUZZLE2 =  [
         [ ShapeIndex.Square1, 134, 108, 0, true  ],
     ],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
-    [ "#ff0", "#0f0", "#f00", "#0ff" ]
+    [ "#ff0", "#0f0", "#f00", "#0ff" ],
 ]
 
 const PUZZLE3 =  [
