@@ -84,8 +84,9 @@ class Puzzle {
             }
         }
 
-        this.width = max_x + 30
-        this.height = max_y + 30
+        // trying to add a safe margin on the right and bottom side too
+        this.width = max_x + min_x
+        this.height = max_y + min_y
 
         let svg_data = `
 <svg width="${this.width}" height="${this.height}" viewBox="0 0 ${this.width} ${this.height}" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
