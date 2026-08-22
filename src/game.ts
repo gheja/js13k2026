@@ -22,7 +22,8 @@ class Game {
         }
         this.state = GameState.PuzzleActive
         if (puzzle) {
-            _game.gfx.setTarget(puzzle.left + puzzle.width/2, puzzle.top + puzzle.height/2, 3.0)
+            var z = Math.min((window.innerWidth * 0.66) / puzzle.width, (window.innerHeight * 0.66) / puzzle.height)
+            _game.gfx.setTarget(puzzle.left + puzzle.width/2, puzzle.top + puzzle.height/2, z)
         }
     }
 
