@@ -2,5 +2,4 @@ html, body { padding: 0; margin: 0; background: #333; color: #eee; overflow: hid
 * { transition: opacity 1s; }
 #b { position: absolute; transform: scale(1.0) translate(0px, 0px); width: 500px; height: 500px; }
 #b > svg { position: fixed; display: block; }
-#o { position: absolute; top: 0; right: 0; bottom: 0; left: 0; background: #111; opacity: 0; z-index: -5; }
 #h { position: fixed; right: 0; bottom: 2rem; left: 0; text-align: center; opacity: 0; }

@@ -18,15 +18,13 @@ class Game {
 
     selectPuzzle(puzzle: Puzzle | null) {
         for (let p of this.puzzles) {
-            p.setActive(p == puzzle)
+            p.setActive(p == puzzle, !puzzle || p == puzzle)
         }
         this.state = GameState.PuzzleActive
         if (puzzle) {
             var z = Math.min((window.innerWidth * 0.66) / puzzle.width, (window.innerHeight * 0.66) / puzzle.height)
             _game.gfx.setTarget(puzzle.left + puzzle.width/2, puzzle.top + puzzle.height/2, z)
             window.setTimeout(this.puzzleEnterTimeout.bind(this), 1500)
-            _overlay.style.opacity = "1"
-            _overlay.style.zIndex = "1000"
         }
     }
 
@@ -39,7 +37,5 @@ class Game {
         this.state = GameState.MainScreen
         this.gfx.setTarget(250, 250, 1.0)
         _hint.style.opacity = "0"
-        _overlay.style.opacity = "0"
-        _overlay.style.zIndex = "0"
     }
 }

@@ -135,9 +135,8 @@ class Puzzle {
         }
     }
 
-    setActive(value: boolean) {
-        // send it below the overlay
-        this.svg_dom.style.zIndex = value ? "1100" : ""
+    setActive(value: boolean, visible: boolean) {
+        this.svg_dom.style.opacity = visible ? "1" : "0"
 
         if (this.state == PuzzleState.StoppedFinished)
         {
