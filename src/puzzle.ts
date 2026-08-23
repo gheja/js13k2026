@@ -11,6 +11,7 @@ class Puzzle {
     private state: PuzzleState = PuzzleState.StoppedUnfinished
     private slotHovered: any
     private slotFirstPick: any
+    private hint: string
 
     constructor(x: number, y: number, data: any) {
         this.left = x
@@ -114,6 +115,7 @@ class Puzzle {
 
         this.updateElementPositions()
 
+        this.hint = data[PuzzleDataIndex.Hint]
     }
 
     swapPiecesInSlots2(slot1: any, slot2: any) {
@@ -134,6 +136,9 @@ class Puzzle {
     }
 
     setActive(value: boolean) {
+        // send it below the overlay
+        this.svg_dom.style.zIndex = value ? "1100" : ""
+
         if (this.state == PuzzleState.StoppedFinished)
         {
             return
@@ -141,6 +146,7 @@ class Puzzle {
 
         if (value) {
             this.state = PuzzleState.PickFirstPiece
+            _hint.innerHTML = this.hint ? this.hint : ""
         }
         else {
             this.state = PuzzleState.StoppedUnfinished
@@ -284,9 +290,13 @@ class Puzzle {
             }
         }
 
-        if (!IS_PROD_BUILD) {
-            console.log('won')
-        }
         this.state = PuzzleState.StoppedFinished
+        // _hint.style.opacity = "0"
+        _hint.innerHTML = "Well done!"
+        window.setTimeout(this.showCompletedOverlay.bind(this), 1500)
+    }
+
+    showCompletedOverlay() {
+
     }
 }

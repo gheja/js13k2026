@@ -15,5 +15,6 @@ enum PuzzleState {
 
 enum PuzzleDataIndex {
     Pieces = 0,
-    Colors
+    Colors,
+    Hint,
 }

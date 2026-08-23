@@ -24,6 +24,7 @@ const PUZZLE1 =  [
     ],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
     [ "#0ff", "#0ff", "#04f", "#04f" ],
+    "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked.",
 ]
 
 const PUZZLE2 =  [
@@ -54,6 +55,7 @@ const PUZZLE2 =  [
     ],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
     [ "#ff0", "#0f0", "#f00", "#0ff" ],
+    "Make sure the blocks create a gradient in all directions.",
 ]
 
 const PUZZLE3 =  [
@@ -65,7 +67,8 @@ const PUZZLE3 =  [
         [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
     ],
     // [ "#ff0", "#f0f", "#ff0", "#f0f" ]
-    [ "#ff0", "#0ff", "#ff0", "#0ff" ]
+    [ "#ff0", "#0ff", "#ff0", "#0ff" ],
+    "Try with different shapes.",
 ]
 
 const PUZZLE4 =  [

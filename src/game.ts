@@ -24,12 +24,22 @@ class Game {
         if (puzzle) {
             var z = Math.min((window.innerWidth * 0.66) / puzzle.width, (window.innerHeight * 0.66) / puzzle.height)
             _game.gfx.setTarget(puzzle.left + puzzle.width/2, puzzle.top + puzzle.height/2, z)
+            window.setTimeout(this.puzzleEnterTimeout.bind(this), 1500)
+            _overlay.style.opacity = "1"
+            _overlay.style.zIndex = "1000"
         }
+    }
+
+    puzzleEnterTimeout() {
+        _hint.style.opacity = "1"
     }
 
     exitPuzzle() {
         this.selectPuzzle(null)
         this.state = GameState.MainScreen
         this.gfx.setTarget(250, 250, 1.0)
+        _hint.style.opacity = "0"
+        _overlay.style.opacity = "0"
+        _overlay.style.zIndex = "0"
     }
 }
