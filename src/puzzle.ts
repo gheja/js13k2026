@@ -111,8 +111,7 @@ class Puzzle {
         this.svg_dom.addEventListener("mousemove", this.onMouseMove.bind(this))
         this.svg_dom.addEventListener("click", this.onClick.bind(this))
 
-        this.swapPiecesInSlots(1, 3)
-
+        this.shuffle()
         this.updateElementPositions()
 
         this.hint = data[PuzzleDataIndex.Hint]
@@ -293,6 +292,65 @@ class Puzzle {
         // _hint.style.opacity = "0"
         _hint.innerHTML = "Well done!"
         window.setTimeout(this.showCompletedOverlay.bind(this), 1500)
+    }
+
+    shuffle() {
+        // Move pieces to random positions. When it is fully shuffled then:
+        //   - no piece is in its correct position
+        //   - no piece is in a position where if swapped with another both of
+        //     them gets into their correct position
+        //
+        // This method will make sure the puzzle needs "pieces - 1" steps to
+        // solve. This is per piece shape, with multiple shapes it will take
+        // "(shape1 pieces - 1) + (shape2 pieces -1) + ..." steps to solve.
+        //
+        // From this position we can make it easier by moving pieces to their
+        // correct places all while keeping track of the fewest steps needed
+        // to solve from there.
+        //
+        // Also, make it reproducible by using a seed.
+
+        let seed = 42
+        let a
+        let b
+
+        let random = seed
+        function getRandom(n: number) {
+            seed = (seed + 7985) * 2091 % 7531
+            return seed % n
+        }
+
+        let done = false
+
+        while (!done) {
+            console.log("round")
+
+            for (let i=0; i<100; i++) {
+                a = getRandom(this.slots.length)
+                b = getRandom(this.slots.length)
+                if (a != b && !this.slots[a].locked && !this.slots[b].locked) {
+                    this.swapPiecesInSlots2(this.slots[a], this.slots[b])
+                }
+            }
+
+            console.log("check")
+
+            done = true
+            for (a=0; a<this.slots.length; a++) {
+                if (this.slots[a].locked) {
+                    continue
+                }
+
+                b = this.slots[a].correct_piece_index
+
+                if (this.slots[a].correct_piece_index == this.slots[b].piece_index || this.slots[b].correct_piece_index == this.slots[a].piece_index) {
+                    done = false
+                    break
+                }
+            }
+        }
+
+        this.updateElementPositions()
     }
 
     showCompletedOverlay() {
