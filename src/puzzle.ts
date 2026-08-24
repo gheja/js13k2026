@@ -368,7 +368,7 @@ class Puzzle {
         // calculate the target steps
         let targetStepsRequired = Math.ceil(minStepsRequired * (1 - this.startingSolvedProgress))
 
-        console.log([minStepsRequired, targetStepsRequired])
+        // console.log([minStepsRequired, targetStepsRequired])
 
         // solve the puzzle until that many steps are needed to finish it
         while (minStepsRequired > targetStepsRequired) {
@@ -384,14 +384,14 @@ class Puzzle {
                 continue
             }
 
-            console.log(['a', a, this.slots[a].locked, this.slots[a].correct_piece_index, this.slots[a].piece_index])
-            console.log(['b', b, this.slots[b].locked, this.slots[b].correct_piece_index, this.slots[b].piece_index])
+            // console.log(['a', a, this.slots[a].locked, this.slots[a].correct_piece_index, this.slots[a].piece_index])
+            // console.log(['b', b, this.slots[b].locked, this.slots[b].correct_piece_index, this.slots[b].piece_index])
 
             this.swapPiecesInSlots2(this.slots[a], this.slots[b])
-            console.log(['swap', a, b])
+            // console.log(['swap', a, b])
             minStepsRequired -= 1
         }
-        console.log([minStepsRequired])
+        // console.log([minStepsRequired])
 
         this.updateElementPositions()
     }
