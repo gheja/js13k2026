@@ -323,8 +323,6 @@ class Puzzle {
         let done = false
 
         while (!done) {
-            console.log("round")
-
             for (let i=0; i<100; i++) {
                 a = getRandom(this.slots.length)
                 b = getRandom(this.slots.length)
@@ -332,8 +330,6 @@ class Puzzle {
                     this.swapPiecesInSlots2(this.slots[a], this.slots[b])
                 }
             }
-
-            console.log("check")
 
             done = true
             for (a=0; a<this.slots.length; a++) {
