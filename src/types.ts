@@ -17,4 +17,5 @@ enum PuzzleDataIndex {
     Pieces = 0,
     Colors,
     Hint,
+    StartingSolvedProgress,
 }

@@ -12,6 +12,7 @@ class Puzzle {
     private slotHovered: any
     private slotFirstPick: any
     private hint: string
+    private startingSolvedProgress: number
 
     constructor(x: number, y: number, data: any) {
         this.left = x
@@ -111,10 +112,11 @@ class Puzzle {
         this.svg_dom.addEventListener("mousemove", this.onMouseMove.bind(this))
         this.svg_dom.addEventListener("click", this.onClick.bind(this))
 
+        this.startingSolvedProgress = data[PuzzleDataIndex.StartingSolvedProgress]
+        this.hint = data[PuzzleDataIndex.Hint]
+
         this.shuffle()
         this.updateElementPositions()
-
-        this.hint = data[PuzzleDataIndex.Hint]
     }
 
     swapPiecesInSlots2(slot1: any, slot2: any) {
@@ -295,6 +297,8 @@ class Puzzle {
     }
 
     shuffle() {
+        // We need to start from a solved position.
+        //
         // Move pieces to random positions. When it is fully shuffled then:
         //   - no piece is in its correct position
         //   - no piece is in a position where if swapped with another both of
@@ -320,8 +324,14 @@ class Puzzle {
             return seed % n
         }
 
+        // start from a solved position
+        for (a=0; a<this.slots.length; a++) {
+            this.slots[a].piece_index = this.slots[a].correct_piece_index
+        }
+
         let done = false
 
+        // do 100 random swaps until none of the pieces are in their correct positions
         while (!done) {
             for (let i=0; i<100; i++) {
                 a = getRandom(this.slots.length)
@@ -345,6 +355,43 @@ class Puzzle {
                 }
             }
         }
+
+        // calculate the minimum steps required to solve a fully shuffled puzzle
+        let minStepsRequired = 0
+        for (let i=0; i<this.slots.length; i++) {
+            if (!this.slots[i].locked) {
+                minStepsRequired += 1
+            }
+        }
+        minStepsRequired -= 1
+
+        // calculate the target steps
+        let targetStepsRequired = Math.ceil(minStepsRequired * (1 - this.startingSolvedProgress))
+
+        console.log([minStepsRequired, targetStepsRequired])
+
+        // solve the puzzle until that many steps are needed to finish it
+        while (minStepsRequired > targetStepsRequired) {
+            a = getRandom(this.slots.length)
+
+            if (this.slots[a].locked || this.slots[a].correct_piece_index == this.slots[a].piece_index) {
+                continue
+            }
+
+            b = this.slots[a].piece_index
+
+            if (this.slots[b].correct_piece_index == this.slots[b].piece_index) {
+                continue
+            }
+
+            console.log(['a', a, this.slots[a].locked, this.slots[a].correct_piece_index, this.slots[a].piece_index])
+            console.log(['b', b, this.slots[b].locked, this.slots[b].correct_piece_index, this.slots[b].piece_index])
+
+            this.swapPiecesInSlots2(this.slots[a], this.slots[b])
+            console.log(['swap', a, b])
+            minStepsRequired -= 1
+        }
+        console.log([minStepsRequired])
 
         this.updateElementPositions()
     }
