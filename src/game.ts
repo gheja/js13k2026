@@ -3,6 +3,7 @@ class Game {
     public puzzles: Array<Puzzle>
     public activePuzzle: Puzzle | null
     public state: GameState = GameState.Initializing
+    public paused: boolean = false
 
     public transitionState: TransitionState = TransitionState.Finished
     public transitionMap = [
@@ -10,7 +11,8 @@ class Game {
         [ TransitionState.EnteringPuzzle2, TransitionState.PuzzleActive ],
         [ TransitionState.LeavingPuzzle, TransitionState.UpdateMainScreen ],
         [ TransitionState.UpdateMainScreen, TransitionState.MainScreen  ],
-        [ TransitionState.ResettingPuzzle, TransitionState.EnteringPuzzle2 ]
+        [ TransitionState.ResettingPuzzle, TransitionState.EnteringPuzzle2 ],
+        [ TransitionState.PeekPuzzle, TransitionState.PeekPuzzleReturn ],
     ]
 
     constructor() {
@@ -46,6 +48,8 @@ class Game {
     }
 
     transitionStart(state: TransitionState) {
+        let time = 1000
+
         this.transitionState = state
 
         switch (state) {
@@ -84,10 +88,22 @@ class Game {
             case TransitionState.MainScreen:
                 this.state = GameState.MainScreen
             break
+
+            case TransitionState.PeekPuzzle:
+                this.paused = true
+                // @ts-ignore - "possibly null"
+                this.activePuzzle.peekOn()
+                time = 3000
+            break
+
+            case TransitionState.PeekPuzzleReturn:
+                this.paused = false
+                // @ts-ignore - "possibly null"
+                this.activePuzzle.peekOff()
+            break
         }
 
-        // all transitions are 1 second log
-        window.setTimeout(this.transitionProgress.bind(this), 1000)
+        window.setTimeout(this.transitionProgress.bind(this), time)
     }
 
     transitionProgress() {
@@ -102,6 +118,11 @@ class Game {
     exitPuzzle() {
         _puzzleMenu.style.display = "none"
         this.transitionStart(TransitionState.LeavingPuzzle)
+    }
+
+    peekPuzzle() {
+        _puzzleMenu.style.display = "none"
+        this.transitionStart(TransitionState.PeekPuzzle)
     }
 
     resetPuzzle() {

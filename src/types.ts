@@ -29,4 +29,6 @@ enum TransitionState {
     UpdateMainScreen,
     MainScreen,
     ResettingPuzzle,
+    PeekPuzzle,
+    PeekPuzzleReturn,
 }

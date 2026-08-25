@@ -158,7 +158,7 @@ class Puzzle {
     }
 
     onClick(event: MouseEvent) {
-        if (_game.state == GameState.Initializing) {
+        if (_game.state == GameState.Initializing || _game.paused) {
             return
         }
         else if (_game.state == GameState.MainScreen) {
@@ -199,7 +199,7 @@ class Puzzle {
     }
 
     onMouseMove(event: MouseEvent) {
-        if (this.state == PuzzleState.StoppedUnfinished || this.state == PuzzleState.StoppedFinished) {
+        if (this.state == PuzzleState.StoppedUnfinished || this.state == PuzzleState.StoppedFinished || _game.paused) {
             return
         }
 
@@ -291,7 +291,7 @@ class Puzzle {
         }
 
         this.state = PuzzleState.StoppedFinished
-        // _hint.style.opacity = "0"
+        _hint.style.opacity = "1"
         _hint.innerHTML = "Well done!"
         window.setTimeout(this.showCompletedOverlay.bind(this), 1500)
     }
@@ -393,6 +393,24 @@ class Puzzle {
         }
         // console.log([minStepsRequired])
 
+        this.updateElementPositions()
+    }
+
+    peekOn() {
+        for (let slot of this.slots) {
+            slot.before_peek_piece_index = slot.piece_index
+            slot.piece_index = slot.correct_piece_index
+        }
+        this.updateElementPositions()
+        _hint.style.opacity = "1"
+        _hint.innerHTML = "Peeking..."
+    }
+
+    peekOff() {
+        for (let slot of this.slots) {
+            slot.piece_index = slot.before_peek_piece_index
+        }
+        _hint.style.opacity = "0"
         this.updateElementPositions()
     }
 
