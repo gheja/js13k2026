@@ -11,35 +11,16 @@ function init() {
     _puzzleMenu = document.getElementById("n") as HTMLDivElement
     
     _game = new Game()
-    // game.init()
-    _game.start()
-    zoom_reset()
 
     // @ts-ignore - "possibly null"
     document.getElementById("a1").addEventListener("click", _game.resetPuzzle.bind(_game))
     // @ts-ignore - "possibly null"
-    document.getElementById("peek").addEventListener("click", _game.peekPuzzle.bind(_game))
+    document.getElementById("a2").addEventListener("click", _game.exitPuzzle.bind(_game))
     // @ts-ignore - "possibly null"
-    document.getElementById("leave").addEventListener("click", zoom_reset)
+    document.getElementById("a3").addEventListener("click", _game.peekPuzzle.bind(_game))
     // @ts-ignore - "possibly null"
-    document.getElementById("back").addEventListener("click", hidePuzzleMenu)
-    _puzzleMenuButton.addEventListener("click", showPuzzleMenu)
+    document.getElementById("a4").addEventListener("click", _game.hidePuzzleMenu.bind(_game))
+    _puzzleMenuButton.addEventListener("click", _game.showPuzzleMenu)
 }
 
 window.addEventListener("load", init)
-
-function showPuzzleMenu() {
-    _puzzleMenu.style.display = "block"
-    // _puzzleMenu.style.opacity = "1"
-}
-
-function hidePuzzleMenu() {
-    _puzzleMenu.style.display = "none"
-}
-
-function zoom_here(obj: HTMLElement) {
-    _game.gfx.setTarget(obj.offsetLeft + obj.offsetWidth/2, obj.offsetTop + obj.offsetHeight/2, 3.0)
-}
-function zoom_reset() {
-    _game.exitPuzzle()
-}

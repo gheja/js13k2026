@@ -25,9 +25,10 @@ class Game {
         ]
         this.gfx = new Gfx()
         this.gfx.render()
+        
+        // to reset the zoom and everything
+        this.exitPuzzle()
     }
-
-    start() {}
 
     selectPuzzle(puzzle: Puzzle | null) {
         for (let p of this.puzzles) {
@@ -41,12 +42,6 @@ class Game {
         }
     }
 
-    transitionPuzzleEnter1() {
-    }
-
-    transitionPuzzleEnter2() {
-    }
-
     transitionStart(state: TransitionState) {
         let time = 1000
 
@@ -58,7 +53,7 @@ class Game {
                 var z = Math.min((window.innerWidth * 0.66) / this.activePuzzle.width, (window.innerHeight * 0.66) / this.activePuzzle.height)
 
                 // @ts-ignore - "possibly null"
-                _game.gfx.setTarget(this.activePuzzle.left + this.activePuzzle.width/2, this.activePuzzle.top + this.activePuzzle.height/2, z)
+                _game.gfx.setViewTarget(this.activePuzzle.left + this.activePuzzle.width/2, this.activePuzzle.top + this.activePuzzle.height/2, z)
             break
 
             case TransitionState.EnteringPuzzle2:
@@ -77,7 +72,7 @@ class Game {
 
             case TransitionState.LeavingPuzzle:
                 this.selectPuzzle(null)
-                this.gfx.setTarget(250, 250, 1.0)
+                this.gfx.setViewTarget(250, 250, 1.0)
                 _hint.style.opacity = "0"
                 _puzzleMenuButton.style.opacity = "0"
             break
@@ -116,17 +111,25 @@ class Game {
     }
 
     exitPuzzle() {
-        _puzzleMenu.style.display = "none"
+        this.hidePuzzleMenu()
         this.transitionStart(TransitionState.LeavingPuzzle)
     }
 
     peekPuzzle() {
-        _puzzleMenu.style.display = "none"
+        this.hidePuzzleMenu()
         this.transitionStart(TransitionState.PeekPuzzle)
     }
 
     resetPuzzle() {
-        _puzzleMenu.style.display = "none"
+        this.hidePuzzleMenu()
         this.transitionStart(TransitionState.ResettingPuzzle)
+    }
+
+    showPuzzleMenu() {
+        _puzzleMenu.style.display = "block"
+    }
+
+    hidePuzzleMenu() {
+        _puzzleMenu.style.display = "none"
     }
 }

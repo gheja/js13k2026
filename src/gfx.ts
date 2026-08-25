@@ -12,7 +12,7 @@ class Gfx {
     constructor() {
     }
 
-    setTarget(x: number, y: number, zoom: number) {
+    setViewTarget(x: number, y: number, zoom: number) {
         // this.target_x = 200 - x
         // this.target_y = 200 - y
         this.target_x = x
