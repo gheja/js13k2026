@@ -16,6 +16,8 @@ function init() {
     zoom_reset()
 
     // @ts-ignore - "possibly null"
+    document.getElementById("a1").addEventListener("click", _game.resetPuzzle.bind(_game))
+    // @ts-ignore - "possibly null"
     document.getElementById("leave").addEventListener("click", zoom_reset)
     // @ts-ignore - "possibly null"
     document.getElementById("back").addEventListener("click", hidePuzzleMenu)

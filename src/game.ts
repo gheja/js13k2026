@@ -10,6 +10,7 @@ class Game {
         [ TransitionState.EnteringPuzzle2, TransitionState.PuzzleActive ],
         [ TransitionState.LeavingPuzzle, TransitionState.UpdateMainScreen ],
         [ TransitionState.UpdateMainScreen, TransitionState.MainScreen  ],
+        [ TransitionState.ResettingPuzzle, TransitionState.EnteringPuzzle2 ]
     ]
 
     constructor() {
@@ -65,12 +66,16 @@ class Game {
                 this.state = GameState.PuzzleActive
             break
 
+            case TransitionState.ResettingPuzzle:
+                // @ts-ignore - "possibly null"
+                this.activePuzzle.shuffle()
+            break
+
             case TransitionState.LeavingPuzzle:
                 this.selectPuzzle(null)
                 this.gfx.setTarget(250, 250, 1.0)
                 _hint.style.opacity = "0"
                 _puzzleMenuButton.style.opacity = "0"
-                _puzzleMenu.style.display = "none"
             break
 
             case TransitionState.UpdateMainScreen:
@@ -95,6 +100,12 @@ class Game {
     }
 
     exitPuzzle() {
+        _puzzleMenu.style.display = "none"
         this.transitionStart(TransitionState.LeavingPuzzle)
+    }
+
+    resetPuzzle() {
+        _puzzleMenu.style.display = "none"
+        this.transitionStart(TransitionState.ResettingPuzzle)
     }
 }
