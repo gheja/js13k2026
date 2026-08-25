@@ -19,3 +19,13 @@ enum PuzzleDataIndex {
     Hint,
     StartingSolvedProgress,
 }
+
+enum TransitionState {
+    Finished = 0,
+    EnteringPuzzle,
+    EnteringPuzzle2,
+    PuzzleActive,
+    LeavingPuzzle,
+    UpdateMainScreen,
+    MainScreen,
+}
