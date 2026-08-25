@@ -15,6 +15,9 @@ class Puzzle {
     private startingSolvedProgress: number
     private minStepsRequired: number
     private stepsTaken: number
+    public locked: boolean = true
+    public unlockCountOnWin: number = 1
+    public wasSolvedEarlier: boolean = false
 
     constructor(x: number, y: number, data: any) {
         this.left = x
@@ -139,7 +142,7 @@ class Puzzle {
     }
 
     setActive(value: boolean, visible: boolean) {
-        this.svg_dom.style.opacity = visible ? "1" : "0"
+        this.svg_dom.style.opacity = (!this.locked && visible) ? "1" : "0"
 
         if (this.state == PuzzleState.StoppedFinished)
         {
@@ -166,7 +169,7 @@ class Puzzle {
         else if (_game.state == GameState.MainScreen) {
             this.onClick2(event)
         }
-        else if (_game.state == GameState.PuzzleActive) {
+        else if (_game.state == GameState.PuzzleActive && this.state != PuzzleState.StoppedFinished) {
             this.onClick3(event)
         }
     }
@@ -297,6 +300,10 @@ class Puzzle {
         document.getElementById("p1").innerHTML = this.stepsTaken
         document.getElementById("p2").innerHTML = this.minStepsRequired
 
+        if (!this.wasSolvedEarlier) {
+            _game.puzzleUnlocksPending += this.unlockCountOnWin
+            this.wasSolvedEarlier = true
+        }
         _game.transitionStart(TransitionState.WinScreen)
     }
 
@@ -397,6 +404,8 @@ class Puzzle {
         }
         // console.log([minStepsRequired])
 
+        // resetting the state
+        this.state = PuzzleState.PickFirstPiece
         this.stepsTaken = 0
 
         this.updateElementPositions()

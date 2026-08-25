@@ -16,6 +16,8 @@ class Game {
         // [ TransitionState.WinScreen, TransitionState.LeavingPuzzle ]
     ]
 
+    public puzzleUnlocksPending: number = 0
+
     constructor() {
         this.activePuzzle = null
         this.puzzles = [
@@ -24,6 +26,8 @@ class Game {
             new Puzzle(0,   200, PUZZLE3),
             new Puzzle(200, 200, PUZZLE4),
         ]
+        this.puzzles[0].locked = false
+
         this.gfx = new Gfx()
         this.gfx.render()
 
@@ -77,9 +81,29 @@ class Game {
                 _hint.style.opacity = "0"
                 _puzzleMenuButton.style.opacity = "0"
                 _winMenu.style.display = "none"
+                if (this.puzzleUnlocksPending == 0) {
+                    time = 2000
+                }
             break
 
             case TransitionState.UpdateMainScreen:
+                // unlock the next puzzle(s)
+                if (this.puzzleUnlocksPending == 0) {
+                    time = 0
+                }
+                else {
+                    console.log("unlocking...")
+                    for (let p of this.puzzles) {
+                        if (p.locked) {
+                            p.locked = false
+                            this.puzzleUnlocksPending -= 1
+                        }
+                        if (this.puzzleUnlocksPending == 0) {
+                            break
+                        }
+                    }
+                    this.selectPuzzle(null)
+                }
             break
 
             case TransitionState.MainScreen:
