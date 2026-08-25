@@ -4,9 +4,9 @@ html, body { padding: 0; margin: 0; background: #333; color: #eee; overflow: hid
 #b > svg { position: fixed; display: block; }
 #h { position: fixed; right: 0; bottom: 2rem; left: 0; text-align: center; opacity: 0; }
 #m { position: fixed; top: 1rem; right: 1rem; opacity: 0; }
-#n { position: fixed; top: 0; right: 0; bottom: 0; left: 0; padding-top: 30vh; background: #000a; display: none; }
-#n div { width: 10rem; text-align: center; margin: 0.2rem auto; cursor: pointer; }
-#n div span { font-size: 0.5em; }
-#n div:hover { background: #fff2; }
+.m { position: fixed; top: 0; right: 0; bottom: 0; left: 0; padding-top: 30vh; background: #000a; text-align: center; display: none; }
+.m div { width: 10rem; text-align: center; margin: 0.2rem auto; cursor: pointer; }
+.m div span { font-size: 0.5em; }
+.m div:hover { background: #fff2; }
 #ma { cursor: pointer; }
 ::selection { background: #0000; }

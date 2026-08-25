@@ -13,6 +13,8 @@ class Puzzle {
     private slotFirstPick: any
     private hint: string
     private startingSolvedProgress: number
+    private minStepsRequired: number
+    private stepsTaken: number
 
     constructor(x: number, y: number, data: any) {
         this.left = x
@@ -185,6 +187,7 @@ class Puzzle {
                 this.swapPiecesInSlots2(this.slotFirstPick, this.slotHovered)
                 this.updateElementPositions()
                 this.slotFirstPick = null
+                this.stepsTaken += 1
             }
         }
         else {
@@ -291,9 +294,10 @@ class Puzzle {
         }
 
         this.state = PuzzleState.StoppedFinished
-        _hint.style.opacity = "1"
-        _hint.innerHTML = "Well done!"
-        window.setTimeout(this.showCompletedOverlay.bind(this), 1500)
+        document.getElementById("p1").innerHTML = this.stepsTaken
+        document.getElementById("p2").innerHTML = this.minStepsRequired
+
+        _game.transitionStart(TransitionState.WinScreen)
     }
 
     shuffle() {
@@ -357,21 +361,21 @@ class Puzzle {
         }
 
         // calculate the minimum steps required to solve a fully shuffled puzzle
-        let minStepsRequired = 0
+        this.minStepsRequired = 0
         for (let i=0; i<this.slots.length; i++) {
             if (!this.slots[i].locked) {
-                minStepsRequired += 1
+                this.minStepsRequired += 1
             }
         }
-        minStepsRequired -= 1
+        this.minStepsRequired -= 1
 
         // calculate the target steps
-        let targetStepsRequired = Math.ceil(minStepsRequired * (1 - this.startingSolvedProgress))
+        let targetStepsRequired = Math.ceil(this.minStepsRequired * (1 - this.startingSolvedProgress))
 
         // console.log([minStepsRequired, targetStepsRequired])
 
         // solve the puzzle until that many steps are needed to finish it
-        while (minStepsRequired > targetStepsRequired) {
+        while (this.minStepsRequired > targetStepsRequired) {
             a = getRandom(this.slots.length)
 
             if (this.slots[a].locked || this.slots[a].correct_piece_index == this.slots[a].piece_index) {
@@ -389,9 +393,11 @@ class Puzzle {
 
             this.swapPiecesInSlots2(this.slots[a], this.slots[b])
             // console.log(['swap', a, b])
-            minStepsRequired -= 1
+            this.minStepsRequired -= 1
         }
         // console.log([minStepsRequired])
+
+        this.stepsTaken = 0
 
         this.updateElementPositions()
     }
@@ -412,9 +418,5 @@ class Puzzle {
         }
         _hint.style.opacity = "0"
         this.updateElementPositions()
-    }
-
-    showCompletedOverlay() {
-
     }
 }

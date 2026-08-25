@@ -13,6 +13,7 @@ class Game {
         [ TransitionState.UpdateMainScreen, TransitionState.MainScreen  ],
         [ TransitionState.ResettingPuzzle, TransitionState.EnteringPuzzle2 ],
         [ TransitionState.PeekPuzzle, TransitionState.PeekPuzzleReturn ],
+        // [ TransitionState.WinScreen, TransitionState.LeavingPuzzle ]
     ]
 
     constructor() {
@@ -25,7 +26,7 @@ class Game {
         ]
         this.gfx = new Gfx()
         this.gfx.render()
-        
+
         // to reset the zoom and everything
         this.exitPuzzle()
     }
@@ -75,6 +76,7 @@ class Game {
                 this.gfx.setViewTarget(250, 250, 1.0)
                 _hint.style.opacity = "0"
                 _puzzleMenuButton.style.opacity = "0"
+                _winMenu.style.display = "none"
             break
 
             case TransitionState.UpdateMainScreen:
@@ -95,6 +97,10 @@ class Game {
                 this.paused = false
                 // @ts-ignore - "possibly null"
                 this.activePuzzle.peekOff()
+            break
+
+            case TransitionState.WinScreen:
+                _winMenu.style.display = "block"
             break
         }
 
