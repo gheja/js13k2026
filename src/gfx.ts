@@ -13,7 +13,7 @@ class Gfx {
     }
 
     setViewTargetBox(left: number, top: number, right: number, bottom: number) {
-        console.log([left, top, right, bottom])
+        // console.log([left, top, right, bottom])
         this.target_x = (left + right) / 2
         this.target_y = (top + bottom) / 2
         this.target_zoom = Math.min((window.innerWidth * 0.66) / (right - left), (window.innerHeight * 0.66) / (bottom - top))

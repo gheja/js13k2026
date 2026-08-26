@@ -110,7 +110,6 @@ class Game {
                     time = 0
                 }
                 else {
-                    console.log("unlocking...")
                     for (let p of this.puzzles) {
                         if (p.locked) {
                             p.locked = false
