@@ -1,7 +1,6 @@
 let _backgroundPaths: Array<SVGPathElement> = []
 
 function backgroundRun() {
-    // window.setInterval(backgroundTick, 200)
     window.setInterval(backgroundTick, 300)
 }
 
@@ -21,7 +20,6 @@ function backgroundTick() {
     path.setAttribute("fill", `rgba(${r},${g},${b},${a})`)
     path.setAttribute("transform", `translate(${x},${y})`)
     path.setAttribute("opacity", "0");
-    // path.setAttribute("mix-blend-mode", "screen")
         
     let anim = document.createElementNS("http://www.w3.org/2000/svg", "animate")
     anim.setAttribute("attributeName", "opacity")
@@ -29,7 +27,7 @@ function backgroundTick() {
     anim.setAttribute("keyTimes", "0;0.2;1")
     anim.setAttribute("dur", "30s")
     anim.setAttribute("fill", "freeze")
-    anim.setAttribute("begin", "indefinite");
+    anim.setAttribute("begin", "indefinite")
 
     path.appendChild(anim)
 
