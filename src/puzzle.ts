@@ -163,7 +163,7 @@ class Puzzle {
     }
 
     onClick(event: MouseEvent) {
-        if (_game.state == GameState.Initializing || _game.paused) {
+        if (_game.state == GameState.Initializing || _game.paused || this.locked) {
             return
         }
         else if (_game.state == GameState.MainScreen) {
