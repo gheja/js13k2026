@@ -74,6 +74,7 @@ class Game {
 
         switch (state) {
             case TransitionState.EnteringPuzzle:
+                _background.style.opacity = "0.1"
                 // @ts-ignore - "possibly null"
                 _game.gfx.setViewTargetBox(this.activePuzzle.left, this.activePuzzle.top, this.activePuzzle.left + this.activePuzzle.width, this.activePuzzle.top + this.activePuzzle.height)
             break
@@ -125,6 +126,7 @@ class Game {
             break
 
             case TransitionState.MainScreen:
+                _background.style.opacity = "1"
                 this.state = GameState.MainScreen
             break
 

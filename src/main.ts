@@ -4,6 +4,7 @@ let _hint: HTMLDivElement
 let _puzzleMenuButton: HTMLDivElement
 let _puzzleMenu: HTMLDivElement // this is an overlay that is handled by changing "display", not "opacity"
 let _winMenu: HTMLDivElement
+let _background: SvgInHtml
 
 function init() {
     _container = document.getElementById("b") as HTMLDivElement
@@ -11,6 +12,7 @@ function init() {
     _puzzleMenuButton = document.getElementById("m") as HTMLDivElement
     _puzzleMenu = document.getElementById("n") as HTMLDivElement
     _winMenu = document.getElementById("w") as HTMLDivElement
+    _background = document.getElementById("bg") as SvgInHtml
     
     _game = new Game()
 
@@ -25,6 +27,8 @@ function init() {
     // @ts-ignore - "possibly null"
     document.getElementById("a4").addEventListener("click", _game.hidePuzzleMenu.bind(_game))
     _puzzleMenuButton.addEventListener("click", _game.showPuzzleMenu)
+
+    backgroundRun()
 }
 
 window.addEventListener("load", init)

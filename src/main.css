@@ -1,4 +1,4 @@
-html, body { padding: 0; margin: 0; background: #333; color: #eee; overflow: hidden; font-family: Candara, sans-serif; font-size: 24pt; }
+html, body { padding: 0; margin: 0; background: #012; color: #eee; overflow: hidden; font-family: Candara, sans-serif; font-size: 24pt; }
 * { transition: opacity 1s; }
 #b { position: absolute; transform: scale(1.0) translate(0px, 0px); width: 500px; height: 500px; }
 #b > svg { position: fixed; display: block; }
@@ -10,3 +10,4 @@ html, body { padding: 0; margin: 0; background: #333; color: #eee; overflow: hid
 .m div:hover { background: #fff2; }
 #ma { cursor: pointer; }
 ::selection { background: #0000; }
+#bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
