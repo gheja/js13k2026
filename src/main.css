@@ -1,7 +1,7 @@
 html, body { padding: 0; margin: 0; background: #012; color: #eee; overflow: hidden; font-family: Candara, sans-serif; font-size: 24pt; }
 * { transition: opacity 1s; }
 #b { position: absolute; transform: scale(1.0) translate(0px, 0px); width: 500px; height: 500px; }
-#b > svg { position: fixed; display: block; filter: drop-shadow(0 0 0.5rem #000); }
+#b > svg { position: fixed; display: block; filter: drop-shadow(0 0 0.5rem #000); transition: filter 1s, opacity 1s; }
 #h { position: fixed; right: 0; bottom: 2rem; left: 0; text-align: center; opacity: 0; }
 #m { position: fixed; top: 1rem; right: 1rem; opacity: 0; }
 .m { position: fixed; top: 0; right: 0; bottom: 0; left: 0; padding-top: 30vh; background: #000a; text-align: center; display: none; }

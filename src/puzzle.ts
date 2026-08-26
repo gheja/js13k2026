@@ -149,6 +149,7 @@ class Puzzle {
     setActive(value: boolean, visible: boolean) {
         this.svg_dom.style.opacity = (!this.locked && visible) ? "1" : "0"
         this.setMarkerVisibility(value && this.state != PuzzleState.StoppedFinished)
+        this.svg_dom.style.filter = "drop-shadow(0 0 0.5rem #" + ((!value && this.state == PuzzleState.StoppedFinished && this.playerState[PlayerStateIndex.StarsReceived] == 3) ? "ff08" : "000") + ")"
 
         if (this.state == PuzzleState.StoppedFinished)
         {
@@ -316,6 +317,7 @@ class Puzzle {
             }
             else {
                 this.playerState[PlayerStateIndex.StarsReceived] = 3
+                this.svg_dom.style.filter = "drop-shadow(0 0 0.5rem #ff08)"
             }
         }
 
