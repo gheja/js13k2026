@@ -7,52 +7,11 @@
    viewBox="0 0 264.58333 264.58333"
    version="1.1"
    id="svg1"
-   inkscape:version="1.4.4 (1:1.4.4+202605061436+dcaf3e7d9e)"
-   sodipodi:docname="elements.svg"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
-  <sodipodi:namedview
-     id="namedview1"
-     pagecolor="#ffffff"
-     bordercolor="#000000"
-     borderopacity="0.25"
-     inkscape:showpageshadow="2"
-     inkscape:pageopacity="0.0"
-     inkscape:pagecheckerboard="0"
-     inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
-     inkscape:zoom="4"
-     inkscape:cx="29.5"
-     inkscape:cy="0.75"
-     inkscape:window-width="1920"
-     inkscape:window-height="1013"
-     inkscape:window-x="0"
-     inkscape:window-y="22"
-     inkscape:window-maximized="1"
-     inkscape:current-layer="layer1"
-     showgrid="true">
-    <inkscape:grid
-       id="grid8"
-       units="mm"
-       originx="0"
-       originy="0"
-       spacingx="0.99999999"
-       spacingy="0.99999999"
-       empcolor="#0099e5"
-       empopacity="0.30196078"
-       color="#0099e5"
-       opacity="0.14901961"
-       empspacing="5"
-       enabled="true"
-       visible="true" />
-  </sodipodi:namedview>
   <defs
      id="defs1" />
   <g
-     inkscape:label="Layer 1"
-     inkscape:groupmode="layer"
      id="layer1">
     <path
        id="path26"
@@ -61,8 +20,7 @@
     <path
        id="parallelogram"
        style="fill:#ff5555;stroke:#ffff00;stroke-width:0.00866544"
-       d="M -5.6 -13 H 20.4 L 5.6 13 H -20.4 Z"
-       sodipodi:nodetypes="ccccc" />
+       d="M -5.6 -13 H 20.4 L 5.6 13 H -20.4 Z" />
     <path
        id="square1"
        style="fill:#d35f5f;stroke:#ffff00;stroke-width:0.00866544"
@@ -74,7 +32,10 @@
     <path
        style="fill:#000000;stroke:none;stroke-width:0;stroke-dasharray:none"
        d="M 0,-3 -2,0 0,3 2,0 Z"
-       id="path24"
-       sodipodi:nodetypes="ccccc" />
+       id="path24" />
+    <path
+       id="path27"
+       style="fill:#d35f5f;stroke:#ffff00;stroke-width:0.00866544"
+       d="M -13 -13 H 13 V 13 H -13 Z" />
   </g>
 </svg>
