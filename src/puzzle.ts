@@ -18,6 +18,7 @@ class Puzzle {
     public locked: boolean = true
     public unlockCountOnWin: number = 1
     public wasSolvedEarlier: boolean = false
+    public playerState: Array<any> = [ 0, 0, 0 ]
 
     constructor(x: number, y: number, data: any) {
         this.left = x
@@ -305,13 +306,30 @@ class Puzzle {
         }
 
         this.state = PuzzleState.StoppedFinished
+
+        if (this.playerState[PlayerStateIndex.Peeked]) {
+            this.playerState[PlayerStateIndex.StarsReceived] = 1
+        }
+        else {
+            if (this.stepsTaken > this.minStepsRequired) {
+                this.playerState[PlayerStateIndex.StarsReceived] = 2
+            }
+            else {
+                this.playerState[PlayerStateIndex.StarsReceived] = 3
+            }
+        }
+
+        this.playerState[PlayerStateIndex.StepsTaken] = this.stepsTaken
+
         document.getElementById("p1").innerHTML = this.stepsTaken
         document.getElementById("p2").innerHTML = this.minStepsRequired
+        document.getElementById("p3").innerHTML = STAR_TEXTS[this.playerState[PlayerStateIndex.StarsReceived] - 1]
 
         if (!this.wasSolvedEarlier) {
             _game.puzzleUnlocksPending += this.unlockCountOnWin
             this.wasSolvedEarlier = true
         }
+
         this.setMarkerVisibility(false)
         _game.transitionStart(TransitionState.EnteringWinScreen)
     }
@@ -427,6 +445,7 @@ class Puzzle {
             slot.piece_index = slot.correct_piece_index
         }
         this.updateElementPositions()
+        this.playerState[PlayerStateIndex.Peeked] = 1
         _hint.style.opacity = "1"
         _hint.innerHTML = "Peeking..."
     }

@@ -34,3 +34,9 @@ enum TransitionState {
     EnteringWinScreen,
     WinScreen,
 }
+
+enum PlayerStateIndex {
+    Peeked = 0,
+    StepsTaken,
+    StarsReceived,
+}

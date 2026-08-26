@@ -105,3 +105,10 @@ const PUZZLE4 =  [
     "asd",
     0, // 0% done
 ]
+
+const STAR_TEXTS = [
+    // '<span style="filter: grayscale(1); opacity: 0.3">&#x2b50;&#x2b50;&#x2b50;</span>', // no need for zero stars for now
+    '&#x2b50;<span style="filter: grayscale(1); opacity: 0.3">&#x2b50;&#x2b50;</span>',
+    '&#x2b50;&#x2b50;<span style="filter: grayscale(1); opacity: 0.3">&#x2b50;</span>',
+    '&#x1f31f;&#x1f31f;&#x1f31f;'
+]
