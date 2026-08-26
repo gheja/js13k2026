@@ -142,8 +142,9 @@ class Puzzle {
     }
 
     setActive(value: boolean, visible: boolean) {
-        this.svg_dom.style.opacity = (!this.locked && visible) ? "1" : "0"
-        this.svg_dom.getElementById("locks").style.opacity = value ? "1" : "0"
+        this.svg_dom.style.opacity = (!this.locked && visible) ? "1" : "0";
+
+        (this.svg_dom.getElementById("locks") as SVGElement).style.opacity = value ? "1" : "0"
 
         if (this.state == PuzzleState.StoppedFinished)
         {
