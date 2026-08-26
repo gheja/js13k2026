@@ -141,10 +141,13 @@ class Puzzle {
         }
     }
 
-    setActive(value: boolean, visible: boolean) {
-        this.svg_dom.style.opacity = (!this.locked && visible) ? "1" : "0";
-
+    setMarkerVisibility(value: boolean) {
         (this.svg_dom.getElementById("locks") as SVGElement).style.opacity = value ? "1" : "0"
+    }
+
+    setActive(value: boolean, visible: boolean) {
+        this.svg_dom.style.opacity = (!this.locked && visible) ? "1" : "0"
+        this.setMarkerVisibility(value && this.state != PuzzleState.StoppedFinished)
 
         if (this.state == PuzzleState.StoppedFinished)
         {
@@ -309,6 +312,7 @@ class Puzzle {
             _game.puzzleUnlocksPending += this.unlockCountOnWin
             this.wasSolvedEarlier = true
         }
+        this.setMarkerVisibility(false)
         _game.transitionStart(TransitionState.WinScreen)
     }
 
@@ -414,6 +418,7 @@ class Puzzle {
         this.stepsTaken = 0
 
         this.updateElementPositions()
+        this.setMarkerVisibility(true)
     }
 
     peekOn() {
