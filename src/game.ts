@@ -47,6 +47,26 @@ class Game {
         }
     }
 
+    zoomToUnlockedPuzzles() {
+        // first puzzle must be around 0,0 to work properly
+        let left = 0
+        let top = 0
+        let right = 0
+        let bottom = 0
+
+        for (let p of this.puzzles) {
+            if (!p.locked) {
+                left = Math.min(left, p.left)
+                top = Math.min(top, p.top)
+                right = Math.max(left, p.left + p.width)
+                bottom = Math.max(bottom, p.top + p.height)
+            }
+        }
+
+        // the 30 px border is to have some zoom on selecting the first puzzle - otherwise it looks odd...
+        this.gfx.setViewTargetBox(left - 30, top - 30, right + 30, bottom + 30)
+    }
+
     transitionStart(state: TransitionState) {
         let time = 1000
 
@@ -55,10 +75,7 @@ class Game {
         switch (state) {
             case TransitionState.EnteringPuzzle:
                 // @ts-ignore - "possibly null"
-                var z = Math.min((window.innerWidth * 0.66) / this.activePuzzle.width, (window.innerHeight * 0.66) / this.activePuzzle.height)
-
-                // @ts-ignore - "possibly null"
-                _game.gfx.setViewTarget(this.activePuzzle.left + this.activePuzzle.width/2, this.activePuzzle.top + this.activePuzzle.height/2, z)
+                _game.gfx.setViewTargetBox(this.activePuzzle.left, this.activePuzzle.top, this.activePuzzle.left + this.activePuzzle.width, this.activePuzzle.top + this.activePuzzle.height)
             break
 
             case TransitionState.EnteringPuzzle2:
@@ -77,7 +94,7 @@ class Game {
 
             case TransitionState.LeavingPuzzle:
                 this.selectPuzzle(null)
-                this.gfx.setViewTarget(250, 250, 1.0)
+                this.zoomToUnlockedPuzzles()
                 _hint.style.opacity = "0"
                 _puzzleMenuButton.style.opacity = "0"
                 _winMenu.style.display = "none"
@@ -103,6 +120,7 @@ class Game {
                         }
                     }
                     this.selectPuzzle(null)
+                    this.zoomToUnlockedPuzzles()
                 }
             break
 

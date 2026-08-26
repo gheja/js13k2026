@@ -12,14 +12,11 @@ class Gfx {
     constructor() {
     }
 
-    setViewTarget(x: number, y: number, zoom: number) {
-        // this.target_x = 200 - x
-        // this.target_y = 200 - y
-        this.target_x = x
-        this.target_y = y
-        this.target_zoom = zoom
-
-        // console.log([x, y, zoom])
+    setViewTargetBox(left: number, top: number, right: number, bottom: number) {
+        console.log([left, top, right, bottom])
+        this.target_x = (left + right) / 2
+        this.target_y = (top + bottom) / 2
+        this.target_zoom = Math.min((window.innerWidth * 0.66) / (right - left), (window.innerHeight * 0.66) / (bottom - top))
     }
 
     render() {
