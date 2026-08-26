@@ -87,7 +87,7 @@ class Puzzle {
         // draw the locked icon
         for (let slot of this.slots) {
             if (slot.locked) {
-                locked_path_data += `<path style="fill:#000a" d="${SHAPES[ShapeIndex.LockedIcon]}" transform="translate(${slot.x}, ${slot.y})"/>`
+                locked_path_data += `<path class="lock" style="fill:#000a" d="${SHAPES[ShapeIndex.LockedIcon]}" transform="translate(${slot.x}, ${slot.y})"/>`
             }
         }
 
@@ -102,7 +102,7 @@ class Puzzle {
   </filter>
   <g id="layer1"></g>
   <g id="layer2">${path_data}</g>
-  <g>${locked_path_data}</g>
+  <g id="locks">${locked_path_data}</g>
   <g id="layer3" filter="url(#shadow)"></g>
 </svg>
         `;
@@ -143,6 +143,7 @@ class Puzzle {
 
     setActive(value: boolean, visible: boolean) {
         this.svg_dom.style.opacity = (!this.locked && visible) ? "1" : "0"
+        this.svg_dom.getElementById("locks").style.opacity = value ? "1" : "0"
 
         if (this.state == PuzzleState.StoppedFinished)
         {
@@ -259,6 +260,9 @@ class Puzzle {
 
         // loop through all elements
         for (let obj of svg.querySelectorAll("path")) {
+            if (obj.classList.contains("lock")) {
+                continue
+            }
             let hoveredPieceDom = this.slotHovered ? this.pieces[this.slotHovered.piece_index].dom : null
             let firstPickedPieceDom = this.slotFirstPick ? this.pieces[this.slotFirstPick.piece_index].dom : null
 
