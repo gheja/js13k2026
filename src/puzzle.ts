@@ -313,7 +313,7 @@ class Puzzle {
             this.wasSolvedEarlier = true
         }
         this.setMarkerVisibility(false)
-        _game.transitionStart(TransitionState.WinScreen)
+        _game.transitionStart(TransitionState.EnteringWinScreen)
     }
 
     shuffle() {

@@ -31,5 +31,6 @@ enum TransitionState {
     ResettingPuzzle,
     PeekPuzzle,
     PeekPuzzleReturn,
+    EnteringWinScreen,
     WinScreen,
 }

@@ -13,7 +13,7 @@ class Game {
         [ TransitionState.UpdateMainScreen, TransitionState.MainScreen  ],
         [ TransitionState.ResettingPuzzle, TransitionState.EnteringPuzzle2 ],
         [ TransitionState.PeekPuzzle, TransitionState.PeekPuzzleReturn ],
-        // [ TransitionState.WinScreen, TransitionState.LeavingPuzzle ]
+        [ TransitionState.EnteringWinScreen, TransitionState.WinScreen ]
     ]
 
     public puzzleUnlocksPending: number = 0
@@ -75,6 +75,7 @@ class Game {
         switch (state) {
             case TransitionState.EnteringPuzzle:
                 _background.style.opacity = "0.1"
+                _puzzleMenuButton.style.display = "block"
                 // @ts-ignore - "possibly null"
                 _game.gfx.setViewTargetBox(this.activePuzzle.left, this.activePuzzle.top, this.activePuzzle.left + this.activePuzzle.width, this.activePuzzle.top + this.activePuzzle.height)
             break
@@ -96,9 +97,9 @@ class Game {
             case TransitionState.LeavingPuzzle:
                 this.selectPuzzle(null)
                 this.zoomToUnlockedPuzzles()
+                _winMenu.style.opacity = "0"
                 _hint.style.opacity = "0"
                 _puzzleMenuButton.style.opacity = "0"
-                _winMenu.style.display = "none"
                 if (this.puzzleUnlocksPending == 0) {
                     time = 2000
                 }
@@ -125,6 +126,10 @@ class Game {
             break
 
             case TransitionState.MainScreen:
+                // make sure they are not clickable
+                _winMenu.style.display = "none"
+                _puzzleMenuButton.style.display = "none"
+
                 _background.style.opacity = "1"
                 this.state = GameState.MainScreen
             break
@@ -142,8 +147,13 @@ class Game {
                 this.activePuzzle.peekOff()
             break
 
-            case TransitionState.WinScreen:
+            case TransitionState.EnteringWinScreen:
+                _winMenu.style.opacity = "0"
                 _winMenu.style.display = "block"
+            break
+
+            case TransitionState.WinScreen:
+                _winMenu.style.opacity = "1"
             break
         }
 
