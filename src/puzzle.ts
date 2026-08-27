@@ -365,24 +365,26 @@ class Puzzle {
     shuffle() {
         // We need to start from a solved position.
         //
-        // Move pieces to random positions. When it is fully shuffled then:
-        //   - no piece is in its correct position
-        //   - no piece is in a position where if swapped with another both of
-        //     them gets into their correct position
-        //
         // This method will make sure the puzzle needs "pieces - 1" steps to
         // solve. This is per piece shape, with multiple shapes it will take
         // "(shape1 pieces - 1) + (shape2 pieces -1) + ..." steps to solve.
+        //
+        // Move pieces to random positions, then check how many steps are
+        // needed to solve from there. If it equals the minimum, then the
+        // state is well shuffled.
         //
         // From this position we can make it easier by moving pieces to their
         // correct places all while keeping track of the fewest steps needed
         // to solve from there.
         //
         // Also, make it reproducible by using a seed.
-        this.playerState[PlayerStateIndex.PuzzleSeed] = 96353// Math.floor(Math.random() * 100000)
+
+        this.playerState[PlayerStateIndex.PuzzleSeed] = Math.floor(Math.random() * 100000)
         let seed = this.playerState[PlayerStateIndex.PuzzleSeed]
         let a
         let b
+
+        clog(`seed: ${seed}`)
 
         let random = seed
         function getRandom(n: number) {
@@ -397,31 +399,6 @@ class Puzzle {
 
         let done = false
 
-        // do 100 random swaps until none of the pieces are in their correct positions
-        while (!done) {
-            for (let i=0; i<100; i++) {
-                a = getRandom(this.slots.length)
-                b = getRandom(this.slots.length)
-                if (a != b && !this.slots[a].locked && !this.slots[b].locked) {
-                    this.swapPiecesInSlots2(this.slots[a], this.slots[b])
-                }
-            }
-
-            done = true
-            for (a=0; a<this.slots.length; a++) {
-                if (this.slots[a].locked) {
-                    continue
-                }
-
-                b = this.slots[a].correct_piece_index
-
-                if (this.slots[a].correct_piece_index == this.slots[b].piece_index || this.slots[b].correct_piece_index == this.slots[a].piece_index) {
-                    done = false
-                    break
-                }
-            }
-        }
-
         // calculate the minimum steps required to solve a fully shuffled puzzle
         this.minStepsRequired = 0
         for (let i=0; i<this.slots.length; i++) {
@@ -430,6 +407,95 @@ class Puzzle {
             }
         }
         this.minStepsRequired -= 1
+
+        clog(`minStepsRequired: ${this.minStepsRequired}`)
+
+        let _n = 0
+
+        // do 100 random swaps until none of the pieces are in their correct positions
+        while (true) {
+            clog(`mixing #${_n}`)
+            for (let i=0; i<100; i++) {
+                a = getRandom(this.slots.length)
+                b = getRandom(this.slots.length)
+                if (a != b && !this.slots[a].locked && !this.slots[b].locked) {
+                    this.swapPiecesInSlots2(this.slots[a], this.slots[b])
+                }
+            }
+
+            clog('solving')
+
+            // --- solve this state
+
+            let piece_index_save = []
+
+            // save positions
+            for (a=0; a<this.slots.length; a++) {
+                piece_index_save.push(this.slots[a].piece_index)
+            }
+
+            let steps_taken = 0
+            let solved = false
+
+            while (true) {
+                solved = true
+
+                clog('  finding first slot that needs fixing')
+                // find the first piece not in correct place, if any
+                for (a=0; a<this.slots.length; a++) {
+                    if (!this.slots[a].locked && this.slots[a].piece_index != this.slots[a].correct_piece_index) {
+                        solved = false
+                        break
+                    }
+                }
+
+                if (solved) {
+                    clog(`    all slots have the correct pieces`)
+                    break
+                }
+
+                clog(`    slot ${a}, starting from here`)
+
+
+                // pull the correct piece into this slot, then pick that slot, until xxx
+                while (this.slots[a].piece_index != this.slots[a].correct_piece_index) {
+                    for (b=0; b<this.slots.length; b++) {
+                        if (this.slots[b].piece_index == this.slots[a].correct_piece_index) {
+                            break
+                        }
+                    }
+
+                    clog(`      swap slot ${a} ${b}`)
+
+                    this.swapPiecesInSlots(a, b)
+                    steps_taken += 1
+
+                    a = b
+                }
+                clog(`      slot ${a} has the correct piece already`)
+            }
+
+            clog(`solved. steps needed: ${steps_taken}, min should be: ${this.minStepsRequired}`)
+
+            // restore positions
+            for (a=0; a<this.slots.length; a++) {
+                this.slots[a].piece_index = piece_index_save[a]
+            }
+
+            if (steps_taken == this.minStepsRequired) {
+                clog(`nice, found it after ${_n + 1} mixes`)
+                // we found a state that is well shuffled
+                break
+            }
+
+            _n += 1
+
+            if (!IS_PROD_BUILD) {
+                if (_n % 1000 == 0) {
+                    debugger
+                }
+            }
+        }
 
         // calculate the target steps
         let targetStepsRequired = Math.ceil(this.minStepsRequired * (1 - this.startingSolvedProgress))
