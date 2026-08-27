@@ -18,7 +18,7 @@ class Puzzle {
     public locked: boolean = true
     public unlockCountOnWin: number = 1
     public wasSolvedEarlier: boolean = false
-    public playerState: Array<any> = [ 0, 0, 0 ]
+    public playerState: Array<any> = [ 0, 0, 0, 0 ]
 
     constructor(x: number, y: number, data: any) {
         this.left = x
@@ -353,8 +353,8 @@ class Puzzle {
         // to solve from there.
         //
         // Also, make it reproducible by using a seed.
-
-        let seed = 42
+        this.playerState[PlayerStateIndex.PuzzleSeed] = 96353// Math.floor(Math.random() * 100000)
+        let seed = this.playerState[PlayerStateIndex.PuzzleSeed]
         let a
         let b
 

@@ -36,7 +36,8 @@ enum TransitionState {
 }
 
 enum PlayerStateIndex {
-    Peeked = 0,
+    PuzzleSeed = 0,
+    Peeked,
     StepsTaken,
     StarsReceived,
 }
