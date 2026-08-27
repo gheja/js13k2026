@@ -34,3 +34,11 @@ function createFourPointGradient(ctx: CanvasRenderingContext2D, left: number, to
         ctx.fillRect(left + x, top, 1, height)
     }
 }
+
+function clog(s: string) {
+    if (IS_PROD_BUILD) {
+        return
+    }
+
+    console.log(s)
+}
