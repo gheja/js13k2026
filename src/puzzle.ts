@@ -298,6 +298,8 @@ class Puzzle {
                 obj.style.strokeWidth = "0"
             }
         }
+
+        svg.style.cursor = this.slotHovered ? "pointer" : ""
     }
 
     checkWinCondition() {
