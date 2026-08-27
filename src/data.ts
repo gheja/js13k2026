@@ -67,9 +67,30 @@ const PUZZLE3 =  [
         [ ShapeIndex.Triangle1, 60, 30, 0,   false ],
         [ ShapeIndex.Triangle1, 75, 30, 180, false ],
         [ ShapeIndex.Triangle1, 90, 30, 0,   true  ],
-    ],
-    // [ "#ff0", "#f0f", "#ff0", "#f0f" ]
-    [ "#ff0", "#0ff", "#ff0", "#0ff" ],
+
+        [ ShapeIndex.Triangle1, 30, 56, 180,   true  ],
+        [ ShapeIndex.Triangle1, 45, 56, 0, false ],
+        [ ShapeIndex.Triangle1, 60, 56, 180,   false ],
+        [ ShapeIndex.Triangle1, 75, 56, 0, false ],
+        [ ShapeIndex.Triangle1, 90, 56, 180,   true  ],
+
+        [ ShapeIndex.Triangle1, 30, 82, 0,   true  ],
+        [ ShapeIndex.Triangle1, 45, 82, 180, false ],
+        [ ShapeIndex.Triangle1, 60, 82, 0,   false ],
+        [ ShapeIndex.Triangle1, 75, 82, 180, false ],
+        [ ShapeIndex.Triangle1, 90, 82, 0,   true  ],
+
+        [ ShapeIndex.Triangle1, 30, 108, 180,   true  ],
+        [ ShapeIndex.Triangle1, 45, 108, 0, false ],
+        [ ShapeIndex.Triangle1, 60, 108, 180,   false ],
+        [ ShapeIndex.Triangle1, 75, 108, 0, false ],
+        [ ShapeIndex.Triangle1, 90, 108, 180,   true  ],
+
+],
+    // [ "#ff0", "#f0f", "#ff0", "#f0f" ],
+    // [ "#0ff", "#00f", "#0f0", "#008" ],
+    // [ "#f00", "#0ff", "#ff0", "#0f0" ],
+    [ "#f0f", "#80f", "#ff0", "#f80" ],
     "Try with different shapes.",
     0, // 0% done
 ]
