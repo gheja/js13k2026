@@ -198,6 +198,7 @@ class Puzzle {
                 this.updateElementPositions()
                 this.slotFirstPick = null
                 this.stepsTaken += 1
+                this.dumpStatus()
             }
         }
         else {
@@ -334,6 +335,31 @@ class Puzzle {
 
         this.setMarkerVisibility(false)
         _game.transitionStart(TransitionState.EnteringWinScreen)
+    }
+
+    dumpStatus() {
+        if (IS_PROD_BUILD) {
+            return
+        }
+
+        let a, m
+        clog('status:')
+        let n = 0
+        for (a=0; a<this.slots.length; a++) {
+            if (this.slots[a].locked) {
+                clog(`  slot ${a} is locked`)
+                continue
+            }
+
+            m = this.slots[a].piece_index == this.slots[a].correct_piece_index
+
+            clog(`  slot ${a}, piece: ${this.slots[a].piece_index}, correct ${this.slots[a].correct_piece_index}, ${m}`)
+
+            if (m) {
+                n += 1
+            }
+        }
+        clog(`correct: ${n}`)
     }
 
     shuffle() {
