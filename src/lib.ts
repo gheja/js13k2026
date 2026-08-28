@@ -35,7 +35,7 @@ function createFourPointGradient(ctx: CanvasRenderingContext2D, left: number, to
     }
 }
 
-function clog(s: string) {
+function clog(s: any) {
     if (IS_PROD_BUILD) {
         return
     }
