@@ -14,7 +14,8 @@ enum PuzzleState {
 }
 
 enum PuzzleDataIndex {
-    Pieces = 0,
+    Uid = 0,
+    Pieces,
     Colors,
     Hint,
     StartingSolvedProgress,
@@ -40,4 +41,5 @@ enum PlayerStateIndex {
     Peeked,
     StepsTaken,
     StarsReceived,
+    SwapList,
 }

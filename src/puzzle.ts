@@ -8,17 +8,17 @@ class Puzzle {
     private pieces: Array<any> = []
     private slots: Array<any> = []
 
+    private puzzleUid: string
     private state: PuzzleState = PuzzleState.StoppedUnfinished
     private slotHovered: any
     private slotFirstPick: any
     private hint: string
     private startingSolvedProgress: number
     private minStepsRequired: number
-    private stepsTaken: number
-    public locked: boolean = true
+    public locked: boolean
     public unlockCountOnWin: number = 1
     public wasSolvedEarlier: boolean = false
-    public playerState: Array<any> = [ 0, 0, 0, 0 ]
+    public playerState: Array<any>
 
     constructor(x: number, y: number, data: any) {
         this.left = x
@@ -118,10 +118,19 @@ class Puzzle {
         this.svg_dom.addEventListener("mousemove", this.onMouseMove.bind(this))
         this.svg_dom.addEventListener("click", this.onClick.bind(this))
 
+        this.puzzleUid = data[PuzzleDataIndex.Uid]
         this.startingSolvedProgress = data[PuzzleDataIndex.StartingSolvedProgress]
         this.hint = data[PuzzleDataIndex.Hint]
 
+        this.locked = localStateGet("pl:" + this.puzzleUid, true)
+        this.playerState = localStateGet("ps:" + this.puzzleUid, [0, 0, 0, 0, []])
+
+        // generate the seed, etc. on the first run
+        if (this.playerState[PlayerStateIndex.PuzzleSeed] == 0) {
+            this.newPlayerSession()
+        }
         this.shuffle()
+        this.checkWinCondition(true)
         this.updateElementPositions()
     }
 
@@ -196,9 +205,15 @@ class Puzzle {
             else {
                 this.swapPiecesInSlots2(this.slotFirstPick, this.slotHovered)
                 this.updateElementPositions()
+                this.playerState[PlayerStateIndex.StepsTaken] += 1
+                this.playerState[PlayerStateIndex.SwapList].push([this.getSlotIndexBySlot(this.slotFirstPick), this.getSlotIndexBySlot(this.slotHovered)])
+                // save player progress after each steps taken
+                this.savePlayerLocalState()
+
+                // clear selection
                 this.slotFirstPick = null
-                this.stepsTaken += 1
                 this.dumpStatus()
+
             }
         }
         else {
@@ -210,6 +225,14 @@ class Puzzle {
         this.slotHovered = null
         this.updatePieceVisuals()
         this.checkWinCondition()
+    }
+
+    getSlotIndexBySlot(slot: any) {
+        for (let i=0; i<this.slots.length; i++) {
+            if (this.slots[i] == slot) {
+                return i
+            }
+        }
     }
 
     onMouseMove(event: MouseEvent) {
@@ -302,7 +325,7 @@ class Puzzle {
         svg.style.cursor = this.slotHovered ? "pointer" : ""
     }
 
-    checkWinCondition() {
+    checkWinCondition(fromSavedState: boolean=false) {
         for (var slot of this.slots) {
             if (slot.piece_index != slot.correct_piece_index) {
                 return
@@ -311,32 +334,34 @@ class Puzzle {
 
         this.state = PuzzleState.StoppedFinished
 
-        if (this.playerState[PlayerStateIndex.Peeked]) {
-            this.playerState[PlayerStateIndex.StarsReceived] = 1
-        }
-        else {
-            if (this.stepsTaken > this.minStepsRequired) {
-                this.playerState[PlayerStateIndex.StarsReceived] = 2
+        if (!fromSavedState) {
+            if (this.playerState[PlayerStateIndex.Peeked]) {
+                this.playerState[PlayerStateIndex.StarsReceived] = 1
             }
             else {
-                this.playerState[PlayerStateIndex.StarsReceived] = 3
-                this.svg_dom.style.filter = "drop-shadow(0 0 0.5rem #ff08)"
+                if (this.playerState[PlayerStateIndex.StepsTaken] > this.minStepsRequired) {
+                    this.playerState[PlayerStateIndex.StarsReceived] = 2
+                }
+                else {
+                    this.playerState[PlayerStateIndex.StarsReceived] = 3
+                    this.svg_dom.style.filter = "drop-shadow(0 0 0.5rem #ff08)"
+                }
             }
+            this.savePlayerLocalState()
+
+            document.getElementById("p1").innerHTML = this.playerState[PlayerStateIndex.StepsTaken]
+            document.getElementById("p2").innerHTML = this.minStepsRequired
+            document.getElementById("p3").innerHTML = STAR_TEXTS[this.playerState[PlayerStateIndex.StarsReceived] - 1]
+
+            if (!this.wasSolvedEarlier) {
+                _game.puzzleUnlocksPending += this.unlockCountOnWin
+            }
+
+            _game.transitionStart(TransitionState.EnteringWinScreen)
         }
 
-        this.playerState[PlayerStateIndex.StepsTaken] = this.stepsTaken
-
-        document.getElementById("p1").innerHTML = this.stepsTaken
-        document.getElementById("p2").innerHTML = this.minStepsRequired
-        document.getElementById("p3").innerHTML = STAR_TEXTS[this.playerState[PlayerStateIndex.StarsReceived] - 1]
-
-        if (!this.wasSolvedEarlier) {
-            _game.puzzleUnlocksPending += this.unlockCountOnWin
-            this.wasSolvedEarlier = true
-        }
-
+        this.wasSolvedEarlier = true
         this.setMarkerVisibility(false)
-        _game.transitionStart(TransitionState.EnteringWinScreen)
     }
 
     dumpStatus() {
@@ -381,7 +406,6 @@ class Puzzle {
         //
         // Also, make it reproducible by using a seed.
 
-        this.playerState[PlayerStateIndex.PuzzleSeed] = Math.floor(Math.random() * 100000)
         let seed = this.playerState[PlayerStateIndex.PuzzleSeed]
         let a
         let b
@@ -528,9 +552,13 @@ class Puzzle {
         }
         // console.log([minStepsRequired])
 
+        // replaying the player steps
+        for (let swap of this.playerState[PlayerStateIndex.SwapList]) {
+            this.swapPiecesInSlots(swap[0], swap[1])
+        }
+
         // resetting the state
         this.state = PuzzleState.PickFirstPiece
-        this.stepsTaken = 0
 
         this.updateElementPositions()
         this.setMarkerVisibility(true)
@@ -553,5 +581,22 @@ class Puzzle {
         }
         _hint.style.opacity = "0"
         this.updateElementPositions()
+    }
+
+    newPlayerSession() {
+        this.playerState[PlayerStateIndex.PuzzleSeed] = Math.floor(Math.random() * 100000)
+        this.playerState[PlayerStateIndex.StepsTaken] = 0
+        this.playerState[PlayerStateIndex.SwapList] = []
+        // this.playerState[PlayerStateIndex.Peeked] -- leave as is
+        // this.playerState[PlayerStateIndex.StarsReceived] -- leave as is
+    }
+
+    savePlayerLocalState() {
+        localStateSet("ps:" + this.puzzleUid, this.playerState)
+    }
+
+    unlock() {
+        this.locked = false
+        localStateSet("pl:" + this.puzzleUid, false)
     }
 }

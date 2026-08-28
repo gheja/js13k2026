@@ -92,6 +92,9 @@ class Game {
 
             case TransitionState.ResettingPuzzle:
                 // @ts-ignore - "possibly null"
+                this.activePuzzle.newPlayerSession()
+
+                // @ts-ignore - "possibly null"
                 this.activePuzzle.shuffle()
             break
 
@@ -114,7 +117,7 @@ class Game {
                 else {
                     for (let p of this.puzzles) {
                         if (p.locked) {
-                            p.locked = false
+                            p.unlock()
                             this.puzzleUnlocksPending -= 1
                         }
                         if (this.puzzleUnlocksPending == 0) {

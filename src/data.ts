@@ -17,6 +17,7 @@ enum ShapeIndex {
 }
 
 const PUZZLE1 =  [
+    "n1",
     [
         [ ShapeIndex.WideRectangle, 80, 30,  0, true  ],
         [ ShapeIndex.WideRectangle, 80, 56,  0, false ],
@@ -31,6 +32,7 @@ const PUZZLE1 =  [
 ]
 
 const PUZZLE2 =  [
+    "n2",
     [
         [ ShapeIndex.Square1, 30,  30,  0, true ],
         [ ShapeIndex.Square1, 56,  30,  0, true ],
@@ -64,6 +66,7 @@ const PUZZLE2 =  [
 ]
 
 const PUZZLE3 =  [
+    "n3",
     [
         [ ShapeIndex.Triangle1, 30, 30, 0,   true  ],
         [ ShapeIndex.Triangle1, 45, 30, 180, false ],
@@ -99,6 +102,7 @@ const PUZZLE3 =  [
 ]
 
 const PUZZLE4 =  [
+    "n4",
     [
         [ ShapeIndex.Paralellogram1, 30 +45, 30,  0, true  ],
         [ ShapeIndex.Paralellogram1, 56 +45, 30,  0, false ],
@@ -131,6 +135,7 @@ const PUZZLE4 =  [
 ]
 
 const PUZZLE5 =  [
+    "n5",
     [
         // this format might be easier to follow... might be
 
