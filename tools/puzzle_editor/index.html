@@ -7,13 +7,44 @@
     <body>
         <svg id="preview"></svg>
         <div id="side">
+            Puzzle editor<br/>
+            <br/>
             <div id="settings">
-                <select id="grid">
-                    <option value="none" selected>none</option>
+                <button onclick="on_save_button(); return false;">Save editor state</button> Autosave is ON
+                <hr/>
+
+                <label for="puzzle_selector">Puzzle: </label>
+                <select id="puzzle_selector" onchange="on_puzzle_selector_change(this); return false;">
+                </select>
+                <!-- <button onclick="puzzle_load_selector_load(); return false;">Load</button> -->
+                <button onclick="puzzle_selector_new(); return false;">New</button><br/>
+
+                <label for="pos_grid">Pos grid: </label>
+                <select id="pos_grid">
+                    <option value="1,1" selected>none</option>
                     <option value="7.5,13">7.5 x 13</option>
                     <option value="123,123">123 x 123</option>
                 </select>
+
+                <label for="rot_grid">Rot grid: </label>
+                <select id="rot_grid">
+                    <option value="1" selected>none</option>
+                    <option value="60">60</option>
+                    <option value="90">90</option>
+                </select>
+
+                <hr/>
+                <label for="active_editor_id">Editor ID: </label>
+                <input id="active_editor_id" type="text" value="n/a" readonly/><br/>
+
+                <label for="puzzle_uid">In-game UID: </label>
+                <input id="puzzle_uid" type="text" value="n/a"/><br/>
+
+                <label for="puzzle_description">Description: </label>
+                <input id="puzzle_description" type="text" value="n/a"/><br/>
+
             </div>
+            Pieces:
             <div id="list">
                 <div id="list_header">
                     <span>shape</span><span>x</span><span>y</span><span>rot</span><span>lock</span>
@@ -23,6 +54,9 @@
                 </div>
                 <button onclick="add_item(); return false;">Add</button>
             </div>
+            <hr>
+            Puzzle output:
+            <div id="output"></div>
         </div>
     </body>
 </html>
