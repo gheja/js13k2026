@@ -44,6 +44,19 @@ class Game {
         }
         for (let p of this.puzzles) {
             p.locked = false
+            p.setActive(false, true)
+        }
+    }
+
+    cheatSolveAllPuzzles() {
+        if (IS_PROD_BUILD) {
+            return
+        }
+        for (let p of this.puzzles) {
+            p.setActive(false, true)
+            p.cheatSolve()
+            p.updateElementPositions()
+            p.updatePieceVisuals()
         }
     }
 

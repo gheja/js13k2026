@@ -652,4 +652,15 @@ class Puzzle {
         this.locked = false
         localStateSet("pl:" + this.puzzleUid, false)
     }
+
+    cheatSolve() {
+        if (IS_PROD_BUILD) {
+            return
+        }
+
+        // start from a solved position
+        for (let a=0; a<this.slots.length; a++) {
+            this.slots[a].piece_index = this.slots[a].correct_piece_index
+        }
+    }
 }
