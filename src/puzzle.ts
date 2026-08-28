@@ -493,8 +493,9 @@ class Puzzle {
             _n += 1
 
             if (!IS_PROD_BUILD) {
-                if (_n % 1000 == 0) {
-                    debugger
+                if (_n == 5000) {
+                    alert(`ERROR: could not find a proper shuffle in ${_n} tries, giving up`)
+                    return
                 }
             }
         }
