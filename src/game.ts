@@ -38,6 +38,15 @@ class Game {
         this.exitPuzzle()
     }
 
+    cheatUnlockAllPuzzles() {
+        if (IS_PROD_BUILD) {
+            return
+        }
+        for (let p of this.puzzles) {
+            p.locked = false
+        }
+    }
+
     selectPuzzle(puzzle: Puzzle | null) {
         for (let p of this.puzzles) {
             p.setActive(p == puzzle, !puzzle || p == puzzle)
