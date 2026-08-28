@@ -30,29 +30,30 @@ const PUZZLE1 =  [
 
 const PUZZLE2 =  [
     [
-        [ ShapeIndex.Square1, 30,  30,  0, true  ],
-        [ ShapeIndex.Square1, 56,  30,  0, false ],
-        [ ShapeIndex.Square1, 82,  30,  0, false ],
-        [ ShapeIndex.Square1, 108, 30,  0, false ],
-        [ ShapeIndex.Square1, 134, 30,  0, true  ],
+        [ ShapeIndex.Square1, 30,  30,  0, true ],
+        [ ShapeIndex.Square1, 56,  30,  0, true ],
+        [ ShapeIndex.Square1, 82,  30,  0, true ],
+        [ ShapeIndex.Square1, 108, 30,  0, true ],
 
-        [ ShapeIndex.Square1, 30,  56,  0, true  ],
+        [ ShapeIndex.Square1, 30,  56,  0, false ],
         [ ShapeIndex.Square1, 56,  56,  0, true  ],
         [ ShapeIndex.Square1, 82,  56,  0, true  ],
-        [ ShapeIndex.Square1, 108, 56,  0, true  ],
-        [ ShapeIndex.Square1, 134, 56,  0, true  ],
+        [ ShapeIndex.Square1, 108, 56,  0, false ],
 
-        [ ShapeIndex.Square1, 30,  82,  0, true  ],
+        [ ShapeIndex.Square1, 30,  82,  0, false ],
         [ ShapeIndex.Square1, 56,  82,  0, true  ],
         [ ShapeIndex.Square1, 82,  82,  0, true  ],
-        [ ShapeIndex.Square1, 108, 82,  0, true  ],
-        [ ShapeIndex.Square1, 134, 82,  0, true  ],
+        [ ShapeIndex.Square1, 108, 82,  0, false ],
 
-        [ ShapeIndex.Square1, 30,  108, 0, true  ],
-        [ ShapeIndex.Square1, 56,  108, 0, false ],
-        [ ShapeIndex.Square1, 82,  108, 0, false ],
+        [ ShapeIndex.Square1, 30,  108, 0, false ],
+        [ ShapeIndex.Square1, 56,  108, 0, true  ],
+        [ ShapeIndex.Square1, 82,  108, 0, true  ],
         [ ShapeIndex.Square1, 108, 108, 0, false ],
-        [ ShapeIndex.Square1, 134, 108, 0, true  ],
+
+        [ ShapeIndex.Square1, 30,  134, 0, true  ],
+        [ ShapeIndex.Square1, 56,  134, 0, true  ],
+        [ ShapeIndex.Square1, 82,  134, 0, true  ],
+        [ ShapeIndex.Square1, 108, 134, 0, true  ],
     ],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
     [ "#ff0", "#0f0", "#f00", "#0ff" ],
