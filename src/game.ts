@@ -26,7 +26,8 @@ class Game {
             new Puzzle(0,   200, PUZZLE3),
             new Puzzle(200, 200, PUZZLE4),
             new Puzzle(0,   400, PUZZLE5),
-            new Puzzle(200, 200, PUZZLE6),
+            new Puzzle(400, 0,   PUZZLE6),
+            new Puzzle(400, 200, PUZZLE7),
         ]
         this.puzzles[0].locked = false
 
