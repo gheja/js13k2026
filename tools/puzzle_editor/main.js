@@ -144,7 +144,7 @@ function get_row_data(obj) {
         ]
     }
     else {
-        return [ 1, 1, 1, 0, false ]
+        return [ 0, 30, 30, 0, false ]
     }
 }
 
@@ -182,6 +182,7 @@ function add_item(call_update_hook = true) {
     a.type = "text"
     a.className = "shape_index"
     a.value = defaults[0]
+    a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
     div.appendChild(a)
 
@@ -189,6 +190,7 @@ function add_item(call_update_hook = true) {
     a.type = "text"
     a.className = "pos_x"
     a.value = defaults[1]
+    a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
     div.appendChild(a)
 
@@ -196,6 +198,7 @@ function add_item(call_update_hook = true) {
     a.type = "text"
     a.className = "pos_y"
     a.value = defaults[2]
+    a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
     div.appendChild(a)
 
@@ -203,6 +206,7 @@ function add_item(call_update_hook = true) {
     a.type = "text"
     a.className = "rotation"
     a.value = defaults[3]
+    a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
     div.appendChild(a)
 
@@ -211,6 +215,7 @@ function add_item(call_update_hook = true) {
     a.className = "lock"
     a.value = "1"
     a.checked = defaults[4]
+    a.addEventListener("change", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
     div.appendChild(a)
 
@@ -239,6 +244,7 @@ function on_key_down(event) {
     let direction
 
     if (event.keyCode != 38 && event.keyCode != 40) {
+        on_update()
         return
     }
 
