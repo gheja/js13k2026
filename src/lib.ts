@@ -42,3 +42,29 @@ function clog(s: string) {
 
     console.log(s)
 }
+
+// state keys
+//   pl:<puzzle_uid> -- puzzle locked
+//   ps:<puzzle_uid> -- player state on a puzzle
+
+function localStateSet(key: string, value: any) {
+    localStorage.setItem(LOCALSTORAGE_PREFIX + key, JSON.stringify(value))
+    clog(`set "${key}"`)
+}
+
+function localStateGet(key: string, def: any) {
+    let result = def
+
+    clog(`get "${key}"`)
+
+    try {
+        let s = localStorage.getItem(LOCALSTORAGE_PREFIX + key)
+        if (s !== null) {
+            // @ts-ignore -- it might be invalid, that's why the try-catch
+            result = JSON.parse(s)
+        }
+    }
+    catch (e) {}
+
+    return result
+}
