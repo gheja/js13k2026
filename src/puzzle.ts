@@ -272,7 +272,15 @@ class Puzzle {
                 {
                     if (!slot.locked && this.pieces[slot.piece_index].dom == obj)
                     {
-                        this.slotHovered = slot
+                        if (this.slotFirstPick)
+                        {
+                            if (this.slotFirstPick.shape_index == slot.shape_index) {
+                                this.slotHovered = slot
+                            }
+                        }
+                        else {
+                            this.slotHovered = slot
+                        }
                     }
                 }
             }
@@ -427,25 +435,64 @@ class Puzzle {
 
         // calculate the minimum steps required to solve a fully shuffled puzzle
         this.minStepsRequired = 0
+        let shape_indexes: Array<number> = []
+        let slot_indexes_per_shape: Array<Array<number>> = []
         for (let i=0; i<this.slots.length; i++) {
             if (!this.slots[i].locked) {
                 this.minStepsRequired += 1
+
+                // minus 1 per every type of shape
+                if (shape_indexes.indexOf(this.slots[i].shape_index) == -1) {
+                    shape_indexes.push(this.slots[i].shape_index)
+                    this.minStepsRequired -= 1
+
+                    slot_indexes_per_shape[this.slots[i].shape_index] = []
+                }
+                slot_indexes_per_shape[this.slots[i].shape_index].push(i)
             }
         }
-        this.minStepsRequired -= 1
 
         clog(`minStepsRequired: ${this.minStepsRequired}`)
 
         let _n = 0
 
+        if (!IS_PROD_BUILD) {
+            // some debugging for the discard reasons
+            let discard_reasons = {
+                "random": 0,
+                "locked": 0,
+                "shape": 0
+            }
+        }
+
         // do 100 random swaps until none of the pieces are in their correct positions
         while (true) {
             clog(`mixing #${_n}`)
-            for (let i=0; i<100; i++) {
-                a = getRandom(this.slots.length)
-                b = getRandom(this.slots.length)
-                if (a != b && !this.slots[a].locked && !this.slots[b].locked) {
-                    this.swapPiecesInSlots2(this.slots[a], this.slots[b])
+
+            // NOTE TODO BUG ETC: this kinda works, but probably does a lot of picking the wrong ones and just discarding he pick,
+            // we should do it using a known list of pieces that can be swapped...
+            for (let list of slot_indexes_per_shape) {
+                if (!list) {
+                    continue
+                }
+                for (let i=0; i<1000; i++) {
+                    a = list[getRandom(list.length)]
+                    b = list[getRandom(list.length)]
+                    if (!IS_PROD_BUILD) {
+                        if (!(a != b)) {
+                            discard_reasons["random"] += 1
+                        }
+                        if (!(!this.slots[a].locked && !this.slots[b].locked)) {
+                            discard_reasons["locked"] += 1
+                        }
+                        if (!(this.slots[a].shape_index == this.slots[b].shape_index)) {
+                            discard_reasons["shape"] += 1
+                        }
+                    }
+
+                    if (a != b && !this.slots[a].locked && !this.slots[b].locked && this.slots[a].shape_index == this.slots[b].shape_index) {
+                        this.swapPiecesInSlots2(this.slots[a], this.slots[b])
+                    }
                 }
             }
 
@@ -517,11 +564,17 @@ class Puzzle {
             _n += 1
 
             if (!IS_PROD_BUILD) {
-                if (_n == 5000) {
+                if (_n == 10000) {
+                    this.dumpStatus()
+                    clog(discard_reasons)
                     alert(`ERROR: could not find a proper shuffle in ${_n} tries, giving up`)
                     return
                 }
             }
+        }
+
+        if (!IS_PROD_BUILD) {
+            clog(discard_reasons)
         }
 
         // calculate the target steps
