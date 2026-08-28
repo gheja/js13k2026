@@ -211,6 +211,13 @@ const PUZZLE5 =  [
     "asd",
     0, // 0% done
 ]
+const PUZZLE6 =  [
+    "n6",
+    [[3,30,30,0,true],[3,30,56,60,false],[3,30,82,0,false],[3,30,108,60,true],[0,52.5,30,0,false],[0,67.5,30,180,false],[0,82.5,30,0,false],[3,105,30,60,true],[3,105,56,0,false],[3,105,82,60,false],[3,105,108,0,true],[0,52.5,56,180,false],[0,67.5,56,0,false],[0,82.5,56,180,false],[0,52.5,82,0,false],[0,67.5,82,180,false],[0,82.5,82,0,false],[0,52.5,108,180,false],[0,67.5,108,0,false],[0,82.5,108,180,false]],
+    [ "#f0f", "#f60", "#60f", "#ff0" ],
+    "",
+    0,
+]
 
 const STAR_TEXTS = [
     // '<span style="filter: grayscale(1); opacity: 0.3">&#x2b50;&#x2b50;&#x2b50;</span>', // no need for zero stars for now
