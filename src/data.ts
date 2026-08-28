@@ -4,6 +4,7 @@ const SHAPES = [
     'M -13 -13 H 13 V 13 H -13 Z',
     'M -5.6 -13 H 20.4 L 5.6 13 H -20.4 Z',
     'M -50 -13 h 100 v 26 h -100 Z',
+    'M 0 17.333 -30 -0 0 -17.333 30 -0 Z',
 ]
 
 enum ShapeIndex {
@@ -12,6 +13,7 @@ enum ShapeIndex {
     Square1,
     Paralellogram1,
     WideRectangle,
+    Diamond1,
 }
 
 const PUZZLE1 =  [
@@ -121,6 +123,83 @@ const PUZZLE4 =  [
         [ ShapeIndex.Paralellogram1, 82 , 108, 0, false ],
         [ ShapeIndex.Paralellogram1, 108, 108, 0, false ],
         [ ShapeIndex.Paralellogram1, 134, 108, 0, true  ],
+    ],
+    [ "#ff0", "#f0f", "#f60", "#60f" ],
+    // [ "#ff0", "#0f0", "#f00", "#0ff" ]
+    "asd",
+    0, // 0% done
+]
+
+const PUZZLE5 =  [
+    [
+        // this format might be easier to follow... might be
+
+        // shift: every second row-pair needs to be shifted by half of element
+        // shift2: every second row of a row-pair has two elements, each shifted quarter element
+        //
+        //                      base x             base y
+        //                      |      col index   |      row index
+        //                      |      |           |      |        rotation
+        //                      |      |   shift   |      |        |
+        //                      |      |   |       |      |        |
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 0    , 30 + 26*0    ,   0, true  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 0    , 30 + 26*0    ,   0, true  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 0    , 30 + 26*0    ,   0, true  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 0    , 30 + 26*0    ,   0, true  ],
+
+        //                                     shift2
+        //                                     |
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 0 -15, 30 + 26*0 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 0 +15, 30 + 26*0 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 0 -15, 30 + 26*0 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 0 +15, 30 + 26*0 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 0 -15, 30 + 26*0 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 0 +15, 30 + 26*0 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 0 -15, 30 + 26*0 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 0 +15, 30 + 26*0 +26, 120, false  ],
+
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 30    , 30 + 26*2    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 30    , 30 + 26*2    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 30    , 30 + 26*2    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 30    , 30 + 26*2    ,   0, false  ],
+
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 30 -15, 30 + 26*2 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 30 +15, 30 + 26*2 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 30 -15, 30 + 26*2 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 30 +15, 30 + 26*2 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 30 -15, 30 + 26*2 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 30 +15, 30 + 26*2 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 30 -15, 30 + 26*2 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 30 +15, 30 + 26*2 +26, 120, false  ],
+
+
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 0    , 30 + 26*4    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 0    , 30 + 26*4    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 0    , 30 + 26*4    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 0    , 30 + 26*4    ,   0, false  ],
+
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 0 -15, 30 + 26*4 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 0 +15, 30 + 26*4 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 0 -15, 30 + 26*4 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 0 +15, 30 + 26*4 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 0 -15, 30 + 26*4 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 0 +15, 30 + 26*4 +26, 120, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 0 -15, 30 + 26*4 +26,  60, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 0 +15, 30 + 26*4 +26, 120, false  ],
+
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 30    , 30 + 26*6    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 30    , 30 + 26*6    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 30    , 30 + 26*6    ,   0, false  ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 30    , 30 + 26*6    ,   0, false  ],
+
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 30 -15, 30 + 26*6 +26,  60, true ],
+        [ ShapeIndex.Diamond1, 70 + 60*0 + 30 +15, 30 + 26*6 +26, 120, true ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 30 -15, 30 + 26*6 +26,  60, true ],
+        [ ShapeIndex.Diamond1, 70 + 60*1 + 30 +15, 30 + 26*6 +26, 120, true ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 30 -15, 30 + 26*6 +26,  60, true ],
+        [ ShapeIndex.Diamond1, 70 + 60*2 + 30 +15, 30 + 26*6 +26, 120, true ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 30 -15, 30 + 26*6 +26,  60, true ],
+        [ ShapeIndex.Diamond1, 70 + 60*3 + 30 +15, 30 + 26*6 +26, 120, true ],
     ],
     [ "#ff0", "#f0f", "#f60", "#60f" ],
     // [ "#ff0", "#0f0", "#f00", "#0ff" ]
