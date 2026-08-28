@@ -27,6 +27,11 @@ body {
     border-left: 1px solid #555;
     background: #111;
     padding: 4px;
+    overflow-y: auto;
+}
+#output {
+    font-family: monospace;
+    font-size: 8pt;
 }
 /*
 .shape_index,

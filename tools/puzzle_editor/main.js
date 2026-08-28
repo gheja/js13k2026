@@ -104,9 +104,11 @@ function save_active_puzzle_to_state() {
     }
 }
 
-function editor_save_state() {
+function editor_save_state(save_active = true) {
     console.log("saving editor state")
-    save_active_puzzle_to_state()
+    if (save_active) {
+        save_active_puzzle_to_state()
+    }
 
     window.localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(_editor_state))
 }
@@ -323,6 +325,59 @@ function on_puzzle_selector_change(obj) {
 function on_save_button() {
     // just trigger an update
     on_update()
+}
+
+function sort1(a, b) {
+/*
+    if (a[4] !== b[4]) { // locked first
+        return b[4] - a[4]
+    }
+    if (a[0] !== b[0]) { // lower piece index first
+        return a[0] - b[0]
+    }
+    if (a[3] !== b[3]) { // lower rotation first
+        return a[3] - b[3]
+    }
+    if (a[2] !== b[2]) { // lower y coordinate first
+        return a[2] - b[2]
+    }
+    if (a[1] !== b[1]) { // lower x coordinate first
+        return a[1] - b[1]
+    }
+*/
+
+    // this one can be compressed better
+    if (a[2] !== b[2]) { // lower y coordinate first
+        return a[2] - b[2]
+    }
+    if (a[1] !== b[1]) { // lower x coordinate first
+        return a[1] - b[1]
+    }
+
+    return 0
+}
+
+function sort_pieces() {
+    for (var p of _editor_state["puzzles"]) {
+        if (p.editor_id == _editor_state["active_editor_id"])
+        {
+            p.data = p.data.sort(sort1)
+        }
+    }
+
+    editor_save_state(false)
+    load_puzzle_from_state()
+    on_update()
+}
+
+async function copy_output(obj) {
+  try {
+    await navigator.clipboard.writeText(document.getElementById("output").innerHTML)
+    obj.innerHTML = "Copied"
+    window.setTimeout(function() { obj.innerHTML = "Copy to clipboard"}, 500)
+  } catch (error) {
+    console.error(error.message)
+  }
 }
 
 window.addEventListener("load", init)
