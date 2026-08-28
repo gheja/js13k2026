@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <link type="text/css" rel="stylesheet" href="main.css"/>
+        <script src="data.js"></script>
+        <script src="main.js"></script>
+    </head>
+    <body>
+        <svg id="preview"></svg>
+        <div id="side">
+            <div id="settings">
+                <select id="grid">
+                    <option value="none" selected>none</option>
+                    <option value="7.5,13">7.5 x 13</option>
+                    <option value="123,123">123 x 123</option>
+                </select>
+            </div>
+            <div id="list">
+                <div id="list_header">
+                    <span>shape</span><span>x</span><span>y</span><span>rot</span><span>lock</span>
+                </div>
+                <div id="list_items">
+
+                </div>
+                <button onclick="add_item(); return false;">Add</button>
+            </div>
+        </div>
+    </body>
+</html>

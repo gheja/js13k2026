@@ -1,0 +1,21 @@
+.list_row input {
+    border: 1px solid #ccc;
+    padding: 2px;
+    margin: 0;
+    width: 50px;
+}
+
+#list_header span {
+    font-size: 8pt;
+    text-align: center;
+    display: inline-block;
+    width: 52px;
+}
+/*
+.shape_index,
+.pos_x,
+.pos_y,
+.rotation {
+    width: 50px;
+}
+    */
