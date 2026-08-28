@@ -53,7 +53,7 @@ class Puzzle {
         // in case of 1D puzzles the min and max values are the same, which would mess up things, so add + 1 pixel
         // NOTE: if I ever decide to get rid of the 1D puzzles, I can remove this I guess
         createFourPointGradient(ctx,
-            min_x, min_y, max_x - min_x + 1, max_y - min_y + 1,
+            Math.floor(min_x), Math.floor(min_y), Math.ceil(max_x - min_x + 1), Math.ceil(max_y - min_y + 1),
             data[PuzzleDataIndex.Colors][0],
             data[PuzzleDataIndex.Colors][1],
             data[PuzzleDataIndex.Colors][2],
@@ -69,7 +69,7 @@ class Puzzle {
         let piece_index = 0
         for (let i=0; i<data[PuzzleDataIndex.Pieces].length; i++) {
             let b = data[PuzzleDataIndex.Pieces][i]
-            let n = (b[2] * canvas.width + b[1]) * 4
+            let n = (Math.floor(b[2]) * canvas.width + Math.floor(b[1])) * 4
             this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: b[4]})
             this.pieces.push({shape_index: b[0], color: `rgb(${pixel_data.data[n]},${pixel_data.data[n+1]},${pixel_data.data[n+2]})`, dom: null})
             piece_index += 1
