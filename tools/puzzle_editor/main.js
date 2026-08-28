@@ -6,8 +6,10 @@ let _list_items
 let _item_n = 0
 
 let _editor_state = null
+let _puzzle_renderer
 
 function init() {
+    _puzzle_renderer = new PuzzleRenderer()
     _list_items = document.getElementById("list_items")
     editor_load_state()
     on_update()
@@ -273,8 +275,13 @@ function on_key_down(event) {
     on_update()
 }
 
+function render() {
+    _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0])
+}
+
 function on_update() {
     editor_save_state()
+    render()
     document.getElementById("output").innerHTML = JSON.stringify(get_active_puzzle_data())
 }
 
