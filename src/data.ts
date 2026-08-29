@@ -5,6 +5,8 @@ const SHAPES = [
     'm -22.5 13 15 -26 30 0 -15 26 z',
     'M -50 -13 h 100 v 26 h -100 Z',
     'M 0 17.333 -30 -0 0 -17.333 30 -0 Z',
+    'm 30 0 -15 26 -30 0 -15 -26 15 -26 30 0 z',
+    'M -30 0 0 -17.35 30 0 15 26 h -30 z',
 ]
 
 enum ShapeIndex {
@@ -14,6 +16,8 @@ enum ShapeIndex {
     Paralellogram1,
     WideRectangle,
     Diamond1,
+    Hexagon,
+    SquishedPentagon,
 }
 
 const PUZZLE1 =  [

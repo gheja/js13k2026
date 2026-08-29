@@ -7,6 +7,9 @@ var SHAPES = [
     'm -22.5 13 15 -26 30 0 -15 26 z',
     'M -50 -13 h 100 v 26 h -100 Z',
     'M 0 17.333 -30 -0 0 -17.333 30 -0 Z',
+    'm 30 0 -15 26 -30 0 -15 -26 15 -26 30 0 z',
+    // 'M -30 -4.32 0 -21.68 30 -4.32 15 21.67 l -30 0 z'
+    'M -30 0 0 -17.35 30 0 15 26 h -30 z'
 ];  
 
 var ShapeIndex = {
@@ -16,12 +19,16 @@ var ShapeIndex = {
     Paralellogram1: 3,
     WideRectangle: 4,
     Diamond1: 5,
+    Hexagon: 6,
+    SquishedPentagon: 7,
     "0": "Triangle1",
     "1": "LockedIcon",
     "2": "Square1",
     "3": "Paralellogram1",
     "4": "WideRectangle",
-    "5": "Diamond1"
+    "5": "Diamond1",
+    "6": "Hexagon",
+    "7": "SquishedPentagon",
 };  
 
 var PuzzleDataIndex = {
