@@ -25,9 +25,10 @@ class Game {
             new Puzzle(200, 0,   PUZZLE2), // first squares
             new Puzzle(150, 200, PUZZLE4), // first paralellograms
             new Puzzle(0,   200, PUZZLE3), // first triangles
-            new Puzzle(425, 400, PUZZLE7), // j-bid lite
+            new Puzzle(425, 450, PUZZLE7), // j-bid lite
             new Puzzle(400, 0,   PUZZLE8), // hexagons-pentagons
             new Puzzle(0,   400, PUZZLE5), // diamonds tiled cubes
+            new Puzzle(450, 300, PUZZLE6), // diamonds and triangles
         ]
         this.puzzles[0].locked = false
 
