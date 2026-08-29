@@ -11,6 +11,7 @@ let _puzzle_renderer
 function init() {
     _puzzle_renderer = new PuzzleRenderer()
     _list_items = document.getElementById("list_items")
+    document.getElementById("universal").addEventListener("keydown", on_universal_key_down)
     editor_load_state()
     on_update()
 }
@@ -240,21 +241,31 @@ function add_item(call_update_hook = true) {
     return div
 }
 
+function grid_inc(current, step, count, direction) {
+    return Math.floor(parseFloat(current) / step + count * direction) * step
+}
+
 function on_key_down(event) {
     let count = 1
     let step = 1
     let direction
 
-    if (event.keyCode != 38 && event.keyCode != 40) {
-        on_update()
-        return
-    }
-
     if (event.keyCode == 38) { // up arrow
         direction = +1
     }
-    else { // down arrow
+    else if (event.keyCode == 40) { // down arrow
         direction = -1
+    }
+    else if (event.keyCode == 37) { // left arrow
+        direction = -1
+    }
+    else if (event.keyCode == 40) { // right arrow
+        direction = +1
+    }
+    else {
+        console.log(`unhandled keyCode: ${event.keyCode}`)
+        on_update()
+        return
     }
 
     if (event.target.className == "pos_x") {
@@ -262,6 +273,8 @@ function on_key_down(event) {
         step = parseFloat(grid_value[0])
     }
     else if (event.target.className == "pos_y") {
+        direction *= -1
+
         let grid_value = document.getElementById("pos_grid").value.split(",")
         step = parseFloat(grid_value[1])
     }
@@ -270,7 +283,7 @@ function on_key_down(event) {
         step = parseFloat(grid_value[0])
     }
 
-    event.target.value = Math.floor(parseFloat(event.target.value) / step + count * direction) * step
+    event.target.value = grid_inc(event.target.value, step, count, direction)
 
     if (event.target.className == "rotation") {
         // map it to 0..360
@@ -281,6 +294,35 @@ function on_key_down(event) {
     event.preventDefault()
 
     on_update()
+}
+
+function on_universal_key_down(event) {
+/*
+    // meh, this is too much work for now...
+
+    let pos_grid_values = document.getElementById("pos_grid").value.split(",")
+    let rot_grid_values = document.getElementById("rot_grid").value.split(",")
+    let obj
+
+    if (event.keyCode == 82) { // "R"
+
+    }
+    else if (event.keyCode == 38) { // up arrow
+        grid_inc(, step, count, -1)
+    }
+    else if (event.keyCode == 40) { // down arrow
+        direction = -1
+    }
+    else if (event.keyCode == 37) { // left arrow
+        direction = -1
+    }
+    else  if (event.keyCode == 39) { // right arrow
+        direction = +1
+    }
+    else {
+        console.log(event.keyCode)
+    }
+*/
 }
 
 function render() {
