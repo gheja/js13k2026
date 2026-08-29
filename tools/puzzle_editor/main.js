@@ -422,4 +422,12 @@ async function copy_output(obj) {
   }
 }
 
+function nudge_all(dx, dy) {
+    for (let row of _list_items.children) {
+        row.children[1].value = parseFloat(row.children[1].value) + dx
+        row.children[2].value = parseFloat(row.children[2].value) + dy
+    }
+    on_update()
+}
+
 window.addEventListener("load", init)

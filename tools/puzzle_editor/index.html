@@ -54,7 +54,12 @@
                 </div>
                 <button onclick="add_item(); return false;">Add</button>
                 <button onclick="sort_pieces(); return false;">Sort</button>
-                <input type="text" id="universal" value=""/>
+                <input type="text" id="universal" value=""/><br/>
+                Nudge all:
+                <button onclick="nudge_all(-1, 0); return false;">Left</button>
+                <button onclick="nudge_all( 0,-1); return false;">Up</button>
+                <button onclick="nudge_all( 0,+1); return false;">Down</button>
+                <button onclick="nudge_all(+1, 0); return false;">Right</button>
             </div>
             <hr>
             Puzzle output:
