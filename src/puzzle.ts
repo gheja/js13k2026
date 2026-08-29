@@ -469,8 +469,6 @@ class Puzzle {
         while (true) {
             clog(`mixing #${_n}`)
 
-            // NOTE TODO BUG ETC: this kinda works, but probably does a lot of picking the wrong ones and just discarding he pick,
-            // we should do it using a known list of pieces that can be swapped...
             for (let list of slot_indexes_per_shape) {
                 if (!list) {
                     continue
