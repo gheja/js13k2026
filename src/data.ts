@@ -22,13 +22,7 @@ enum ShapeIndex {
 
 const PUZZLE1 =  [
     "n1",
-    [
-        [ ShapeIndex.WideRectangle, 0, 80, 30,  true  ],
-        [ ShapeIndex.WideRectangle, 0, 80, 56,  false ],
-        [ ShapeIndex.WideRectangle, 0, 80, 82,  false ],
-        [ ShapeIndex.WideRectangle, 0, 80, 108, false ],
-        [ ShapeIndex.WideRectangle, 0, 80, 134, true  ],
-    ],
+    [[4,0,80,30,false],[4,0,80,56,false],[4,0,80,82,false],[4,0,80,108,false],[4,0,80,134,false]],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
     [ "#0ff", "#0ff", "#04f", "#04f" ],
     "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked.",
@@ -37,32 +31,7 @@ const PUZZLE1 =  [
 
 const PUZZLE2 =  [
     "n2",
-    [
-        [ ShapeIndex.Square1, 0, 30,  30,  true ],
-        [ ShapeIndex.Square1, 0, 56,  30,  true ],
-        [ ShapeIndex.Square1, 0, 82,  30,  true ],
-        [ ShapeIndex.Square1, 0, 108, 30,  true ],
-
-        [ ShapeIndex.Square1, 0, 30,  56,  false ],
-        [ ShapeIndex.Square1, 0, 56,  56,  true  ],
-        [ ShapeIndex.Square1, 0, 82,  56,  true  ],
-        [ ShapeIndex.Square1, 0, 108, 56,  false ],
-
-        [ ShapeIndex.Square1, 0, 30,  82,  false ],
-        [ ShapeIndex.Square1, 0, 56,  82,  true  ],
-        [ ShapeIndex.Square1, 0, 82,  82,  true  ],
-        [ ShapeIndex.Square1, 0, 108, 82,  false ],
-
-        [ ShapeIndex.Square1, 0, 30,  108, false ],
-        [ ShapeIndex.Square1, 0, 56,  108, true  ],
-        [ ShapeIndex.Square1, 0, 82,  108, true  ],
-        [ ShapeIndex.Square1, 0, 108, 108, false ],
-
-        [ ShapeIndex.Square1, 0, 30,  134, true  ],
-        [ ShapeIndex.Square1, 0, 56,  134, true  ],
-        [ ShapeIndex.Square1, 0, 82,  134, true  ],
-        [ ShapeIndex.Square1, 0, 108, 134, true  ],
-    ],
+    [[2,0,30,30,true],[2,0,30,56,false],[2,0,30,82,false],[2,0,30,108,false],[2,0,30,134,true],[2,0,56,30,true],[2,0,56,56,true],[2,0,56,82,true],[2,0,56,108,true],[2,0,56,134,true],[2,0,82,30,true],[2,0,82,56,true],[2,0,82,82,true],[2,0,82,108,true],[2,0,82,134,true],[2,0,108,30,true],[2,0,108,56,false],[2,0,108,82,false],[2,0,108,108,false],[2,0,108,134,true]],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
     [ "#ff0", "#0f0", "#f00", "#00f" ],
     "Make sure the blocks create a gradient in all directions.",
@@ -71,30 +40,7 @@ const PUZZLE2 =  [
 
 const PUZZLE3 =  [
     "n3",
-    [
-        [ ShapeIndex.Triangle1,   0, 30, 30, true  ],
-        [ ShapeIndex.Triangle1,   0, 60, 30, false ],
-        [ ShapeIndex.Triangle1,   0, 90, 30, true  ],
-        [ ShapeIndex.Triangle1,   0, 45, 56, false ],
-        [ ShapeIndex.Triangle1,   0, 75, 56, false ],
-        [ ShapeIndex.Triangle1,   0, 30, 82, true  ],
-        [ ShapeIndex.Triangle1,   0, 60, 82, false ],
-        [ ShapeIndex.Triangle1,   0, 90, 82, true  ],
-        [ ShapeIndex.Triangle1,   0, 45, 108, false ],
-        [ ShapeIndex.Triangle1,   0, 75, 108, false ],
-
-        [ ShapeIndex.Triangle1, 180, 45, 30, false ],
-        [ ShapeIndex.Triangle1, 180, 75, 30, false ],
-        [ ShapeIndex.Triangle1, 180, 30, 56, true  ],
-        [ ShapeIndex.Triangle1, 180, 60, 56, false ],
-        [ ShapeIndex.Triangle1, 180, 90, 56, true  ],
-        [ ShapeIndex.Triangle1, 180, 45, 82, false ],
-        [ ShapeIndex.Triangle1, 180, 75, 82, false ],
-        [ ShapeIndex.Triangle1, 180, 30, 108, true  ],
-        [ ShapeIndex.Triangle1, 180, 60, 108, false ],
-        [ ShapeIndex.Triangle1, 180, 90, 108, true  ],
-
-],
+    [[0,0,30,30,true],[0,0,30,82,true],[0,0,45,56,false],[0,0,45,108,false],[0,0,60,30,false],[0,0,60,82,false],[0,0,75,56,false],[0,0,75,108,false],[0,0,90,30,true],[0,0,90,82,true],[0,180,30,56,true],[0,180,30,108,true],[0,180,45,30,false],[0,180,45,82,false],[0,180,60,56,false],[0,180,60,108,false],[0,180,75,30,false],[0,180,75,82,false],[0,180,90,56,true],[0,180,90,108,true]],
     // [ "#ff0", "#f0f", "#ff0", "#f0f" ],
     // [ "#0ff", "#00f", "#0f0", "#008" ],
     // [ "#f00", "#0ff", "#ff0", "#0f0" ],
@@ -105,31 +51,7 @@ const PUZZLE3 =  [
 
 const PUZZLE4 =  [
     "n4",
-    [
-        [ ShapeIndex.Paralellogram1, 0, 30 +45, 30, true  ],
-        [ ShapeIndex.Paralellogram1, 0, 60 +45, 30, false ],
-        [ ShapeIndex.Paralellogram1, 0, 90 +45, 30, false ],
-        [ ShapeIndex.Paralellogram1, 0, 120+45, 30, false ],
-        [ ShapeIndex.Paralellogram1, 0, 150+45, 30, true  ],
-
-        [ ShapeIndex.Paralellogram1, 0, 30 +30, 56, true  ],
-        [ ShapeIndex.Paralellogram1, 0, 60 +30, 56, false  ],
-        [ ShapeIndex.Paralellogram1, 0, 90 +30, 56, false  ],
-        [ ShapeIndex.Paralellogram1, 0, 120+30, 56, false  ],
-        [ ShapeIndex.Paralellogram1, 0, 150+30, 56, true  ],
-
-        [ ShapeIndex.Paralellogram1, 0, 30 +15, 82, true  ],
-        [ ShapeIndex.Paralellogram1, 0, 60 +15, 82, false ],
-        [ ShapeIndex.Paralellogram1, 0, 90 +15, 82, false ],
-        [ ShapeIndex.Paralellogram1, 0, 120+15, 82, false ],
-        [ ShapeIndex.Paralellogram1, 0, 150+15, 82, true  ],
-
-        [ ShapeIndex.Paralellogram1, 0, 30 , 108, true  ],
-        [ ShapeIndex.Paralellogram1, 0, 60 , 108, false ],
-        [ ShapeIndex.Paralellogram1, 0, 90 , 108, false ],
-        [ ShapeIndex.Paralellogram1, 0, 120, 108, false ],
-        [ ShapeIndex.Paralellogram1, 0, 150, 108, true  ],
-   ],
+    [[3,0,30,108,true],[3,0,45,82,true],[3,0,60,56,true],[3,0,60,108,false],[3,0,75,30,true],[3,0,75,82,false],[3,0,90,56,false],[3,0,90,108,false],[3,0,105,30,false],[3,0,105,82,false],[3,0,120,56,false],[3,0,120,108,false],[3,0,135,30,false],[3,0,135,82,false],[3,0,150,56,false],[3,0,150,108,true],[3,0,165,30,false],[3,0,165,82,true],[3,0,180,56,true],[3,0,195,30,true]],
     [ "#ff0", "#f0f", "#0ff", "#60f" ],
     // [ "#ff0", "#0f0", "#f00", "#0ff" ]
     "asd",
@@ -138,58 +60,7 @@ const PUZZLE4 =  [
 
 const PUZZLE5 =  [
     "n5",
-    [
-        [ ShapeIndex.Diamond1,   0, 70 + 60*0 + 0    , 30 + 26*0    , true  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*1 + 0    , 30 + 26*0    , true  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*2 + 0    , 30 + 26*0    , true  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*3 + 0    , 30 + 26*0    , true  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*0 + 30    , 30 + 26*2    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*1 + 30    , 30 + 26*2    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*2 + 30    , 30 + 26*2    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*3 + 30    , 30 + 26*2    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*0 + 0    , 30 + 26*4    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*1 + 0    , 30 + 26*4    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*2 + 0    , 30 + 26*4    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*3 + 0    , 30 + 26*4    , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*0 + 30    , 30 + 26*6   , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*1 + 30    , 30 + 26*6   , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*2 + 30    , 30 + 26*6   , false  ],
-        [ ShapeIndex.Diamond1,   0, 70 + 60*3 + 30    , 30 + 26*6   , false  ],
-
-        [ ShapeIndex.Diamond1,  60, 70 + 60*0 + 0 -15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*1 + 0 -15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*2 + 0 -15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*3 + 0 -15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*0 + 30 -15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*1 + 30 -15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*2 + 30 -15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*3 + 30 -15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*0 + 0 -15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*1 + 0 -15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*2 + 0 -15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*3 + 0 -15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*0 + 30 -15, 30 + 26*6 +26, true ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*1 + 30 -15, 30 + 26*6 +26, true ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*2 + 30 -15, 30 + 26*6 +26, true ],
-        [ ShapeIndex.Diamond1,  60, 70 + 60*3 + 30 -15, 30 + 26*6 +26, true ],
-
-        [ ShapeIndex.Diamond1, 120, 70 + 60*0 + 0 +15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*1 + 0 +15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*2 + 0 +15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*3 + 0 +15, 30 + 26*0 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*0 + 30 +15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*1 + 30 +15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*2 + 30 +15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*3 + 30 +15, 30 + 26*2 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*0 + 0 +15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*1 + 0 +15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*2 + 0 +15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*3 + 0 +15, 30 + 26*4 +26, false  ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*0 + 30 +15, 30 + 26*6 +26, true ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*1 + 30 +15, 30 + 26*6 +26, true ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*2 + 30 +15, 30 + 26*6 +26, true ],
-        [ ShapeIndex.Diamond1, 120, 70 + 60*3 + 30 +15, 30 + 26*6 +26, true ],
-    ],
+    [[5,0,70,30,true],[5,0,70,134,false],[5,0,100,82,false],[5,0,100,186,false],[5,0,130,30,true],[5,0,130,134,false],[5,0,160,82,false],[5,0,160,186,false],[5,0,190,30,true],[5,0,190,134,false],[5,0,220,82,false],[5,0,220,186,false],[5,0,250,30,true],[5,0,250,134,false],[5,0,280,82,false],[5,0,280,186,false],[5,60,55,56,false],[5,60,55,160,false],[5,60,85,108,false],[5,60,85,212,true],[5,60,115,56,false],[5,60,115,160,false],[5,60,145,108,false],[5,60,145,212,true],[5,60,175,56,false],[5,60,175,160,false],[5,60,205,108,false],[5,60,205,212,true],[5,60,235,56,false],[5,60,235,160,false],[5,60,265,108,false],[5,60,265,212,true],[5,120,85,56,false],[5,120,85,160,false],[5,120,115,108,false],[5,120,115,212,true],[5,120,145,56,false],[5,120,145,160,false],[5,120,175,108,false],[5,120,175,212,true],[5,120,205,56,false],[5,120,205,160,false],[5,120,235,108,false],[5,120,235,212,true],[5,120,265,56,false],[5,120,265,160,false],[5,120,295,108,false],[5,120,295,212,true]],
     [ "#ff0", "#f0f", "#f60", "#60f" ],
     // [ "#ff0", "#0f0", "#f00", "#0ff" ]
     "asd",
