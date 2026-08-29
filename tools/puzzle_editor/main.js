@@ -330,11 +330,11 @@ function render() {
 }
 
 function editor_order_to_game_order(rows) {
-    rows = rows.sort(sort2)
+    // rows = rows.sort(sort2)
 
     let result = []
     for (let row of rows) {
-        result.push([row[0], row[3], row[1], row[2], row[4]])
+        result.push([row[0], row[1], row[2], row[3], row[4] ? 1 : 0])
     }
     return result
 }

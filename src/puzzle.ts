@@ -33,10 +33,10 @@ class Puzzle {
         let max_y = 0
 
         for (let b of data[PuzzleDataIndex.Pieces]) {
-            min_x = Math.min(min_x, b[2])
-            min_y = Math.min(min_y, b[3])
-            max_x = Math.max(max_x, b[2])
-            max_y = Math.max(max_y, b[3])
+            min_x = Math.min(min_x, b[1])
+            min_y = Math.min(min_y, b[2])
+            max_x = Math.max(max_x, b[1])
+            max_y = Math.max(max_y, b[2])
         }
 
         const canvas = document.createElement("canvas")
@@ -69,8 +69,8 @@ class Puzzle {
         let piece_index = 0
         for (let i=0; i<data[PuzzleDataIndex.Pieces].length; i++) {
             let b = data[PuzzleDataIndex.Pieces][i]
-            let n = (Math.floor(b[3]) * canvas.width + Math.floor(b[2])) * 4
-            this.slots.push({shape_index: b[0], x: b[2], y: b[3], r: b[1], piece_index: piece_index, correct_piece_index: piece_index, locked: b[4]})
+            let n = (Math.floor(b[2]) * canvas.width + Math.floor(b[1])) * 4
+            this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: b[4]})
             this.pieces.push({shape_index: b[0], color: `rgb(${pixel_data.data[n]},${pixel_data.data[n+1]},${pixel_data.data[n+2]})`, dom: null})
             piece_index += 1
         }
