@@ -64,7 +64,7 @@ const PUZZLE2 =  [
         [ ShapeIndex.Square1, 108, 134, 0, true  ],
     ],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
-    [ "#ff0", "#0f0", "#f00", "#0ff" ],
+    [ "#ff0", "#0f0", "#f00", "#00f" ],
     "Make sure the blocks create a gradient in all directions.",
     0.75, // 75% done
 ]
@@ -132,7 +132,7 @@ const PUZZLE4 =  [
         [ ShapeIndex.Paralellogram1, 120, 108, 0, false ],
         [ ShapeIndex.Paralellogram1, 150, 108, 0, true  ],
    ],
-    [ "#ff0", "#f0f", "#f60", "#60f" ],
+    [ "#ff0", "#f0f", "#0ff", "#60f" ],
     // [ "#ff0", "#0f0", "#f00", "#0ff" ]
     "asd",
     0, // 0% done
@@ -227,6 +227,14 @@ const PUZZLE7 = [
     "n7",
     [[5,90,30,0,true],[5,75,56,60,false],[5,105,56,120,false],[5,60,82,0,false],[5,120,82,0,false],[5,45,108,60,false],[5,75,108,120,false],[5,105,108,60,false],[5,135,108,120,false],[5,30,134,0,false],[5,90,134,0,false],[5,150,134,0,false],[5,15,160,60,true],[5,45,160,120,false],[5,75,160,60,false],[5,105,160,120,false],[5,135,160,60,false],[5,165,160,120,true]],
     ["#fff", "#fff", "#f0f", "#0ff"],
+    "",
+    0,
+]
+
+const PUZZLE8 = [
+    "n8",
+    [[6,50,36,300,false],[6,170,36,300,false],[7,125,62,240,false],[7,95,62,120,false],[7,170,88,180,true],[7,50,88,180,true],[7,110,88,0,false],[7,65,114,300,false],[7,155,114,60,false],[7,185,114,300,false],[7,35,114,60,false],[6,110,140,0,false],[7,155,166,120,false],[7,185,166,240,false],[7,35,166,120,false],[7,65,166,240,false],[7,110,192,180,false],[7,50,192,0,true],[7,170,192,0,true],[7,95,218,60,false],[7,125,218,300,false],[6,50,244,300,false],[6,170,244,300,false]],
+    [ "#f0f", "#60f", "#f60", "#ff0" ],
     "",
     0,
 ]

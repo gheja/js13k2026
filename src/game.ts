@@ -21,13 +21,13 @@ class Game {
     constructor() {
         this.activePuzzle = null
         this.puzzles = [
-            new Puzzle(0,   0,   PUZZLE1),
-            new Puzzle(200, 0,   PUZZLE2),
-            new Puzzle(200, 200, PUZZLE4),
-            new Puzzle(0,   200, PUZZLE3),
-            new Puzzle(400, 200, PUZZLE7),
-            new Puzzle(0,   400, PUZZLE5),
-            new Puzzle(400, 0,   PUZZLE6),
+            new Puzzle(0,   0,   PUZZLE1), // first bars
+            new Puzzle(200, 0,   PUZZLE2), // first squares
+            new Puzzle(150, 200, PUZZLE4), // first paralellograms
+            new Puzzle(0,   200, PUZZLE3), // first triangles
+            new Puzzle(425, 400, PUZZLE7), // j-bid lite
+            new Puzzle(0,   400, PUZZLE5), // diamonds tiled cubes
+            new Puzzle(400, 0,   PUZZLE8), // hexagons-pentagons
         ]
         this.puzzles[0].locked = false
 
