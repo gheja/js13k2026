@@ -329,10 +329,21 @@ function render() {
     _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0])
 }
 
+function editor_order_to_game_order(rows) {
+    rows = rows.sort(sort2)
+
+    let result = []
+    for (let row of rows) {
+        result.push([row[0], row[3], row[1], row[2], row[4]])
+    }
+    return result
+}
+
 function on_update() {
     editor_save_state()
     render()
-    document.getElementById("output").innerHTML = JSON.stringify(get_active_puzzle_data())
+    // document.getElementById("output").innerHTML = JSON.stringify(get_active_puzzle_data())
+    document.getElementById("output").innerHTML = JSON.stringify(editor_order_to_game_order(get_active_puzzle_data()))
 }
 
 function puzzle_selector_load() {
@@ -370,24 +381,6 @@ function on_save_button() {
 }
 
 function sort1(a, b) {
-/*
-    if (a[4] !== b[4]) { // locked first
-        return b[4] - a[4]
-    }
-    if (a[0] !== b[0]) { // lower piece index first
-        return a[0] - b[0]
-    }
-    if (a[3] !== b[3]) { // lower rotation first
-        return a[3] - b[3]
-    }
-    if (a[2] !== b[2]) { // lower y coordinate first
-        return a[2] - b[2]
-    }
-    if (a[1] !== b[1]) { // lower x coordinate first
-        return a[1] - b[1]
-    }
-*/
-
     // this one can be compressed better
     if (a[2] !== b[2]) { // lower y coordinate first
         return a[2] - b[2]
@@ -395,7 +388,22 @@ function sort1(a, b) {
     if (a[1] !== b[1]) { // lower x coordinate first
         return a[1] - b[1]
     }
+    return 0
+}
 
+function sort2(a, b) {
+    if (a[0] !== b[0]) { // lower piece index first
+        return a[0] - b[0]
+    }
+    if (a[3] !== b[3]) { // lower rotation first
+        return a[3] - b[3]
+    }
+    if (a[1] !== b[1]) { // lower x coordinate first
+        return a[1] - b[1]
+    }
+    if (a[2] !== b[2]) { // lower y coordinate first
+        return a[2] - b[2]
+    }
     return 0
 }
 
