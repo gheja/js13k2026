@@ -290,7 +290,7 @@ class Puzzle extends PuzzleBase {
     public unlockCountOnWin: number = 1
     public wasSolvedEarlier: boolean = false
 
-    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, lockIndex: number, startingSolvedProgress: number=0, hint: string="") {
+    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, lockIndex: number, rotate: number=0, startingSolvedProgress: number=0, hint: string="") {
         super()
 
         this.puzzleUid = uid
@@ -369,7 +369,7 @@ class Puzzle extends PuzzleBase {
         // draw the locked icon
         for (let slot of this.slots) {
             if (slot.locked) {
-                locked_path_data += `<path class="lock" style="fill:#000a" d="${SHAPES[ShapeIndex.LockedIcon]}" transform="translate(${slot.x}, ${slot.y})"/>`
+                locked_path_data += `<path class="lock" style="fill:#000a" d="${SHAPES[ShapeIndex.LockedIcon]}" transform="translate(${slot.x}, ${slot.y}) rotate(-${rotate})"/>`
             }
         }
 
@@ -378,7 +378,7 @@ class Puzzle extends PuzzleBase {
         this.height = max_y + min_y
 
         let svg_data = `
-<svg width="${this.width}" height="${this.height}" viewBox="0 0 ${this.width} ${this.height}" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px">
+<svg width="${this.width}" height="${this.height}" viewBox="0 0 ${this.width} ${this.height}" version="1.1" xmlns="http://www.w3.org/2000/svg" style="left: ${x}px; top: ${y}px; transform: rotate(${rotate}deg);">
   <filter id="shadow" color-interpolation-filters="sRGB" x="-50%" y="-50%" width="200%" height="200%">
     <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.7"/>
   </filter>
