@@ -47,24 +47,36 @@ function clog(s: any) {
 //   pl:<puzzle_uid> -- puzzle locked
 //   ps:<puzzle_uid> -- player state on a puzzle
 
+let _localState: any
+
 function localStateSet(key: string, value: any) {
-    localStorage.setItem(LOCALSTORAGE_PREFIX + key, JSON.stringify(value))
     clog(`set "${key}"`)
+
+    // localStorage.setItem(LOCALSTORAGE_PREFIX + key, JSON.stringify(value))
+    _localState[key] = value
+    localStorage.setItem(LOCALSTORAGE_PREFIX + "a", JSON.stringify(_localState))
 }
 
 function localStateGet(key: string, def: any) {
-    let result = def
-
     clog(`get "${key}"`)
 
     try {
-        let s = localStorage.getItem(LOCALSTORAGE_PREFIX + key)
-        if (s !== null) {
-            // @ts-ignore -- it might be invalid, that's why the try-catch
-            result = JSON.parse(s)
+        if (_localState === undefined) {
+            let s = localStorage.getItem(LOCALSTORAGE_PREFIX + "a")
+            if (s !== null) {
+                // @ts-ignore -- it might be invalid, that's why the try-catch
+                _localState = JSON.parse(s)
+            }
         }
     }
     catch (e) {}
+    if (_localState === undefined) {
+        _localState = {}
+    }
 
-    return result
+    if (key in _localState) {
+        return _localState[key]
+    }
+
+    return def
 }
