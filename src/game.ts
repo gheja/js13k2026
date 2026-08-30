@@ -106,6 +106,7 @@ class Game {
             case TransitionState.EnteringPuzzle:
                 _background.style.opacity = "0.1"
                 _puzzleMenuButton.style.display = "block"
+                _mainMenu.style.opacity = "0"
                 // @ts-ignore - "possibly null"
                 _game.gfx.setViewTargetBox(this.activePuzzle.left, this.activePuzzle.top, this.activePuzzle.left + this.activePuzzle.width, this.activePuzzle.top + this.activePuzzle.height)
             break
@@ -116,6 +117,7 @@ class Game {
 
             case TransitionState.PuzzleActive:
                 _hint.style.opacity = "1"
+                _mainMenu.style.display = "none"
                 this.state = GameState.PuzzleActive
             break
 
@@ -133,6 +135,7 @@ class Game {
                 _winMenu.style.opacity = "0"
                 _hint.style.opacity = "0"
                 _puzzleMenuButton.style.opacity = "0"
+                _mainMenu.style.display = "block"
                 if (this.puzzleUnlocksPending == 0) {
                     time = 2000
                 }
@@ -162,6 +165,7 @@ class Game {
                 // make sure they are not clickable
                 _winMenu.style.display = "none"
                 _puzzleMenuButton.style.display = "none"
+                _mainMenu.style.opacity = "1"
 
                 _background.style.opacity = "1"
                 this.state = GameState.MainScreen

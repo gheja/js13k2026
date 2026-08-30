@@ -9,5 +9,7 @@ html, body { padding: 0; margin: 0; background: #012; color: #eee; overflow: hid
 .m div span { font-size: 0.5em; }
 .m div:hover { background: #fff2; }
 #ma { cursor: pointer; }
+#o { position: fixed; top: 1rem; left: 1rem; opacity: 0; }
+#o div { cursor: pointer; display: inline-block; margin: 0 1rem 0 0; }
 ::selection { background: #0000; }
 #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }

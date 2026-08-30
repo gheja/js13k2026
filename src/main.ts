@@ -5,6 +5,11 @@ let _puzzleMenuButton: HTMLDivElement
 let _puzzleMenu: HTMLDivElement // this is an overlay that is handled by changing "display", not "opacity"
 let _winMenu: HTMLDivElement
 let _background: SvgInHtml
+let _mainMenu: HTMLDivElement
+let _chapter1Button: HTMLDivElement
+let _chapter2Button: HTMLDivElement
+let _chapter3Button: HTMLDivElement
+let _catPuzzleButton: HTMLDivElement
 
 function init() {
     _container = document.getElementById("b") as HTMLDivElement
@@ -13,6 +18,11 @@ function init() {
     _puzzleMenu = document.getElementById("n") as HTMLDivElement
     _winMenu = document.getElementById("w") as HTMLDivElement
     _background = document.getElementById("bg") as SvgInHtml
+    _mainMenu = document.getElementById("o") as HTMLDivElement
+    _chapter1Button = document.getElementById("oa") as HTMLDivElement
+    _chapter2Button = document.getElementById("ob") as HTMLDivElement
+    _chapter3Button = document.getElementById("oc") as HTMLDivElement
+    _catPuzzleButton = document.getElementById("od") as HTMLDivElement
     
     _game = new Game()
 
