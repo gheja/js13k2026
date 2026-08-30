@@ -1,4 +1,4 @@
-html, body { padding: 0; margin: 0; background: #012; color: #eee; overflow: hidden; font-family: Candara, sans-serif; font-size: 24pt; }
+html, body { padding: 0; margin: 0; background: #012; color: #eee; overflow: hidden; font-family: Candara, sans-serif; font-size: 20pt; }
 * { transition: opacity 1s; }
 #b { position: absolute; transform: scale(1.0) translate(0px, 0px); width: 500px; height: 500px; }
 #b > svg { position: fixed; display: block; filter: drop-shadow(0 0 0.5rem #000); transition: filter 1s, opacity 1s; }
