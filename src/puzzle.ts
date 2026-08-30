@@ -357,9 +357,7 @@ class Puzzle {
             }
             this.savePlayerLocalState()
 
-            document.getElementById("p1").innerHTML = this.playerState[PlayerStateIndex.StepsTaken]
-            document.getElementById("p2").innerHTML = this.minStepsRequired
-            document.getElementById("p3").innerHTML = STAR_TEXTS[this.playerState[PlayerStateIndex.StarsReceived] - 1]
+            document.getElementById("p1").innerHTML = `Total steps taken: ${this.playerState[PlayerStateIndex.StepsTaken]}<br/>Minimum steps: ${this.minStepsRequired}<br/><br/>${STAR_TEXTS[this.playerState[PlayerStateIndex.StarsReceived] - 1]}<br/><br/>`
 
             if (!this.wasSolvedEarlier) {
                 _game.puzzleUnlocksPending += this.unlockCountOnWin
