@@ -33,6 +33,13 @@
                     <option value="90">90</option>
                 </select>
 
+                <label for="lock_selector">lock: </label>
+                <select id="lock_selector" onchange="on_update(); return false;">
+                    <option value="1" selected>1</option>
+                    <option value="2">2</option>
+                    <option value="4">4</option>
+                </select>
+
                 <hr/>
                 <label for="active_editor_id">Editor ID: </label>
                 <input id="active_editor_id" type="text" value="n/a" readonly/><br/>
@@ -47,7 +54,7 @@
             Pieces:
             <div id="list">
                 <div id="list_header">
-                    <span>shape</span><span>x</span><span>y</span><span>rot</span><span>lock</span>
+                    <span>shape</span><span>x</span><span>y</span><span>rot</span><span>lock1</span><span>lock2</span><span>lock4</span>
                 </div>
                 <div id="list_items">
 

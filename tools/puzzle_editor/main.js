@@ -40,7 +40,9 @@ function load_puzzle_from_state() {
                 div.children[1].value = row[1] // x
                 div.children[2].value = row[2] // y
                 div.children[3].value = row[3] // rot
-                div.children[4].checked = row[4] // lock
+                div.children[4].checked = row[4] & 1 // lock
+                div.children[5].checked = row[4] & 2 // lock
+                div.children[6].checked = row[4] & 4 // lock
             }
         }
     }
@@ -143,11 +145,11 @@ function get_row_data(obj) {
             parseFloat(obj.children[1].value),
             parseFloat(obj.children[2].value),
             parseFloat(obj.children[3].value),
-            obj.children[4].checked,
+            (obj.children[4].checked ? 1 : 0) + (obj.children[5].checked ? 2 : 0) + (obj.children[6].checked ? 4 : 0)
         ]
     }
     else {
-        return [ 0, 30, 30, 0, false ]
+        return [ 0, 30, 30, 0, 0 ]
     }
 }
 
@@ -218,6 +220,24 @@ function add_item(call_update_hook = true) {
     a.className = "lock"
     a.value = "1"
     a.checked = defaults[4]
+    a.addEventListener("change", on_update.bind(a))
+    a.addEventListener("keydown", on_key_down.bind(a))
+    div.appendChild(a)
+
+    a = document.createElement("input")
+    a.type = "checkbox"
+    a.className = "lock"
+    a.value = "2"
+    a.checked = defaults[5]
+    a.addEventListener("change", on_update.bind(a))
+    a.addEventListener("keydown", on_key_down.bind(a))
+    div.appendChild(a)
+
+    a = document.createElement("input")
+    a.type = "checkbox"
+    a.className = "lock"
+    a.value = "4"
+    a.checked = defaults[6]
     a.addEventListener("change", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
     div.appendChild(a)
@@ -326,7 +346,7 @@ function on_universal_key_down(event) {
 }
 
 function render() {
-    _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0])
+    _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0], parseInt(document.getElementById("lock_selector").value))
 }
 
 function editor_order_to_game_order(rows) {
@@ -334,7 +354,7 @@ function editor_order_to_game_order(rows) {
 
     let result = []
     for (let row of rows) {
-        result.push([row[0], row[1], row[2], row[3], row[4] ? 1 : 0])
+        result.push([row[0], row[1], row[2], row[3], row[4]])
     }
     return result
 }
