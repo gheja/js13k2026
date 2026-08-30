@@ -13,8 +13,43 @@ Reducing size:
     - Whitespaces SVG could be deleted/shortened.
     - IDs/class names coudl be shortened
 
+  - Index
+    - remove "user-scalable=no, minimal-ui"
+
 Bugs:
   - Zoom is not centering properly.
+
+---
+
+Safe on an 1080x1920, 1080x2340 (S22) -> 1080x1440, puzzles should fit in this ratio, maybe
+
+---
+
+<div id="safe_view_box"></div>
+
+#safe_view_box {
+    border: 2px solid #666;
+    position: fixed;
+    top: calc(177vw * 0.2);
+    left: 0;
+    width: 100vw;
+    height: calc(177vw * 0.7); /* 177 vw */
+}
+@media (orientation: landscape) {
+    #safe_view_box {
+        top: 0;
+        left: calc((100vw - 56.25vh)/2);
+        height: 100vh;
+        width: 56.25vh;
+    }
+}
+
+
+
+---
+
+Undo: &#x21B6; ↶
+Basket: &#x1F5D1; 🗑
 
 ---
 
