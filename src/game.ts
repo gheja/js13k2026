@@ -128,7 +128,7 @@ class Game {
                 this.activePuzzle.newPlayerSession()
 
                 // @ts-ignore - "possibly null"
-                this.activePuzzle.shuffle()
+                this.activePuzzle.shuffleWithVisuals()
             break
 
             case TransitionState.LeavingPuzzle:
