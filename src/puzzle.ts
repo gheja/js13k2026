@@ -20,7 +20,7 @@ class Puzzle {
     public wasSolvedEarlier: boolean = false
     public playerState: Array<any>
 
-    constructor(x: number, y: number, data: any) {
+    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, startingSolvedProgress: number, hint: string) {
         this.left = x
         this.top = y
 
@@ -32,7 +32,7 @@ class Puzzle {
         let max_x = 0
         let max_y = 0
 
-        for (let b of data[PuzzleDataIndex.Pieces]) {
+        for (let b of data) {
             min_x = Math.min(min_x, b[1])
             min_y = Math.min(min_y, b[2])
             max_x = Math.max(max_x, b[1])
@@ -54,10 +54,10 @@ class Puzzle {
         // NOTE: if I ever decide to get rid of the 1D puzzles, I can remove this I guess
         createFourPointGradient(ctx,
             Math.floor(min_x), Math.floor(min_y), Math.ceil(max_x - min_x + 1), Math.ceil(max_y - min_y + 1),
-            data[PuzzleDataIndex.Colors][0],
-            data[PuzzleDataIndex.Colors][1],
-            data[PuzzleDataIndex.Colors][2],
-            data[PuzzleDataIndex.Colors][3]
+            colors[0],
+            colors[1],
+            colors[2],
+            colors[3]
         )
         // ctx.createConicGradient() for U-shaped puzzles
 
@@ -67,8 +67,8 @@ class Puzzle {
         let pixel_data = ctx.getImageData(0, 0, canvas.width, canvas.height)
 
         let piece_index = 0
-        for (let i=0; i<data[PuzzleDataIndex.Pieces].length; i++) {
-            let b = data[PuzzleDataIndex.Pieces][i]
+        for (let i=0; i<data.length; i++) {
+            let b = data[i]
             let n = (Math.floor(b[2]) * canvas.width + Math.floor(b[1])) * 4
             this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: b[4]})
             this.pieces.push({shape_index: b[0], color: `rgb(${pixel_data.data[n]},${pixel_data.data[n+1]},${pixel_data.data[n+2]})`, dom: null})
@@ -118,9 +118,9 @@ class Puzzle {
         this.svg_dom.addEventListener("mousemove", this.onMouseMove.bind(this))
         this.svg_dom.addEventListener("click", this.onClick.bind(this))
 
-        this.puzzleUid = data[PuzzleDataIndex.Uid]
-        this.startingSolvedProgress = data[PuzzleDataIndex.StartingSolvedProgress]
-        this.hint = data[PuzzleDataIndex.Hint]
+        this.puzzleUid = uid
+        this.startingSolvedProgress = startingSolvedProgress
+        this.hint = hint
 
         this.locked = localStateGet("pl:" + this.puzzleUid, true)
         this.playerState = localStateGet("ps:" + this.puzzleUid, [0, 0, 0, 0, []])

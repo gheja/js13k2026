@@ -13,14 +13,6 @@ enum PuzzleState {
     PickSecondPiece,
 }
 
-enum PuzzleDataIndex {
-    Uid = 0,
-    Pieces,
-    Colors,
-    Hint,
-    StartingSolvedProgress,
-}
-
 enum TransitionState {
     Finished = 0,
     EnteringPuzzle,

@@ -20,16 +20,16 @@ class Game {
 
     constructor() {
         this.activePuzzle = null
-        this.puzzles = [
-            new Puzzle(0,   0,   PUZZLE1), // first bars
-            new Puzzle(200, 0,   PUZZLE2), // first squares
-            new Puzzle(150, 200, PUZZLE4), // first paralellograms
-            new Puzzle(0,   200, PUZZLE3), // first triangles
-            new Puzzle(425, 450, PUZZLE7), // j-bid lite
-            new Puzzle(400, 0,   PUZZLE8), // hexagons-pentagons
-            new Puzzle(0,   400, PUZZLE5), // diamonds tiled cubes
-            new Puzzle(450, 300, PUZZLE6), // diamonds and triangles
-        ]
+        this.puzzles=            [
+                new Puzzle("n1", 0,   0,   PUZZLE1, [ "#0ff", "#0ff", "#04f", "#04f" ], 0.99, "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked."), // first bars
+                new Puzzle("n2", 200, 0,   PUZZLE2, [ "#ff0", "#0f0", "#f00", "#00f" ], 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("n4", 150, 200, PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 0, "asd"), // first paralellograms
+                new Puzzle("n3", 0,   200, PUZZLE3, [ "#f0f", "#80f", "#ff0", "#f80" ], 0, "Try with different shapes."), // first triangles
+                new Puzzle("n7", 425, 450, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ], 0, "asd"), // j-bid lite
+                new Puzzle("n8", 400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 0, ""), // hexagons-pentagons
+                new Puzzle("n5", 0,   400, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 0, ""), // diamonds tiled cubes
+                new Puzzle("n6", 450, 300, PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 0, ""), // diamonds and triangles
+            ]
         this.puzzles[0].locked = false
 
         this.gfx = new Gfx()
