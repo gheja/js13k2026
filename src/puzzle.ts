@@ -20,7 +20,7 @@ class Puzzle {
     public wasSolvedEarlier: boolean = false
     public playerState: Array<any>
 
-    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, startingSolvedProgress: number=0, hint: string="") {
+    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, lockIndex: number, startingSolvedProgress: number=0, hint: string="") {
         this.left = x
         this.top = y
 
@@ -70,7 +70,7 @@ class Puzzle {
         for (let i=0; i<data.length; i++) {
             let b = data[i]
             let n = (Math.floor(b[2]) * canvas.width + Math.floor(b[1])) * 4
-            this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: b[4]})
+            this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: (b[4] & lockIndex) != 0})
             this.pieces.push({shape_index: b[0], color: `rgb(${pixel_data.data[n]},${pixel_data.data[n+1]},${pixel_data.data[n+2]})`, dom: null})
             piece_index += 1
         }

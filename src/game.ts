@@ -23,16 +23,16 @@ class Game {
         this.activePuzzle = null
         this.puzzlesGroups = [
             [
-                new Puzzle("n1", 0,   0,   PUZZLE1, [ "#0ff", "#0ff", "#04f", "#04f" ], 0.99, "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked."), // first bars
-                new Puzzle("n2", 200, 0,   PUZZLE2, [ "#ff0", "#0f0", "#f00", "#00f" ], 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
-                new Puzzle("n4", 150, 200, PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ]), // first paralellograms
-                new Puzzle("n4a", 650, 200, PUZZLE4, [ "#0f0", "#080", "#00f", "#008" ]), // first paralellograms
-                new Puzzle("n4b", 850, 200, PUZZLE4, [ "#fff", "#888", "#0ff", "#088" ]), // first paralellograms
-                new Puzzle("n3", 0,   200, PUZZLE3, [ "#f0f", "#80f", "#ff0", "#f80" ], 0, "Try with different shapes."), // first triangles
-                new Puzzle("n7", 425, 450, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ]), // j-bird lite
-                new Puzzle("n8", 400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ]), // hexagons-pentagons
-                new Puzzle("n5", 0,   400, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ]), // diamonds tiled cubes
-                new Puzzle("n6", 450, 300, PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ]), // diamonds and triangles
+                new Puzzle("n1",  0,   0,   PUZZLE1, [ "#0ff", "#0ff", "#04f", "#04f" ], 1, 0.99, "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked."), // first bars
+                new Puzzle("n2",  200, 0,   PUZZLE2, [ "#ff0", "#0f0", "#f00", "#00f" ], 1, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("n4",  150, 200, PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 1), // first paralellograms
+                new Puzzle("n4a", 650, 200, PUZZLE4, [ "#0f0", "#080", "#00f", "#008" ], 2), // first paralellograms
+                new Puzzle("n4b", 850, 200, PUZZLE4, [ "#fff", "#888", "#0ff", "#088" ], 4), // first paralellograms
+                new Puzzle("n3",  0,   200, PUZZLE3, [ "#f0f", "#80f", "#ff0", "#f80" ], 1, 0, "Try with different shapes."), // first triangles
+                new Puzzle("n7",  425, 450, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ], 1), // j-bird lite
+                new Puzzle("n8",  400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 1), // hexagons-pentagons
+                new Puzzle("n5",  0,   400, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1), // diamonds tiled cubes
+                new Puzzle("n6",  450, 300, PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 1), // diamonds and triangles
             ]
         ]
         this.puzzles = this.puzzlesGroups[0]
