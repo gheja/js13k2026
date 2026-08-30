@@ -1,6 +1,7 @@
 Reducing size:
   - notes on background:
     - handling the SVG in JS by DOM is probably really wasteful -- should be string
+    - drop background
 
   - Notes on puzzle data:
     - compression depends on the order of tiles, try to sort it differently -- nope, didn't really help
@@ -15,7 +16,7 @@ Reducing size:
 
   - Index
     - remove "user-scalable=no, minimal-ui"
-
+  
 Bugs:
   - Zoom is not centering properly.
 
