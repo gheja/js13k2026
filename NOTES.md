@@ -21,6 +21,15 @@ Bugs:
 
 ---
 
+css fill transition is buggy 
+#bgg { transition: 1s; }
+
+        <svg viewBox="0 0 1080 1080" version="1.1" xmlns="http://www.w3.org/2000/svg" id="bg" preserveAspectRatio="xMidYMid slice">
+            <path id="bgg" d="M 0 0 H 1080 V 1080 H 0 Z" style="fill:#012"></path>
+        </svg>
+
+---
+
 Safe on an 1080x1920, 1080x2340 (S22) -> 1080x1440, puzzles should fit in this ratio, maybe
 
 ---
