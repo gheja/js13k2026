@@ -637,7 +637,7 @@ class Puzzle extends PuzzleBase {
 
         this.updateElementPositions()
         this.setMarkerVisibility(true)
-}
+    }
 
     peekOn() {
         for (let slot of this.slots) {
