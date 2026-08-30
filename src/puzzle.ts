@@ -20,7 +20,7 @@ class Puzzle {
     public wasSolvedEarlier: boolean = false
     public playerState: Array<any>
 
-    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, startingSolvedProgress: number, hint: string) {
+    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, startingSolvedProgress: number=0, hint: string="") {
         this.left = x
         this.top = y
 
