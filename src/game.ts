@@ -104,7 +104,7 @@ class Game {
             if (!p.locked) {
                 left = Math.min(left, p.left)
                 top = Math.min(top, p.top)
-                right = Math.max(left, p.left + p.width)
+                right = Math.max(right, p.left + p.width)
                 bottom = Math.max(bottom, p.top + p.height)
             }
         }
