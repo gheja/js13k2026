@@ -185,8 +185,8 @@ class Game {
                 for (let p of this.puzzles) {
                     p.svg_dom.style.display = "block"
                 }
-                time = 0
-            break;
+                time = 100
+            break
 
             case TransitionState.UpdateMainScreen:
                 // unlock the next puzzle(s)
