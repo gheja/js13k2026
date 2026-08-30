@@ -54,7 +54,8 @@ class Game {
         this.gfx.render()
 
         // to reset the zoom and everything
-        this.exitPuzzle()
+        this.setPuzzleGroup(0)
+        // this.exitPuzzle()
     }
 
     setPuzzleGroup(n: number) {
@@ -163,16 +164,28 @@ class Game {
             case TransitionState.SwitchingPuzzleGroup:
                 _mainMenu.style.opacity = "0"
                 for (let p of this.puzzles) {
+                    // this will set opacity to 0, fading them out
                     p.setActive(false, false)
                 }
             break;
 
             case TransitionState.SwitchingPuzzleGroup2:
                 _mainMenu.style.display = "block"
-                _background.style.background = PUZZLE_GROUP_COLORS[this.nextPuzzleGroup]
+                document.body.style.background = PUZZLE_GROUP_COLORS[this.nextPuzzleGroup]
+                ; (_background.children[0] as SVGPathElement).style.fill = PUZZLE_GROUP_COLORS[this.nextPuzzleGroup]
+
+                // hide them, making them not clickable
+                for (let p of this.puzzles) {
+                    p.svg_dom.style.display = "none"
+                }
+
                 this.puzzles = this.puzzlesGroups[this.nextPuzzleGroup]
-                this.selectPuzzle(null)
-                this.zoomToUnlockedPuzzles()
+                
+                // making them clickable again, still not faded in
+                for (let p of this.puzzles) {
+                    p.svg_dom.style.display = "block"
+                }
+                time = 0
             break;
 
             case TransitionState.UpdateMainScreen:
@@ -200,7 +213,6 @@ class Game {
                 _winMenu.style.display = "none"
                 _puzzleMenuButton.style.display = "none"
                 _mainMenu.style.opacity = "1"
-
                 _background.style.opacity = "1"
                 this.state = GameState.MainScreen
             break

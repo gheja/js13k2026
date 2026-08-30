@@ -5,19 +5,17 @@ function backgroundRun() {
 }
 
 function backgroundTick() {
-    let x = Math.floor(Math.random() * 1920 / 102) * 102
-    let y = Math.floor(Math.random() * 1080 / 102) * 102
-    let r = 0
-    let g = 64 + Math.random() * 16
-    let b = 124 + Math.random() * 32
-    let a = Math.random() * 0.2 + 0.2 // 0.2 .. 0.4
+    let x = Math.floor(Math.random() * 1080 / 72) * 72
+    let y = Math.floor(Math.random() * 1080 / 72) * 72
+    let a = Math.random() * 0.1 + 0.1 // 0.1 .. 0.2
 
     // IDEA: make this move with the view, parallax
     // NOTE: this whole thing would be much easier (and probably smaller) with direct SVG as text
 
     let path = document.createElementNS("http://www.w3.org/2000/svg","path");  
-    path.setAttribute("d", "m 27 0 h 46 c 15 0 27 12 27 27 v 46 c 0 15 -12 27 -27 27 H 27 C 12 100 0 88 0 73 V 27 C 0 12 12 0 27 0 Z");
-    path.setAttribute("fill", `rgba(${r},${g},${b},${a})`)
+    path.setAttribute("d", "M 19 0 H 51 C 62 0 70 8 70 19 V 51 C 70 62 62 70 51 70 H 19 C 8 70 0 62 0 51 V 19 C 0 8 8 0 19 0 Z");
+    path.style.mixBlendMode = "color-dodge"
+    path.setAttribute("fill", `rgba(255,255,255,${a})`)
     path.setAttribute("transform", `translate(${x},${y})`)
     path.setAttribute("opacity", "0");
         
