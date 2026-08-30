@@ -37,6 +37,9 @@ function init() {
     // @ts-ignore - "possibly null"
     document.getElementById("a4").addEventListener("click", _game.hidePuzzleMenu.bind(_game))
     _puzzleMenuButton.addEventListener("click", _game.showPuzzleMenu)
+    _chapter1Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 0))
+    _chapter2Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 1))
+    _chapter3Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 2))
 
     backgroundRun()
 }

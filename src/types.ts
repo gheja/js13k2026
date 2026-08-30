@@ -26,6 +26,8 @@ enum TransitionState {
     PeekPuzzleReturn,
     EnteringWinScreen,
     WinScreen,
+    SwitchingPuzzleGroup,
+    SwitchingPuzzleGroup2,
 }
 
 enum PlayerStateIndex {

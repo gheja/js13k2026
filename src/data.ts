@@ -20,6 +20,8 @@ enum ShapeIndex {
     SquishedPentagon,
 }
 
+const PUZZLE_GROUP_COLORS = ["#012", "#200", "#202" ]
+
 // n1
 const PUZZLE1 =  [[4,80,30,0,7],[4,80,56,0,0],[4,80,82,0,0],[4,80,108,0,0],[4,80,134,0,7]]
 
