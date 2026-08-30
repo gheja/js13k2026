@@ -22,7 +22,7 @@ enum ShapeIndex {
 
 const PUZZLE1 =  [
     "n1",
-    [[4,80,30,0,0],[4,80,56,0,0],[4,80,82,0,0],[4,80,108,0,0],[4,80,134,0,0]],
+    [[4,80,30,0,1],[4,80,56,0,0],[4,80,82,0,0],[4,80,108,0,0],[4,80,134,0,1]],
     // [ "#ff0", "#f0f", "#f60", "#60f" ]
     [ "#0ff", "#0ff", "#04f", "#04f" ],
     "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked.",
