@@ -39,16 +39,16 @@ class Game {
                 new Puzzle("n6",  450, 300, PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 1), // diamonds and triangles
             ],
             [
-                new Puzzle("n4a", 650, 200, PUZZLE4, [ "#0f0", "#080", "#00f", "#008" ], 2), // first paralellograms
+                new Puzzle("n4a", 0, 0, PUZZLE4, [ "#0f0", "#080", "#00f", "#008" ], 2), // first paralellograms
             ],
             [
-                new Puzzle("n4b", 850, 200, PUZZLE4, [ "#fff", "#888", "#0ff", "#088" ], 4), // first paralellograms
+                new Puzzle("n4b", 0, 0, PUZZLE4, [ "#fff", "#888", "#0ff", "#088" ], 4), // first paralellograms
             ]
         ]
         this.puzzles = this.puzzlesGroups[0]
-        this.puzzlesGroups[0][0].locked = false
-        this.puzzlesGroups[1][0].locked = false
-        this.puzzlesGroups[2][0].locked = false
+        this.puzzlesGroups[0][0].unlock()
+        this.puzzlesGroups[1][0].unlock()
+        this.puzzlesGroups[2][0].unlock()
 
         this.gfx = new Gfx()
         this.gfx.render()
