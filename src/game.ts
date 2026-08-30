@@ -1,5 +1,6 @@
 class Game {
     public gfx: Gfx
+    public puzzlesGroups: Array<Array<Puzzle>>
     public puzzles: Array<Puzzle>
     public activePuzzle: Puzzle | null
     public state: GameState = GameState.Initializing
@@ -20,7 +21,8 @@ class Game {
 
     constructor() {
         this.activePuzzle = null
-        this.puzzles=            [
+        this.puzzlesGroups = [
+            [
                 new Puzzle("n1", 0,   0,   PUZZLE1, [ "#0ff", "#0ff", "#04f", "#04f" ], 0.99, "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked."), // first bars
                 new Puzzle("n2", 200, 0,   PUZZLE2, [ "#ff0", "#0f0", "#f00", "#00f" ], 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
                 new Puzzle("n4", 150, 200, PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 0, "asd"), // first paralellograms
@@ -30,6 +32,8 @@ class Game {
                 new Puzzle("n5", 0,   400, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 0, ""), // diamonds tiled cubes
                 new Puzzle("n6", 450, 300, PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 0, ""), // diamonds and triangles
             ]
+        ]
+        this.puzzles = this.puzzlesGroups[0]
         this.puzzles[0].locked = false
 
         this.gfx = new Gfx()
