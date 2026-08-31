@@ -82,7 +82,7 @@ function localStateGet(key: string, def: any) {
 }
 
 function getBigRandomNumber() {
-    return Math.round(Math.random() * 1e20)
+    return Math.round(Math.random() * 1e14)
 }
 
 function getNewPlayerName() {
