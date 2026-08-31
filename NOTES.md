@@ -2,6 +2,9 @@ Reducing size:
   - notes on background:
     - handling the SVG in JS by DOM is probably really wasteful -- should be string
     - drop background
+  
+  - puzzle
+    - `startingSolvedProgress` is only used in the first two tests, it would be probably much smaller to just hardcode those two steps instead of having this logic around
 
   - Notes on puzzle data:
     - compression depends on the order of tiles, try to sort it differently -- nope, didn't really help
@@ -16,6 +19,9 @@ Reducing size:
 
   - Index
     - remove "user-scalable=no, minimal-ui"
+
+  - Puzzle group switching
+    - takes a lot of bytes
   
 Bugs:
   - Zoom is not centering properly.
