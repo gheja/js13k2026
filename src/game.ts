@@ -120,7 +120,7 @@ class Game {
         }
 
         // the 30 px border is to have some zoom on selecting the first puzzle - otherwise it looks odd...
-        this.gfx.setViewTargetBox(left - 30, top - 30, right + 30, bottom + 30)
+        this.gfx.targetViewBox = [left - 30, top - 30, right + 30, bottom + 30]
     }
 
     transitionStart(state: TransitionState) {
