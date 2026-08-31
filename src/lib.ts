@@ -80,3 +80,12 @@ function localStateGet(key: string, def: any) {
 
     return def
 }
+
+function getBigRandomNumber() {
+    return Math.round(Math.random() * 1e20)
+}
+
+function getNewPlayerName() {
+    const a = ["Rainbow", "Sparkle", "Cupcake", "Shiny", "Sunshine", "Dashing"]
+    return a[Math.floor(Math.random() * a.length)] + " " + Math.floor(Math.random() * 9000 + 1000)
+}

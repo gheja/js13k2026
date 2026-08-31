@@ -7,6 +7,9 @@ class Game {
     public paused: boolean = false
     public nextPuzzleGroup: number = 0
 
+    public player_uid: string
+    public player_name: string
+
     public transitionState: TransitionState = TransitionState.Finished
     public transitionMap = [
         [ TransitionState.EnteringPuzzle, TransitionState.EnteringPuzzle2 ],
@@ -51,6 +54,9 @@ class Game {
                 new Puzzle("n8",  400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 1), // hexagons-pentagons
             ]
         ]
+        this.player_uid = localStateGet("pu", getBigRandomNumber())
+        this.player_name = localStateGet("pn", getNewPlayerName())
+
         this.puzzles = this.puzzlesGroups[0]
         this.puzzlesGroups[0][0].unlock()
         this.puzzlesGroups[1][0].unlock()
@@ -62,6 +68,13 @@ class Game {
         // to reset the zoom and everything
         this.setPuzzleGroup(0)
         // this.exitPuzzle()
+
+        this.savePlayerPreferences()
+    }
+
+    savePlayerPreferences() {
+        localStateSet("pu", this.player_uid)
+        localStateSet("pn", this.player_name)
     }
 
     setPuzzleGroup(n: number) {
