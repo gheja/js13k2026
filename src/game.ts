@@ -134,7 +134,7 @@ class Game {
                 _puzzleMenuButton.style.display = "block"
                 _mainMenu.style.opacity = "0"
                 // @ts-ignore - "possibly null"
-                _game.gfx.setViewTargetBox(this.activePuzzle.left, this.activePuzzle.top, this.activePuzzle.left + this.activePuzzle.width, this.activePuzzle.top + this.activePuzzle.height)
+                _game.gfx.targetViewBox = [this.activePuzzle.left, this.activePuzzle.top, this.activePuzzle.left + this.activePuzzle.width, this.activePuzzle.top + this.activePuzzle.height]
             break
 
             case TransitionState.EnteringPuzzle2:
