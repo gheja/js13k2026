@@ -302,6 +302,8 @@ class Puzzle extends PuzzleBase {
             this.newPlayerSession()
         }
 
+        _knownPuzzles[uid] = [data, lockIndex, startingSolvedProgress]
+
         this.setup(data, lockIndex, startingSolvedProgress, this.playerState)
 
         this.left = x
@@ -622,11 +624,18 @@ class Puzzle extends PuzzleBase {
                 _game.puzzleUnlocksPending += this.unlockCountOnWin
             }
 
+            this.submitToLeaderboard()
+
             _game.transitionStart(TransitionState.EnteringWinScreen)
         }
 
         this.wasSolvedEarlier = true
         this.setMarkerVisibility(false)
+    }
+
+    submitToLeaderboard() {
+        leaderboard_update_profile([ _game.player_uid, _game.player_name ])
+        leaderboard_submit_result([ _game.player_uid, this.puzzleUid, this.playerState ])
     }
 
     shuffleWithVisuals() {

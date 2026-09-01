@@ -11,6 +11,9 @@ let _chapter2Button: HTMLDivElement
 let _chapter3Button: HTMLDivElement
 let _catPuzzleButton: HTMLDivElement
 
+// this will be needed when validating puzzles from the leaderboard
+let _knownPuzzles = {}
+
 function init() {
     _container = document.getElementById("b") as HTMLDivElement
     _hint = document.getElementById("h") as HTMLDivElement
