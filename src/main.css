@@ -1,15 +1,20 @@
-html, body { padding: 0; margin: 0; color: #eee; overflow: hidden; font-family: Candara, sans-serif; font-size: 20pt; }
+html, body { padding: 0; margin: 0; color: #eee; overflow: hidden; font-family: Candara, sans-serif; font-size: min(20pt, 3vh); }
 * { transition: opacity 1s; }
 #b { position: absolute; transform: scale(1.0) translate(0px, 0px); width: 500px; height: 500px; }
 #b > svg { position: fixed; display: none; opacity: 0; filter: drop-shadow(0 0 0.5rem #000); transition: filter 1s, opacity 1s; }
 #h { position: fixed; right: 0; bottom: 2rem; left: 0; text-align: center; opacity: 0; }
 #m { position: fixed; top: 1rem; right: 1rem; opacity: 0; }
-.m { position: fixed; top: 0; right: 0; bottom: 0; left: 0; padding-top: 30vh; background: #000a; text-align: center; display: none; }
-.m div { width: 10rem; text-align: center; margin: 0.2rem auto; cursor: pointer; }
-.m div span { font-size: 0.5em; }
-.m div:hover { background: #fff2; }
+.m { position: fixed; top: 0; right: 0; bottom: 0; left: 0; padding-top: 20vh; background: #000a; text-align: center; display: none; }
+.m div { width: 10rem; margin: 0.2rem auto; }
+small { font-size: 0.5rem; }
+.m .b { text-align: center; cursor: pointer; }
 #ma { cursor: pointer; }
 #o { position: fixed; top: 1rem; left: 1rem; opacity: 0; }
 #o div { cursor: pointer; display: inline-block; margin: 0 1rem 0 0; }
 ::selection { background: #0000; }
 #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
+
+#l { width: 15rem; text-align: left; color: #ffa; background: #ffa2; border: 1px solid #ffa4; border-radius: 0.5rem; padding: 0.5rem; font-size: 0.75rem; }
+.b2 { padding: 0 0.2em; cursor: pointer; }
+
+.b:hover, .b2:hover { background: #fff2; }

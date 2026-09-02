@@ -252,6 +252,7 @@ class Game {
             case TransitionState.EnteringWinScreen:
                 _winMenu.style.opacity = "0"
                 _winMenu.style.display = "block"
+                _reactionSelectBox.style.display = "block"
             break
 
             case TransitionState.WinScreen:
@@ -292,5 +293,22 @@ class Game {
 
     hidePuzzleMenu() {
         _puzzleMenu.style.display = "none"
+    }
+
+    updateWinScreen() {
+        // @ts-ignore - "possibly null"
+        document.getElementById("p1").innerHTML = `Total steps taken: ${this.activePuzzle.playerState[PlayerStateIndex.StepsTaken]}<br/>Minimum steps: ${this.activePuzzle.minStepsRequired}<br/><br/>${STAR_TEXTS[this.activePuzzle.playerState[PlayerStateIndex.StarsReceived] - 1]}<br/><br/>`
+        // @ts-ignore - "possibly null"
+        document.getElementById("p2").innerHTML = leaderboard_get_as_html(this.activePuzzle.puzzleUid)
+        // @ts-ignore - "possibly null"
+        document.getElementById("p3").innerHTML = _game.player_name
+    }
+
+    submitResultToLeaderboard(reactionIndex: number) {
+        _reactionSelectBox.style.display = "none"
+        leaderboard_update_profile([ this.player_uid, this.player_name ])
+        // @ts-ignore - "possibly null"
+        leaderboard_submit_result([ _game.player_uid, reactionIndex, this.activePuzzle.puzzleUid, this.activePuzzle.playerState ])
+        // this.updateWinScreen()
     }
 }

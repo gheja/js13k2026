@@ -10,6 +10,7 @@ let _chapter1Button: HTMLDivElement
 let _chapter2Button: HTMLDivElement
 let _chapter3Button: HTMLDivElement
 let _catPuzzleButton: HTMLDivElement
+let _reactionSelectBox: HTMLDivElement
 
 // this will be needed when validating puzzles from the leaderboard
 let _knownPuzzles = {}
@@ -26,7 +27,7 @@ function init() {
     _chapter2Button = document.getElementById("ob") as HTMLDivElement
     _chapter3Button = document.getElementById("oc") as HTMLDivElement
     _catPuzzleButton = document.getElementById("od") as HTMLDivElement
-    
+    _reactionSelectBox = document.getElementById("p4") as HTMLDivElement
     _game = new Game()
 
     // @ts-ignore - "possibly null"
@@ -43,6 +44,15 @@ function init() {
     _chapter1Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 0))
     _chapter2Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 1))
     _chapter3Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 2))
+
+    // init reaction buttons
+    for (let i=0; i<REACTIONS.length; i++) {
+        let span = document.createElement("span")
+        span.className = "b2"
+        span.innerHTML = REACTIONS[i]
+        span.addEventListener("click", _game.submitResultToLeaderboard.bind(_game, i))
+        _reactionSelectBox.appendChild(span)
+    }
 
     backgroundRun()
 }

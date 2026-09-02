@@ -12,6 +12,7 @@ class PuzzleBase {
             this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: (b[4] & lockIndex) != 0})
             piece_index += 1
         }
+        this.playerState = playerState
     }
 
     dumpStatus() {
@@ -304,6 +305,7 @@ class Puzzle extends PuzzleBase {
 
         _knownPuzzles[uid] = [data, lockIndex, startingSolvedProgress]
 
+        // playerState is passed but it possibly should be a local var
         this.setup(data, lockIndex, startingSolvedProgress, this.playerState)
 
         this.left = x
@@ -617,25 +619,18 @@ class Puzzle extends PuzzleBase {
                 }
             }
             this.savePlayerLocalState()
-
-            document.getElementById("p1").innerHTML = `Total steps taken: ${this.playerState[PlayerStateIndex.StepsTaken]}<br/>Minimum steps: ${this.minStepsRequired}<br/><br/>${STAR_TEXTS[this.playerState[PlayerStateIndex.StarsReceived] - 1]}<br/><br/>`
+            // _game.submitToLeaderboard()
+            _game.updateWinScreen()
 
             if (!this.wasSolvedEarlier) {
                 _game.puzzleUnlocksPending += this.unlockCountOnWin
             }
-
-            this.submitToLeaderboard()
 
             _game.transitionStart(TransitionState.EnteringWinScreen)
         }
 
         this.wasSolvedEarlier = true
         this.setMarkerVisibility(false)
-    }
-
-    submitToLeaderboard() {
-        leaderboard_update_profile([ _game.player_uid, _game.player_name ])
-        leaderboard_submit_result([ _game.player_uid, this.puzzleUid, this.playerState ])
     }
 
     shuffleWithVisuals() {
