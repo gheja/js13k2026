@@ -109,11 +109,13 @@ function isValidPlayerName(s: string|null) {
     // boobs - boooooobs - b00bs - b00bz - 80085 => 8082
 
     for (let i=0; i<a.length; i++) {
-        s = s.replaceAll(a[i], b[i])
+        // s.replaceAll() inserts a huge globalThis polyfill and definition of String.prototype.replaceAll()
+        // s = s.replaceAll(a[i], b[i])
+        s = s.replace(new RegExp(a[i], "g"), b[i])
     }
 
     // remove repeating characters
-    s = s.replaceAll(/(.)\1+/g, '$1')
+    s = s.replace(/(.)\1+/g, '$1')
 
     clog(s)
 

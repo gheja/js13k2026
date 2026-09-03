@@ -31,6 +31,15 @@ Bugs:
 
 ---
 
+NOTE: s.replaceAll() inserts a huge globalThis polyfill and definition of String.prototype.replaceAll()
+
+```
+// s = s.replaceAll(a[i], b[i])
+s = s.replace(new RegExp(a[i], "g"), b[i])
+```
+
+---
+
 css fill transition is buggy 
 #bgg { transition: 1s; }
 
