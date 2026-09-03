@@ -4,7 +4,7 @@ html, body { padding: 0; margin: 0; color: #eee; overflow: hidden; font-family: 
 #b > svg { position: fixed; display: none; opacity: 0; filter: drop-shadow(0 0 0.5rem #000); transition: filter 1s, opacity 1s; }
 #h { position: fixed; right: 0; bottom: 2rem; left: 0; text-align: center; opacity: 0; }
 #m { position: fixed; top: 1rem; right: 1rem; opacity: 0; }
-.m { position: fixed; top: 0; right: 0; bottom: 0; left: 0; padding-top: 20vh; background: #000a; text-align: center; display: none; }
+.m { position: fixed; top: 0; right: 0; bottom: 0; left: 0; padding-top: 15vh; background: #000a; overflow-y: scroll; text-align: center; display: none; }
 .m div { width: 10rem; margin: 0.2rem auto; }
 small { font-size: 0.5rem; }
 .m .b { text-align: center; cursor: pointer; }
