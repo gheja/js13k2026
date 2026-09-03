@@ -25,7 +25,7 @@ let shared_public_state = {
 
 function leaderboard_process() {
     // this now only has the valid entries
-    // console.log(JSON.stringify(shared_public_state['l']))
+    // clog(JSON.stringify(shared_public_state['l']))
 
     // sort them
     shared_public_state['l'] = shared_public_state['l'].sort((a: Array<any>, b: Array<any>) => {
@@ -56,7 +56,7 @@ function leaderboard_process() {
         return true
     })
 
-    // console.log(JSON.stringify(shared_public_state['l']))
+    // clog(JSON.stringify(shared_public_state['l']))
 }
 
 function leaderboard_add(data: Array<any>) {
@@ -113,6 +113,6 @@ function leaderboard_submit_result(data: Array<any>) {
 }
 
 function leaderboard_on_update() {
-    console.log("leaderboard update hook")
+    clog("leaderboard update hook")
     _game.updateWinScreen()
 }
