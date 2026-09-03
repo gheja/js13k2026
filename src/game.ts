@@ -310,7 +310,7 @@ class Game {
         _reactionSelectBox.style.display = "none"
 
         // @ts-ignore - "possibly null"
-        net_send_participant_data([ this.player_uid, this.player_name ], [ _game.player_uid, reactionIndex, this.activePuzzle.puzzleUid, this.activePuzzle.playerState ])
+        net_send_participant_data([ this.player_uid, this.player_name ], [ _game.player_uid, reactionIndex, this.activePuzzle.puzzleUid, this.activePuzzle.playerState, Date.now()])
 
         // win screen will be updated when the new state comes in
         // this.updateWinScreen()

@@ -16,3 +16,5 @@ const REACTIONS = [
     "&#x1FAE9;", // tired
     "&#x1F60E;", // sunglasses
 ]
+
+const LEADERBOARD_SIZE_PER_PUZZLE = 13
