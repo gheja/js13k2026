@@ -163,12 +163,29 @@ function net_on_message(event) {
     }
 }
 
-function net_init() {
+function net_heartbeat() {
+    // 3 == WebSocket.CLOSED
+
+    if (net_ws.readyState == 3) {
+        clog('*** Attempting to reconnect ***')
+        net_connect()
+    }
+}
+
+function net_connect() {
     nlog("* Connecting...")
+    net_participants = []
     net_ws = new WebSocket(NET_WS_BASE)
     if (!IS_PROD_BUILD) {
         net_ws.onopen = net_on_connected
         net_ws.onclose = net_on_disconnected
     }
     net_ws.onmessage = net_on_message
+}
+
+function net_init() {
+    net_connect()
+
+    // it is a slow heartbeat but still. although we don't expect many connections
+    window.setInterval(net_heartbeat, 5000)
 }
