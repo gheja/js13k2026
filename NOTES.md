@@ -26,6 +26,9 @@ Reducing size:
   - Leaderboard
     - the player uid-name pair is stored in the shared state so if a player changes their name then it updates - it would be much easier to just store a name
 
+  - removing "|null" declarations
+    - for example `isValidPlayerName(s: string|null)` -> `isValidPlayerName(s: string)` saves 8 bytes
+
 Bugs:
   - Zoom is not centering properly.
 
@@ -37,6 +40,10 @@ NOTE: s.replaceAll() inserts a huge globalThis polyfill and definition of String
 // s = s.replaceAll(a[i], b[i])
 s = s.replace(new RegExp(a[i], "g"), b[i])
 ```
+
+---
+
+div to middle of screen: position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
 
 ---
 
