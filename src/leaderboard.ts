@@ -5,7 +5,8 @@ enum Lb1Index {
     PlayerUid = 0,
     PayerReactionIndex,
     PuzzleUid,
-    PlayerState
+    PlayerState,
+    Timestamp,
 }
 
 enum LbPSIndex {
@@ -14,7 +15,6 @@ enum LbPSIndex {
     B,
     C,
     Swaps,
-    Timestamp,
 }
 
 let shared_public_state = {
@@ -25,6 +25,12 @@ let shared_public_state = {
 function leaderboard_process() {
     // this now only has the valid entries
     // clog(JSON.stringify(shared_public_state['l']))
+
+    // remove all entries that are not from this week
+    let week_number = Math.floor((Date.now() - LEADERBOARD_JS_EPOCH) / (7 * 24 * 60 * 60 * 1000))
+    shared_public_state['l'] = shared_public_state['l'].filter((a: Array<any>) => {
+        return Math.floor((a[Lb1Index.Timestamp] - LEADERBOARD_JS_EPOCH) / (7 * 24 * 60 * 60 * 1000)) == week_number
+    })
 
     // sort them
     shared_public_state['l'] = shared_public_state['l'].sort((a: Array<any>, b: Array<any>) => {
