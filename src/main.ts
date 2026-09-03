@@ -54,6 +54,7 @@ function init() {
         _reactionSelectBox.appendChild(span)
     }
 
+    net_init()
     backgroundRun()
 }
 

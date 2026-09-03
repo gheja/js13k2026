@@ -296,19 +296,23 @@ class Game {
     }
 
     updateWinScreen() {
-        // @ts-ignore - "possibly null"
-        document.getElementById("p1").innerHTML = `Total steps taken: ${this.activePuzzle.playerState[PlayerStateIndex.StepsTaken]}<br/>Minimum steps: ${this.activePuzzle.minStepsRequired}<br/><br/>${STAR_TEXTS[this.activePuzzle.playerState[PlayerStateIndex.StarsReceived] - 1]}<br/><br/>`
-        // @ts-ignore - "possibly null"
-        document.getElementById("p2").innerHTML = leaderboard_get_as_html(this.activePuzzle.puzzleUid)
-        // @ts-ignore - "possibly null"
-        document.getElementById("p3").innerHTML = _game.player_name
+        if (this.activePuzzle) {
+            // @ts-ignore - "possibly null"
+            document.getElementById("p1").innerHTML = `Total steps taken: ${this.activePuzzle.playerState[PlayerStateIndex.StepsTaken]}<br/>Minimum steps: ${this.activePuzzle.minStepsRequired}<br/><br/>${STAR_TEXTS[this.activePuzzle.playerState[PlayerStateIndex.StarsReceived] - 1]}<br/><br/>`
+            // @ts-ignore - "possibly null"
+            document.getElementById("p2").innerHTML = leaderboard_get_as_html(this.activePuzzle.puzzleUid)
+            // @ts-ignore - "possibly null"
+            document.getElementById("p3").innerHTML = _game.player_name
+        }
     }
 
     submitResultToLeaderboard(reactionIndex: number) {
         _reactionSelectBox.style.display = "none"
-        leaderboard_update_profile([ this.player_uid, this.player_name ])
+
         // @ts-ignore - "possibly null"
-        leaderboard_submit_result([ _game.player_uid, reactionIndex, this.activePuzzle.puzzleUid, this.activePuzzle.playerState ])
+        net_send_participant_data([ this.player_uid, this.player_name ], [ _game.player_uid, reactionIndex, this.activePuzzle.puzzleUid, this.activePuzzle.playerState ])
+
+        // win screen will be updated when the new state comes in
         // this.updateWinScreen()
     }
 }

@@ -1,3 +1,6 @@
+// The shared_public_state (containing the leaderboard and player data) is only
+// modified by the Leader, or when the Leader tells us to.
+
 enum Lb1Index {
     PlayerUid = 0,
     PayerReactionIndex,
@@ -43,7 +46,7 @@ let shared_public_state = {
 
 function leaderboard_process() {
     // this now only has the valid entries
-    console.log(JSON.stringify(shared_public_state['l']))
+    // console.log(JSON.stringify(shared_public_state['l']))
 
     // sort them
     shared_public_state['l'] = shared_public_state['l'].sort((a: Array<any>, b: Array<any>) => {
@@ -74,7 +77,7 @@ function leaderboard_process() {
         return true
     })
 
-    console.log(JSON.stringify(shared_public_state['l']))
+    // console.log(JSON.stringify(shared_public_state['l']))
 }
 
 function leaderboard_add(data: Array<any>) {
@@ -125,7 +128,12 @@ function leaderboard_update_profile(data: Array<any>) {
 }
 
 function leaderboard_submit_result(data: Array<any>) {
-    console.log(data)
+    // console.log(data)
     leaderboard_add(data)
     leaderboard_process()
+}
+
+function leaderboard_on_update() {
+    console.log("leaderboard update hook")
+    _game.updateWinScreen()
 }
