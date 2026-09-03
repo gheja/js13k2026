@@ -315,4 +315,11 @@ class Game {
         // win screen will be updated when the new state comes in
         // this.updateWinScreen()
     }
+
+    changePlayerName() {
+        let a = window.prompt("New name (a-z, A-Z, 0-9, space):", this.player_name)
+        this.player_name = isValidPlayerName(a) ? a : getNewPlayerName()
+        this.savePlayerPreferences()
+        this.updateWinScreen()
+    }
 }

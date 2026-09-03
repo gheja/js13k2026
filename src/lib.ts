@@ -89,3 +89,42 @@ function getNewPlayerName() {
     const a = ["Rainbow", "Sparkle", "Cupcake", "Shiny", "Sunshine", "Dashing"]
     return a[Math.floor(Math.random() * a.length)] + " " + Math.floor(Math.random() * 9000 + 1000)
 }
+
+function isValidPlayerName(s: string|null) {
+    if (!s) {
+        return false
+    }
+
+    if (!s.match(/^[a-zA-Z0-9 ]{1,30}$/)) {
+        return false
+    }
+
+    s = s.toLowerCase()
+
+    let a = 'abcdefghijklmnopqrstuvwxyz5'
+    let b = '48cd3f6h1jk1mn099r27vvwxy22'
+
+    // let's say these are bad words, transformation leads to this and they will be filtered
+    // leet - l33t - 1337 => 137
+    // boobs - boooooobs - b00bs - b00bz - 80085 => 8082
+
+    for (let i=0; i<a.length; i++) {
+        s = s.replaceAll(a[i], b[i])
+    }
+
+    // remove repeating characters
+    s = s.replaceAll(/(.)\1+/g, '$1')
+
+    clog(s)
+
+    // this list contains the transformed bad words, with some optional "x" so github search won't find it at least, ehe
+    let c = "21xv7,2hx17,2vxck3r,cvxn7,d1xck,fvxck,91x2,42xh013,h17x13r,7rxvm9,9vx71n,n4x21,cvxm,r3x7x4rd,n1x63r,n1x64,81x7ch,whx0r3".replaceAll("x", "").split(",")
+
+    for (let i=0; i<c.length; i++) {
+        if (s.indexOf(c[i]) !== -1) {
+            return false
+        }
+    }
+
+    return true
+}

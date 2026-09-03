@@ -53,6 +53,7 @@ function init() {
         span.addEventListener("click", _game.submitResultToLeaderboard.bind(_game, i))
         _reactionSelectBox.appendChild(span)
     }
+    document.getElementById("p5").addEventListener("click", _game.changePlayerName.bind(_game))
 
     net_init()
     backgroundRun()
