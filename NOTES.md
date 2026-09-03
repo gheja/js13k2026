@@ -23,6 +23,9 @@ Reducing size:
   - Puzzle group switching
     - takes a lot of bytes
   
+  - Leaderboard
+    - the player uid-name pair is stored in the shared state so if a player changes their name then it updates - it would be much easier to just store a name
+
 Bugs:
   - Zoom is not centering properly.
 
