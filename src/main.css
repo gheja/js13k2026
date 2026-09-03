@@ -14,7 +14,7 @@ small { font-size: 0.5rem; }
 ::selection { background: #0000; }
 #bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; }
 
-#l { width: 15rem; text-align: left; color: #ffa; background: #ffa2; border: 1px solid #ffa4; border-radius: 0.5rem; padding: 0.5rem; font-size: 0.75rem; }
+#l { width: 12rem; text-align: left; color: #ffa; background: #ffa2; border: 1px solid #ffa4; border-radius: 0.5rem; padding: 0.5rem; font-size: 0.7rem; }
 .b2 { padding: 0 0.2em; cursor: pointer; }
 
 .b:hover, .b2:hover { background: #fff2; }
