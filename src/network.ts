@@ -183,6 +183,11 @@ function net_connect() {
     net_ws.onmessage = net_on_message
 }
 
+function net_is_connected() {
+    // 1 == WebSocket.OPEN
+    return net_ws && net_ws.readyState == 1
+}
+
 function net_init() {
     net_connect()
 

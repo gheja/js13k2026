@@ -252,7 +252,8 @@ class Game {
             case TransitionState.EnteringWinScreen:
                 _winMenu.style.opacity = "0"
                 _winMenu.style.display = "block"
-                _reactionSelectBox.style.display = "block"
+                _leaderboardBox.style.display = net_is_connected() ? "block" : "none"
+                _leaderboardSubmitBox.style.display = "block" 
             break
 
             case TransitionState.WinScreen:
@@ -307,7 +308,7 @@ class Game {
     }
 
     submitResultToLeaderboard(reactionIndex: number) {
-        _reactionSelectBox.style.display = "none"
+        _leaderboardSubmitBox.style.display = "none"
 
         // @ts-ignore - "possibly null"
         net_send_participant_data([ this.player_uid, this.player_name ], [ _game.player_uid, reactionIndex, this.activePuzzle.puzzleUid, this.activePuzzle.playerState, Date.now()])

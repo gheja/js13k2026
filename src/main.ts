@@ -11,6 +11,8 @@ let _chapter2Button: HTMLDivElement
 let _chapter3Button: HTMLDivElement
 let _catPuzzleButton: HTMLDivElement
 let _reactionSelectBox: HTMLDivElement
+let _leaderboardBox: HTMLDivElement
+let _leaderboardSubmitBox: HTMLDivElement
 
 // this will be needed when validating puzzles from the leaderboard
 let _knownPuzzles = {}
@@ -28,6 +30,8 @@ function init() {
     _chapter3Button = document.getElementById("oc") as HTMLDivElement
     _catPuzzleButton = document.getElementById("od") as HTMLDivElement
     _reactionSelectBox = document.getElementById("p4") as HTMLDivElement
+    _leaderboardBox = document.getElementById("l") as HTMLDivElement
+    _leaderboardSubmitBox = document.getElementById("p6") as HTMLDivElement
     _game = new Game()
 
     // @ts-ignore - "possibly null"
