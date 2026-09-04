@@ -30,7 +30,14 @@ Reducing size:
     - for example `isValidPlayerName(s: string|null)` -> `isValidPlayerName(s: string)` saves 8 bytes
 
 Bugs:
-  - Zoom is not centering properly.
+  - [x] Zoom is not centering properly.
+
+---
+
+Music
+  - SucarFamiliar
+  - Melody by elPatrixF (pxf_protrck2.mod)
+
 
 ---
 
@@ -78,8 +85,6 @@ Safe on an 1080x1920, 1080x2340 (S22) -> 1080x1440, puzzles should fit in this r
         width: 56.25vh;
     }
 }
-
-
 
 ---
 
