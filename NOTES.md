@@ -1,3 +1,9 @@
+Important:
+  - move the middle of the SquishedPentagon to the center - that's why the color sampling is wrong...
+
+Heavy hits on performance:
+  - background animation, probably due to the filters/effects
+
 Reducing size:
   - notes on background:
     - handling the SVG in JS by DOM is probably really wasteful -- should be string
