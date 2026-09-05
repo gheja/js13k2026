@@ -174,8 +174,13 @@ function add_item(call_update_hook = true) {
     let defaults
 
     let b = _list_items.querySelectorAll(".list_row")
-    if (b.length > 0) {
-        defaults = get_row_data(b[b.length - 1])
+    if (call_update_hook && b.length > 0) {
+        if (_focused_element){
+            defaults = get_row_data(_focused_element)
+        }
+        else {
+            defaults = get_row_data(b[b.length - 1])
+        }
     }
     else {
         defaults = get_row_data(null)
@@ -189,6 +194,7 @@ function add_item(call_update_hook = true) {
     a.value = defaults[0]
     a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     a = document.createElement("input")
@@ -197,6 +203,7 @@ function add_item(call_update_hook = true) {
     a.value = defaults[1]
     a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     a = document.createElement("input")
@@ -205,6 +212,7 @@ function add_item(call_update_hook = true) {
     a.value = defaults[2]
     a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     a = document.createElement("input")
@@ -213,6 +221,7 @@ function add_item(call_update_hook = true) {
     a.value = defaults[3]
     a.addEventListener("keyup", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     a = document.createElement("input")
@@ -222,6 +231,7 @@ function add_item(call_update_hook = true) {
     a.checked = defaults[4]
     a.addEventListener("change", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     a = document.createElement("input")
@@ -231,6 +241,7 @@ function add_item(call_update_hook = true) {
     a.checked = defaults[5]
     a.addEventListener("change", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     a = document.createElement("input")
@@ -240,11 +251,13 @@ function add_item(call_update_hook = true) {
     a.checked = defaults[6]
     a.addEventListener("change", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     a = document.createElement("button")
     a.innerHTML = "x"
     a.addEventListener("click", remove_item.bind(div))
+    a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
     _list_items.appendChild(div)
@@ -345,8 +358,25 @@ function on_universal_key_down(event) {
 */
 }
 
+let _focused_element = null
+let _focused_element_index = -1
+
+function on_focus_change(event) {
+    _focused_element = event.target.parentNode
+    _focused_element_index = -1
+
+    for (let i=0; i<_list_items.children.length; i++) {
+        if (_list_items.children[i] == _focused_element) {
+            _focused_element_index = i
+            break
+        }
+    }
+    // console.log(_focused_element)
+    on_update()
+}
+
 function render() {
-    _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0], parseInt(document.getElementById("lock_selector").value))
+    _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0], parseInt(document.getElementById("lock_selector").value), _focused_element_index)
 }
 
 function editor_order_to_game_order(rows) {

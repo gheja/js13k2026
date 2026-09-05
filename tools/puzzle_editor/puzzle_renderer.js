@@ -1,14 +1,16 @@
 "use strict"
 
 var SHAPES = [
-    'M 0,-13 -15,13 h 30 z',
+//     'M 0,-13 -15,13 h 30 z',
+    'M 0 -17 -15 9 h 30 z',
     'M 0,-3 -2,0 0,3 2,0 Z',
-    'M -13 -13 H 13 V 13 H -13 Z',
+    'm 15 -15 0 30 -30 0 0 -30 z',
     'm -22.5 13 15 -26 30 0 -15 26 z',
     'M -50 -13 h 100 v 26 h -100 Z',
     'M 0 17.333 -30 -0 0 -17.333 30 -0 Z',
     'm 30 0 -15 26 -30 0 -15 -26 15 -26 30 0 z',
-    'M -30 0 0 -17.35 30 0 15 26 h -30 z'
+    'M -30 0 0 -17.35 30 0 15 26 h -30 z',
+    'm 15 13.334 h -30 l -7.5 -13 22.5 -13 22.5 13 z',
 ];  
 
 var ShapeIndex = {
@@ -20,6 +22,7 @@ var ShapeIndex = {
     Diamond1: 5,
     Hexagon: 6,
     SquishedPentagon: 7,
+    MoreSquishedPentagon: 8,
     "0": "Triangle1",
     "1": "LockedIcon",
     "2": "Square1",
@@ -28,6 +31,7 @@ var ShapeIndex = {
     "5": "Diamond1",
     "6": "Hexagon",
     "7": "SquishedPentagon",
+    "8": "MoreSquishedPentagon",
 };  
 
 var PuzzleDataIndex = {
@@ -55,7 +59,7 @@ class PuzzleRenderer{
     slots = []
     pieces = []
 
-    render(x, y, data, lockIndex = 1) {
+    render(x, y, data, lockIndex, activePieceIndex) {
         this.slots = []
         this.pieces = []
 
@@ -79,7 +83,7 @@ class PuzzleRenderer{
         for (let i=0; i<data[PuzzleDataIndex.Pieces].length; i++) {
             let b = data[PuzzleDataIndex.Pieces][i]
             this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: (b[4] & lockIndex) != 0})
-            this.pieces.push({shape_index: b[0], color: (_colors[i % _colors.length]) + "a", dom: null})
+            this.pieces.push({shape_index: b[0], color: (piece_index == activePieceIndex ? "#fff" :_colors[i % _colors.length]) + "a", dom: null})
             piece_index += 1
         }
 
