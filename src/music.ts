@@ -98,6 +98,10 @@ enum Md2Idx {
 function music_start() {
     let audioCtx = new AudioContext()
 
+    // tracking elapsed time here so we can pause the processing if needed
+    // NOTE: start the time a bit earlier to not have a choppy start
+    let audio_time = -0.5
+
     // NOTE: update these to have at least channel count zeroes
     let note_indexes = [0, 0, 0, 0, 0]
     let next_note_times = [0, 0, 0, 0, 0]
@@ -111,6 +115,13 @@ function music_start() {
 
     // sounds.push({ data: zzfx(outputBuffer.sampleRate, ...zz_snare), pos: 0 })
     scriptNode.onaudioprocess = function(audioProcessingEvent) {
+        // pause processing when in background
+        if (!document.hasFocus()) {
+            return
+        }
+
+        audio_time += audioProcessingEvent.outputBuffer.duration
+
         // var inputBuffer = audioProcessingEvent.inputBuffer;
         var outputBuffer = audioProcessingEvent.outputBuffer;
 
@@ -120,8 +131,7 @@ function music_start() {
 
             for (var sample = 0; sample < outputBuffer.length; sample++)
             {
-                // -0.5 is just to fill the first half a second with zero
-                let now = audioProcessingEvent.playbackTime + sample / outputBuffer.sampleRate - 0.5
+                let now = audio_time + sample / outputBuffer.sampleRate
 
                 for (var j=0; j<MUSIC_DATA[MdIdx1.Track].length; j++) {
                     while (next_note_times[j] <= now)
