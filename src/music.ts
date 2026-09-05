@@ -36,7 +36,7 @@ function render_harmonics(arr: Array<number>, note: number, length: number, atta
         for (let i=0; i<length_s; i++) {
             // apply the ADSR envelope to the volume
             // thanks Frank! -- https://github.com/KilledByAPixel/ZzFX/blob/master/ZzFXMicro.js
-            let vol2 = vol *
+            let vol2 = vol * 0.25 *
                 (i < attack_s ? i/attack_s :                  // attack
                 i < attack_s + decay_s ?                      // decay
                 1-((i-attack_s)/decay_s)*(1-sustain_volume) : // decay falloff
