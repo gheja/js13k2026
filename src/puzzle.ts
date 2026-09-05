@@ -444,6 +444,7 @@ class Puzzle extends PuzzleBase {
     }
 
     onClick(event: MouseEvent) {
+        music_start_if_needed()
         if (_game.state == GameState.Initializing || _game.paused || this.locked) {
             return
         }
