@@ -26,6 +26,10 @@ class Game {
     public puzzleUnlocksPending: number = 0
 
     constructor() {
+        // #fca, #f84, #02f / #79f #028
+        // #0f0, #ff0, #0ff, #f60
+        // #f0f, #f65, #4fb, #fe0
+        // #163, #4ea, #f0f, #fcf
         this.activePuzzle = null
         this.puzzlesGroups = [
             [
@@ -39,7 +43,7 @@ class Game {
                 new Puzzle("n4b",  400,  215,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 4), // first paralellograms
 
                 new Puzzle("n3",   400,   15,   PUZZLE3, [ "#f0f", "#80f", "#ff0", "#f80" ], 1), // first triangles
-                new Puzzle("n3a",  520,   15,   PUZZLE3, [ "#80f", "#ff0", "#f80", "#f0f" ], 2), // first triangles
+                new Puzzle("n3a",  520,   15,   PUZZLE3, [ "#ff0", "#f80", "#f0f", "#80f" ], 2), // first triangles
                 new Puzzle("n3b",  500, -200,   PUZZLE3, [ "#604", "#e00", "#0af", "#fae" ], 4, 90), // first triangles
 
                 new Puzzle("n6",   340, -200,   PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 1), // diamonds and triangles
@@ -48,10 +52,23 @@ class Game {
             ],
             [
                 new Puzzle("n7",  0, 0, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ], 1), // j-bird lite
+
+
+                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+
+                new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x4",   200, 400,   PUZZLE2, [ "#163", "#4ea", "#f0f", "#fcf" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+
+                new Puzzle("x5",   0,  600,   PUZZLE2, [ "#7ff", "#088", "#79f", "#028" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x8",   200,600,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+
+                new Puzzle("x7",   0,  800,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
             ],
             [
                 new Puzzle("n5",  0,   0, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1), // diamonds tiled cubes
                 new Puzzle("n8",  400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 1), // hexagons-pentagons
+                new Puzzle("n9a",  200, 400,   PUZZLE9, [ "#f0f", "#60f", "#f60", "#ff0" ], 1), // hexagons-pentagons
             ]
         ]
         this.player_uid = localStateGet("pu", getBigRandomNumber())
