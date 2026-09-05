@@ -4,22 +4,17 @@ function db_to_volume(x) {
     return 10 ** (x / 20)
 }
 
-
-let sounds = []
-let music_sample_rate
-
-let zz_snare = [.6,0,130,.01,,.19,,,,,,,,50,,,,.6]
-let zz_kick = [2,0,20,.001,,.28,,,-0.1,,,,,1,,,,.2,.11]
-
+let sounds: Array<any> = []
+let music_sample_rate: number
 
 // thanks https://github.com/nicolas-van/sonant-x
 // n: halfnote, 128 = A4, 129 = A#4, 130 = B4, ...
 // +64 because of the MIDI conversion
-function get_note_frequency(n) {
+function get_note_frequency(n: number) {
     return Math.pow(1.059463094, n - 128 + 64) * 440
 }
 
-function render_harmonics(arr, note, length, attack_time, decay_time, release_time, sustain_volume){
+function render_harmonics(arr: Array<number>, note: number, length: number, attack_time: number, decay_time: number, release_time: number, sustain_volume: number){
     let length_s = music_sample_rate * length
     let data = new Array(length_s).fill(0)
 
@@ -59,12 +54,55 @@ function render_harmonics(arr, note, length, attack_time, decay_time, release_ti
     return data
 }
 
+let _sample_data_cache = {}
+
+function get_sample_data(instrument_index: number, note: number) {
+    let cache_key = instrument_index + "," + note
+
+    if (!(cache_key in _sample_data_cache)) {
+        if (instrument_index == 0) {
+            _sample_data_cache[cache_key] = render_harmonics(HARMONICS_LONG_1, note, 2.8, 0.05, 0.15, 0.5, 0.7)
+        }
+        else if (instrument_index == 1 {
+            _sample_data_cache[cache_key] = render_harmonics(HARMONICS_LONG_2, note, 2.8, 0.05, 0.15, 0.5, 0.7)
+        }
+        else if (instrument_index == 2) {
+            _sample_data_cache[cache_key] = render_harmonics(HARMONICS_LEAD, note, 0.27, 0.01, 0.07, 0.01, 0.4)
+        }
+/*
+        else if (instrument_index == 3) {
+            // frequency - but we don't need it here
+            // ZZ_KICK[2] = getNoteFrequency(note)
+            _sample_data_cache[cache_key] = zzfx(...ZZ_KICK)
+        }
+        else if (instrument_index == 4) {
+            _sample_data_cache[cache_key] = zzfx(...ZZ_SNARE)
+        }
+*/
+    }
+    return _sample_data_cache[cache_key]
+}
+
+enum MdIdx1 {
+    SecondsPerSlot = 0,
+    TotalTimeSlots,
+    Track,
+}
+
+enum Md2Idx {
+    InstrumentIndex = 0,
+    NoteData,
+    NoteTiming,
+}
+
 function music_start() {
     let audioCtx = new AudioContext()
-    let nextNoteTime = 0
-    let n = 0
 
-    const scriptNode = audioCtx.createScriptProcessor(4096 * 2 * 2, 1, 1)
+    // NOTE: update these to have at least channel count zeroes
+    let note_indexes = [0, 0, 0, 0, 0]
+    let next_note_times = [0, 0, 0, 0, 0]
+
+    const scriptNode = audioCtx.createScriptProcessor(8192, 1, 1)
     music_sample_rate = scriptNode.context.sampleRate
 
     // zz_kick[0] = 0.3 * 0.25 // volume
@@ -85,19 +123,16 @@ function music_start() {
                 // -0.5 is just to fill the first half a second with zero
                 let now = audioProcessingEvent.playbackTime + sample / outputBuffer.sampleRate - 0.5
 
-                while (nextNoteTime <= now)
-                {
-                    // zz3[0] = 0.7 * 0.25
-                    // zz3[2] = getNoteFrequency(music_data[1][n]) * 1.0
-                    // sounds.push({ data: zzfx(outputBuffer.sampleRate, ...zz3), pos: 0 })
+                for (var j=0; j<MUSIC_DATA[MdIdx1.Track].length; j++) {
+                    while (next_note_times[j] <= now)
+                    {
+                        clog(`starting sound ${j}`)
+                        sounds.push({ data: get_sample_data(MUSIC_DATA[MdIdx1.Track][j][Md2Idx.InstrumentIndex], MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteData][note_indexes[j]]), pos: 0 })
 
-                    // sounds.push({ data: render_harmonics(HARMONICS_LEAD, music_data[1][n], 0.27, 0.01, 0.07, 0.01, 0.4), pos: 0 })
-                    // sounds.push({ data: render_harmonics(HARMONICS_LONG_2, music_data[1][n], 2.8, 0.05, 0.15, 0.5, 0.7), pos: 0 })
-                    sounds.push({ data: render_harmonics(HARMONICS_LONG_1, MUSIC_DATA[1][n], 2.8, 0.05, 0.15, 0.5, 0.7), pos: 0 })
+                        note_indexes[j] = (note_indexes[j] + 1) % MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteData].length
 
-                    n = (n + 1) % MUSIC_DATA[1].length
-
-                    nextNoteTime += MUSIC_DATA[2][n] * 4 * MUSIC_DATA[0]
+                        next_note_times[j] += MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteTiming][note_indexes[j]] * MUSIC_DATA[MdIdx1.SecondsPerSlot]
+                    }
                 }
 
                 for (var i=sounds.length-1; i>=0; i--)
