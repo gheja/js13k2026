@@ -69,16 +69,15 @@ function get_sample_data(instrument_index: number, note: number) {
         else if (instrument_index == 2) {
             _sample_data_cache[cache_key] = render_harmonics(HARMONICS_LEAD, note, 0.27, 0.01, 0.07, 0.01, 0.4)
         }
-/*
         else if (instrument_index == 3) {
             // frequency - but we don't need it here
-            // ZZ_KICK[2] = getNoteFrequency(note)
-            _sample_data_cache[cache_key] = zzfx(...ZZ_KICK)
+            // ZZ_KICK[2] = get_note_frequency(note)
+            _sample_data_cache[cache_key] = zzfx(music_sample_rate, ...ZZ_KICK)
         }
         else if (instrument_index == 4) {
-            _sample_data_cache[cache_key] = zzfx(...ZZ_SNARE)
+            // ZZ_SNARE[2] = get_note_frequency(note)
+            _sample_data_cache[cache_key] = zzfx(music_sample_rate, ...ZZ_SNARE)
         }
-*/
     }
     return _sample_data_cache[cache_key]
 }
@@ -136,9 +135,14 @@ function music_start() {
                 for (var j=0; j<MUSIC_DATA[MdIdx1.Track].length; j++) {
                     while (next_note_times[j] <= now)
                     {
-                        clog(`starting sound ${j}`)
-                        sounds.push({ data: get_sample_data(MUSIC_DATA[MdIdx1.Track][j][Md2Idx.InstrumentIndex], MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteData][note_indexes[j]]), pos: 0 })
+                        let note = MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteData][note_indexes[j]]
 
+                        if (note > 0)
+                        {
+                            clog(`starting sound ${j}`)
+                            sounds.push({ data: get_sample_data(MUSIC_DATA[MdIdx1.Track][j][Md2Idx.InstrumentIndex], note), pos: 0 })
+
+                        }
                         note_indexes[j] = (note_indexes[j] + 1) % MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteData].length
 
                         next_note_times[j] += MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteTiming][note_indexes[j]] * MUSIC_DATA[MdIdx1.SecondsPerSlot]
