@@ -90,7 +90,9 @@ class PuzzleBase {
 
         let shuffle_successful = false
 
-        for (let retries=0; retries<5; retries++) {
+        // retry the puzzle from zero (but not resetting the random, or changing the seed!) from solved state
+        // NOTE: there was a problem (bug?) that resulted in unshufflable puzzles for some reason, this is the fix
+        for (let retries=0; retries<5 && !shuffle_successful; retries++) {
             // start from a solved position
             for (a=0; a<this.slots.length; a++) {
                 this.slots[a].piece_index = this.slots[a].correct_piece_index
@@ -126,7 +128,7 @@ class PuzzleBase {
                 }
             }
 
-            // do 100 random swaps until none of the pieces are in their correct positions
+            // try to mix the current state and then solve it
             for (let mix_count=0; mix_count<100; mix_count++) {
                 clog(`mixing #${mix_count}`)
 
@@ -134,6 +136,8 @@ class PuzzleBase {
                     if (!list) {
                         continue
                     }
+
+                    // swap pieces around
                     for (let i=0; i<1000; i++) {
                         a = list[getRandom(list.length)]
                         b = list[getRandom(list.length)]
@@ -157,8 +161,7 @@ class PuzzleBase {
 
                 clog('solving')
 
-                // --- solve this state
-
+                // --- save current state, try to solve it, then roll back
                 let piece_index_save = []
 
                 // save positions
@@ -174,6 +177,7 @@ class PuzzleBase {
                     solved = true
 
                     clog('  finding first slot that needs fixing')
+
                     // find the first piece not in correct place, if any
                     for (a=0; a<this.slots.length; a++) {
                         if (!this.slots[a].locked && this.slots[a].piece_index != this.slots[a].correct_piece_index) {
@@ -189,7 +193,7 @@ class PuzzleBase {
 
                     clog(`    slot ${a}, starting from here`)
 
-                    // pull the correct piece into this slot, then pick that slot, until xxx
+                    // pull the correct piece into this slot, then pick that slot, until we end up with the correct piece in the destination slot
                     while (this.slots[a].piece_index != this.slots[a].correct_piece_index) {
                         for (b=0; b<this.slots.length; b++) {
                             if (this.slots[b].piece_index == this.slots[a].correct_piece_index) {
@@ -204,6 +208,7 @@ class PuzzleBase {
 
                         a = b
                     }
+
                     clog(`      slot ${a} has the correct piece already`)
                 }
 
@@ -221,10 +226,6 @@ class PuzzleBase {
                     clog(`nice, found it after ${mix_count + 1} mixes`)
                     break
                 }
-            }
-
-            if (shuffle_successful) {
-                break
             }
         }
 
