@@ -88,153 +88,156 @@ class PuzzleBase {
             return seed % n
         }
 
-        // start from a solved position
-        for (a=0; a<this.slots.length; a++) {
-            this.slots[a].piece_index = this.slots[a].correct_piece_index
-        }
+        let shuffle_successful = false
 
-        let done = false
-
-        // calculate the minimum steps required to solve a fully shuffled puzzle
-        this.minStepsRequired = 0
-        let shape_indexes: Array<number> = []
-        let slot_indexes_per_shape: Array<Array<number>> = []
-        for (let i=0; i<this.slots.length; i++) {
-            if (!this.slots[i].locked) {
-                this.minStepsRequired += 1
-
-                // minus 1 per every type of shape
-                if (shape_indexes.indexOf(this.slots[i].shape_index) == -1) {
-                    shape_indexes.push(this.slots[i].shape_index)
-                    this.minStepsRequired -= 1
-
-                    slot_indexes_per_shape[this.slots[i].shape_index] = []
-                }
-                slot_indexes_per_shape[this.slots[i].shape_index].push(i)
-            }
-        }
-
-        clog(`minStepsRequired: ${this.minStepsRequired}`)
-
-        let _n = 0
-
-        if (!IS_PROD_BUILD) {
-            // some debugging for the discard reasons
-            let discard_reasons = {
-                "random": 0,
-                "locked": 0,
-                "shape": 0
-            }
-        }
-
-        // do 100 random swaps until none of the pieces are in their correct positions
-        while (true) {
-            clog(`mixing #${_n}`)
-
-            for (let list of slot_indexes_per_shape) {
-                if (!list) {
-                    continue
-                }
-                for (let i=0; i<1000; i++) {
-                    a = list[getRandom(list.length)]
-                    b = list[getRandom(list.length)]
-                    if (!IS_PROD_BUILD) {
-                        if (!(a != b)) {
-                            discard_reasons["random"] += 1
-                        }
-                        if (!(!this.slots[a].locked && !this.slots[b].locked)) {
-                            discard_reasons["locked"] += 1
-                        }
-                        if (!(this.slots[a].shape_index == this.slots[b].shape_index)) {
-                            discard_reasons["shape"] += 1
-                        }
-                    }
-
-                    if (a != b && !this.slots[a].locked && !this.slots[b].locked && this.slots[a].shape_index == this.slots[b].shape_index) {
-                        this.swapPiecesInSlots2(this.slots[a], this.slots[b])
-                    }
-                }
-            }
-
-            clog('solving')
-
-            // --- solve this state
-
-            let piece_index_save = []
-
-            // save positions
+        for (let retries=0; retries<5; retries++) {
+            // start from a solved position
             for (a=0; a<this.slots.length; a++) {
-                piece_index_save.push(this.slots[a].piece_index)
+                this.slots[a].piece_index = this.slots[a].correct_piece_index
             }
 
-            let steps_taken = 0
-            let solved = false
+            // calculate the minimum steps required to solve a fully shuffled puzzle
+            this.minStepsRequired = 0
+            let shape_indexes: Array<number> = []
+            let slot_indexes_per_shape: Array<Array<number>> = []
+            for (let i=0; i<this.slots.length; i++) {
+                if (!this.slots[i].locked) {
+                    this.minStepsRequired += 1
 
-            while (true) {
-                solved = true
+                    // minus 1 per every type of shape
+                    if (shape_indexes.indexOf(this.slots[i].shape_index) == -1) {
+                        shape_indexes.push(this.slots[i].shape_index)
+                        this.minStepsRequired -= 1
 
-                clog('  finding first slot that needs fixing')
-                // find the first piece not in correct place, if any
-                for (a=0; a<this.slots.length; a++) {
-                    if (!this.slots[a].locked && this.slots[a].piece_index != this.slots[a].correct_piece_index) {
-                        solved = false
-                        break
+                        slot_indexes_per_shape[this.slots[i].shape_index] = []
+                    }
+                    slot_indexes_per_shape[this.slots[i].shape_index].push(i)
+                }
+            }
+
+            clog(`minStepsRequired: ${this.minStepsRequired}`)
+
+            if (!IS_PROD_BUILD) {
+                // some debugging for the discard reasons
+                let discard_reasons = {
+                    "random": 0,
+                    "locked": 0,
+                    "shape": 0
+                }
+            }
+
+            // do 100 random swaps until none of the pieces are in their correct positions
+            for (let mix_count=0; mix_count<100; mix_count++) {
+                clog(`mixing #${mix_count}`)
+
+                for (let list of slot_indexes_per_shape) {
+                    if (!list) {
+                        continue
+                    }
+                    for (let i=0; i<1000; i++) {
+                        a = list[getRandom(list.length)]
+                        b = list[getRandom(list.length)]
+                        if (!IS_PROD_BUILD) {
+                            if (!(a != b)) {
+                                discard_reasons["random"] += 1
+                            }
+                            if (!(!this.slots[a].locked && !this.slots[b].locked)) {
+                                discard_reasons["locked"] += 1
+                            }
+                            if (!(this.slots[a].shape_index == this.slots[b].shape_index)) {
+                                discard_reasons["shape"] += 1
+                            }
+                        }
+
+                        if (a != b && !this.slots[a].locked && !this.slots[b].locked && this.slots[a].shape_index == this.slots[b].shape_index) {
+                            this.swapPiecesInSlots2(this.slots[a], this.slots[b])
+                        }
                     }
                 }
 
-                if (solved) {
-                    clog(`    all slots have the correct pieces`)
-                    break
+                clog('solving')
+
+                // --- solve this state
+
+                let piece_index_save = []
+
+                // save positions
+                for (a=0; a<this.slots.length; a++) {
+                    piece_index_save.push(this.slots[a].piece_index)
                 }
 
-                clog(`    slot ${a}, starting from here`)
+                let steps_taken = 0
+                let solved = false
 
+                // try to solve the puzzle
+                while (true) {
+                    solved = true
 
-                // pull the correct piece into this slot, then pick that slot, until xxx
-                while (this.slots[a].piece_index != this.slots[a].correct_piece_index) {
-                    for (b=0; b<this.slots.length; b++) {
-                        if (this.slots[b].piece_index == this.slots[a].correct_piece_index) {
+                    clog('  finding first slot that needs fixing')
+                    // find the first piece not in correct place, if any
+                    for (a=0; a<this.slots.length; a++) {
+                        if (!this.slots[a].locked && this.slots[a].piece_index != this.slots[a].correct_piece_index) {
+                            solved = false
                             break
                         }
                     }
 
-                    clog(`      swap slot ${a} ${b}`)
+                    if (solved) {
+                        clog(`    all slots have the correct pieces`)
+                        break
+                    }
 
-                    this.swapPiecesInSlots(a, b)
-                    steps_taken += 1
+                    clog(`    slot ${a}, starting from here`)
 
-                    a = b
+                    // pull the correct piece into this slot, then pick that slot, until xxx
+                    while (this.slots[a].piece_index != this.slots[a].correct_piece_index) {
+                        for (b=0; b<this.slots.length; b++) {
+                            if (this.slots[b].piece_index == this.slots[a].correct_piece_index) {
+                                break
+                            }
+                        }
+
+                        clog(`      swap slot ${a} ${b}`)
+
+                        this.swapPiecesInSlots(a, b)
+                        steps_taken += 1
+
+                        a = b
+                    }
+                    clog(`      slot ${a} has the correct piece already`)
                 }
-                clog(`      slot ${a} has the correct piece already`)
-            }
 
-            clog(`solved. steps needed: ${steps_taken}, min should be: ${this.minStepsRequired}`)
+                clog(`solved. steps needed: ${steps_taken}, min should be: ${this.minStepsRequired}`)
 
-            // restore positions
-            for (a=0; a<this.slots.length; a++) {
-                this.slots[a].piece_index = piece_index_save[a]
-            }
+                // restore positions
+                for (a=0; a<this.slots.length; a++) {
+                    this.slots[a].piece_index = piece_index_save[a]
+                }
 
-            if (steps_taken == this.minStepsRequired) {
-                clog(`nice, found it after ${_n + 1} mixes`)
                 // we found a state that is well shuffled
-                break
+                if (steps_taken == this.minStepsRequired) {
+                    shuffle_successful = true
+
+                    clog(`nice, found it after ${mix_count + 1} mixes`)
+                    break
+                }
             }
 
-            _n += 1
-
-            if (!IS_PROD_BUILD) {
-                if (_n == 10000) {
-                    this.dumpStatus()
-                    clog(discard_reasons)
-                    alert(`ERROR: could not find a proper shuffle in ${_n} tries, giving up`)
-                    return
-                }
+            if (shuffle_successful) {
+                break
             }
         }
 
         if (!IS_PROD_BUILD) {
+            this.dumpStatus()
             clog(discard_reasons)
+        }
+
+        if (!shuffle_successful) {
+            if (!IS_PROD_BUILD) {
+                alert(`ERROR: could not find a proper shuffle, giving up`)
+            }
+            return
         }
 
         // calculate the target steps
@@ -270,7 +273,6 @@ class PuzzleBase {
             this.swapPiecesInSlots(swap[0], swap[1])
         }
     }
-
 }
 
 class Puzzle extends PuzzleBase {
