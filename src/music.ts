@@ -90,6 +90,7 @@ enum MdIdx1 {
 
 enum Md2Idx {
     InstrumentIndex = 0,
+    LoopControl,
     NoteData,
     NoteTiming,
 }
@@ -104,6 +105,9 @@ function music_start() {
     // NOTE: update these to have at least channel count zeroes
     let note_indexes = [0, 0, 0, 0, 0]
     let next_note_times = [0, 0, 0, 0, 0]
+
+    let loops
+    let loops_max = MUSIC_DATA[MdIdx1.Track][0][Md2Idx.LoopControl].length
 
     const scriptNode = audioCtx.createScriptProcessor(8192, 1, 1)
     music_sample_rate = scriptNode.context.sampleRate
@@ -132,12 +136,14 @@ function music_start() {
             {
                 let now = audio_time + sample / outputBuffer.sampleRate
 
+                loops = Math.floor(now / (MUSIC_DATA[MdIdx1.SecondsPerSlot] * MUSIC_DATA[MdIdx1.TotalTimeSlots]))
+
                 for (var j=0; j<MUSIC_DATA[MdIdx1.Track].length; j++) {
                     while (next_note_times[j] <= now)
                     {
                         let note = MUSIC_DATA[MdIdx1.Track][j][Md2Idx.NoteData][note_indexes[j]]
 
-                        if (note > 0)
+                        if (note > 0 && MUSIC_DATA[MdIdx1.Track][j][Md2Idx.LoopControl][loops % loops_max])
                         {
                             clog(`starting sound ${j}`)
                             sounds.push({ data: get_sample_data(MUSIC_DATA[MdIdx1.Track][j][Md2Idx.InstrumentIndex], note), pos: 0 })
