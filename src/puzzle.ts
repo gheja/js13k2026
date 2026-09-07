@@ -90,6 +90,13 @@ class PuzzleBase {
 
         let shuffle_successful = false
 
+        // some debugging for the discard reasons
+        let discard_reasons = {
+            "random": 0,
+            "locked": 0,
+            "shape": 0
+        }
+
         // retry the puzzle from zero (but not resetting the random, or changing the seed!) from solved state
         // NOTE: there was a problem (bug?) that resulted in unshufflable puzzles for some reason, this is the fix
         for (let retries=0; retries<5 && !shuffle_successful; retries++) {
@@ -118,15 +125,6 @@ class PuzzleBase {
             }
 
             clog(`minStepsRequired: ${this.minStepsRequired}`)
-
-            if (!IS_PROD_BUILD) {
-                // some debugging for the discard reasons
-                let discard_reasons = {
-                    "random": 0,
-                    "locked": 0,
-                    "shape": 0
-                }
-            }
 
             // try to mix the current state and then solve it
             for (let mix_count=0; mix_count<100; mix_count++) {

@@ -9,14 +9,6 @@ enum Lb1Index {
     Timestamp,
 }
 
-enum LbPSIndex {
-    PuzzleSeed = 0,
-    A,
-    B,
-    C,
-    Swaps,
-}
-
 let shared_public_state = {
     "l": [], // leaderboard
     "p": {}, // player data
@@ -40,8 +32,8 @@ function leaderboard_process() {
         }
 
         // solution length DESC
-        if (a[Lb1Index.PlayerState][LbPSIndex.Swaps].length != b[Lb1Index.PlayerState][LbPSIndex.Swaps].length) {
-            return a[Lb1Index.PlayerState][LbPSIndex.Swaps].length - b[Lb1Index.PlayerState][LbPSIndex.Swaps].length
+        if (a[Lb1Index.PlayerState][PlayerStateIndex.SwapList].length != b[Lb1Index.PlayerState][PlayerStateIndex.SwapList].length) {
+            return a[Lb1Index.PlayerState][PlayerStateIndex.SwapList].length - b[Lb1Index.PlayerState][PlayerStateIndex.SwapList].length
         }
 /*
         // do NOT reorder players
@@ -125,8 +117,10 @@ function leaderboard_get_as_html(puzzleUid: string) {
                 // name index
                 n = shared_public_state['p'][d[Lb1Index.PlayerUid]][1]
             }
-            result += "<code>" + (lastStepCount == d[Lb1Index.PlayerState][LbPSIndex.Swaps].length ? "--" : "#" + i) + "</code> " + REACTIONS[d[Lb1Index.PayerReactionIndex]] + " " + n + " (" + d[Lb1Index.PlayerState][LbPSIndex.Swaps].length + " steps)<br/>"
-            lastStepCount = d[Lb1Index.PlayerState][LbPSIndex.Swaps].length
+            // @ts-ignore - "Property 'length' does not exist"
+            result += "<code>" + (lastStepCount == d[Lb1Index.PlayerState][PlayerStateIndex.SwapList].length ? "--" : "#" + i) + "</code> " + REACTIONS[d[Lb1Index.PayerReactionIndex]] + " " + n + " (" + d[Lb1Index.PlayerState][PlayerStateIndex.SwapList].length + " steps)<br/>"
+            // @ts-ignore - "Property 'length' does not exist"
+            lastStepCount = d[Lb1Index.PlayerState][PlayerStateIndex.SwapList].length
         }
     }
     return result
