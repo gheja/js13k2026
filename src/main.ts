@@ -44,6 +44,7 @@ function init() {
     document.getElementById("a3").addEventListener("click", _game.peekPuzzle.bind(_game))
     // @ts-ignore - "possibly null"
     document.getElementById("a4").addEventListener("click", _game.hidePuzzleMenu.bind(_game))
+    document.getElementById("q2").addEventListener("click", function() { document.getElementById("t").style.display = "none"; music_start_if_needed(); })
     _puzzleMenuButton.addEventListener("click", _game.showPuzzleMenu)
     _chapter1Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 0))
     _chapter2Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 1))
@@ -62,6 +63,8 @@ function init() {
 
     net_init()
     backgroundRun()
+    // document.getElementById("q1").style.display = "none"
+    document.getElementById("q2").style.display = "block"
 }
 
 window.addEventListener("load", init)
