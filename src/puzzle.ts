@@ -287,7 +287,7 @@ class Puzzle extends PuzzleBase {
     private pieces: Array<any> = []
 
     private puzzleUid: string
-    private state: PuzzleState = PuzzleState.StoppedUnfinished
+    public state: PuzzleState = PuzzleState.StoppedUnfinished
     private slotHovered: any
     private slotFirstPick: any
     private hint: string

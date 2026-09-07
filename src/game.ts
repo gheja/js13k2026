@@ -89,6 +89,23 @@ class Game {
         this.savePlayerPreferences()
     }
 
+    unlockNextPuzzleIfNeeded() {
+        // the puzzle unlocking is happening during the transition to the main
+        // screen after a successful first solve of a puzzle. if the player
+        // exits during the win screen (or any other bug happnes), the unlock
+        // doesn't happen and we might end up with only solved puzzles and no
+        // way to proceed. this function is to resolve this issue.
+
+        // find the first puzzle that is unlocked and not solved, if it exists, we're good
+        for (let p of this.puzzles) {
+            if (!p.locked && p.state != PuzzleState.StoppedFinished) {
+                return
+            }
+        }
+
+        this.puzzleUnlocksPending += 1
+    }
+
     savePlayerPreferences() {
         localStateSet("pu", this.player_uid)
         localStateSet("pn", this.player_name)
@@ -225,11 +242,17 @@ class Game {
             break
 
             case TransitionState.UpdateMainScreen:
+                this.unlockNextPuzzleIfNeeded()
+
                 // unlock the next puzzle(s)
                 if (this.puzzleUnlocksPending == 0) {
                     time = 0
                 }
                 else {
+                    // this will just go over all the puzzles once and tries
+                    // to unlock enough of them. if it cannot be done
+                    // (eg. because the player finished the last puzzle) then
+                    // it will just reset the count
                     for (let p of this.puzzles) {
                         if (p.locked) {
                             p.unlock()
@@ -239,6 +262,10 @@ class Game {
                             break
                         }
                     }
+
+                    // always set it to zero, don't take the unlocking over a
+                    // chapter change for example.
+                    this.puzzleUnlocksPending = 0
                 }
                 this.selectPuzzle(null)
                 this.zoomToUnlockedPuzzles()
