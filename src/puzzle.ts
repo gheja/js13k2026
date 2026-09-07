@@ -292,7 +292,6 @@ class Puzzle extends PuzzleBase {
     private slotFirstPick: any
     private hint: string
     public locked: boolean
-    public unlockCountOnWin: number = 1
     public wasSolvedEarlier: boolean = false
 
     constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, lockIndex: number, rotate: number=0, startingSolvedProgress: number=0, hint: string="") {
@@ -626,11 +625,6 @@ class Puzzle extends PuzzleBase {
             this.savePlayerLocalState()
             // _game.submitToLeaderboard()
             _game.updateWinScreen()
-
-            if (!this.wasSolvedEarlier) {
-                _game.puzzleUnlocksPending += this.unlockCountOnWin
-            }
-
             _game.transitionStart(TransitionState.EnteringWinScreen)
         }
 
