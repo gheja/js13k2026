@@ -64,7 +64,7 @@ function leaderboard_process() {
 */
 
     // limit all puzzle leaderboards to LEADERBOARD_SIZE_PER_PUZZLE entries
-    let counts = {}
+    let counts: Record<string, number> = {}
     shared_public_state['l'] = shared_public_state['l'].filter((a: Array<any>) => {
         if (!(a[Lb1Index.PuzzleUid] in counts)) {
             counts[a[Lb1Index.PuzzleUid]] = 0
@@ -94,7 +94,7 @@ function leaderboard_add(data: Array<any>) {
             shared_public_state['l'] = shared_public_state['l'].filter((a) => {
                 return !(a[Lb1Index.PuzzleUid] == data[Lb1Index.PuzzleUid] && a[Lb1Index.PlayerUid] == data[Lb1Index.PlayerUid])
             })
-
+            // @ts-ignore - "not assignable"
             shared_public_state['l'].push(data)
         }
         else {
@@ -127,11 +127,13 @@ function leaderboard_get_as_html(puzzleUid: string) {
 }
 
 function leaderboard_add_player_info(playerUid: number, playerName: string) {
+    // @ts-ignore - "not assignable"
     shared_public_state['p'][playerUid.toString()] = playerName
 }
 
 function leaderboard_update_profile(data: Array<any>) {
     // player uid must be the first item
+    // @ts-ignore - "not assignable"
     shared_public_state['p'][data[0]] = data
 }
 

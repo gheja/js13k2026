@@ -336,6 +336,7 @@ class Game {
 
     changePlayerName() {
         let a = window.prompt("New name (a-z, A-Z, 0-9, space):", this.player_name)
+        // @ts-ignore - "string | null"
         this.player_name = isValidPlayerName(a) ? a : getNewPlayerName()
         this.savePlayerPreferences()
         this.updateWinScreen()

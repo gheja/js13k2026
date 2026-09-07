@@ -15,7 +15,7 @@ let _leaderboardBox: HTMLDivElement
 let _leaderboardSubmitBox: HTMLDivElement
 
 // this will be needed when validating puzzles from the leaderboard
-let _knownPuzzles = {}
+let _knownPuzzles: Record<string, Array<any>> = {}
 
 function init() {
     _container = document.getElementById("b") as HTMLDivElement
@@ -57,6 +57,7 @@ function init() {
         span.addEventListener("click", _game.submitResultToLeaderboard.bind(_game, i))
         _reactionSelectBox.appendChild(span)
     }
+    // @ts-ignore - "possibly null"
     document.getElementById("p5").addEventListener("click", _game.changePlayerName.bind(_game))
 
     net_init()

@@ -1,7 +1,10 @@
 class PuzzleBase {
     protected slots: Array<any> = []
+    // @ts-ignore - "no initializer"
     protected startingSolvedProgress: number
+    // @ts-ignore - "no initializer"
     protected minStepsRequired: number
+    // @ts-ignore - "no initializer"
     public playerState: Array<any>
 
     setup(data: any, lockIndex: number, startingSolvedProgress: number, playerState: Array<any>) {

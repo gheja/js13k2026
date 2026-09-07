@@ -70,7 +70,7 @@ function net_send_update(s: string) {
 
     // if we are the leader then we won't receive this message, so emulate it
     if (net_my_uid == net_participants[0]) {
-        net_on_message({"data": s })
+        net_on_message({"data": s } as MessageEvent)
     }
 }
 
@@ -80,7 +80,7 @@ function net_send_participant_data(player_data: Array<any>, leaderboard_data: Ar
     net_send_update(`tl|${net_my_uid}|${JSON.stringify(leaderboard_data)}`)
 }
 
-function net_on_message(event) {
+function net_on_message(event: MessageEvent) {
     // console.log(event)
 
     const msg = event.data
