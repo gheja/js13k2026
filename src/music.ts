@@ -64,7 +64,7 @@ function get_sample_data(instrument_index: number, note: number) {
         if (instrument_index == 0) {
             _sample_data_cache[cache_key] = render_harmonics(HARMONICS_LONG_1, note, 2.8, 0.05, 0.15, 0.5, 0.7)
         }
-        else if (instrument_index == 1 {
+        else if (instrument_index == 1) {
             _sample_data_cache[cache_key] = render_harmonics(HARMONICS_LONG_2, note, 2.8, 0.05, 0.15, 0.5, 0.7)
         }
         else if (instrument_index == 2) {
