@@ -112,6 +112,9 @@ class Game {
     }
 
     setPuzzleGroup(n: number) {
+        if (this.isTransitionInProgress()) {
+            return
+        }
         this.nextPuzzleGroup = n
         this.transitionStart(TransitionState.SwitchingPuzzleGroup)
     }
@@ -312,9 +315,14 @@ class Game {
         for (let t of this.transitionMap) {
             if (t[0] == this.transitionState) {
                 this.transitionStart(t[1])
-                break
+                return
             }
         }
+        this.transitionState = TransitionState.Finished
+    }
+
+    isTransitionInProgress() {
+        return this.transitionState != TransitionState.Finished
     }
 
     exitPuzzle() {
@@ -323,6 +331,9 @@ class Game {
     }
 
     peekPuzzle() {
+        if (this.isTransitionInProgress()) {
+            return
+        }
         this.hidePuzzleMenu()
         this.transitionStart(TransitionState.PeekPuzzle)
     }
