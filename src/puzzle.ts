@@ -102,7 +102,7 @@ class PuzzleBase {
 
         // retry the puzzle from zero (but not resetting the random, or changing the seed!) from solved state
         // NOTE: there was a problem (bug?) that resulted in unshufflable puzzles for some reason, this is the fix
-        for (let retries=0; retries<5 && !shuffle_successful; retries++) {
+        for (let retries=0; retries<50 && !shuffle_successful; retries++) {
             // start from a solved position
             for (a=0; a<this.slots.length; a++) {
                 this.slots[a].piece_index = this.slots[a].correct_piece_index
