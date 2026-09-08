@@ -43,7 +43,10 @@ function load_puzzle_from_state() {
                 div.children[4].checked = row[4] & 1 // lock
                 div.children[5].checked = row[4] & 2 // lock
                 div.children[6].checked = row[4] & 4 // lock
-            }
+                div.children[7].checked = row[5] & 1 // piece-visibility
+                div.children[8].checked = row[5] & 2 // piece-visibility
+                div.children[9].checked = row[5] & 4 // piece-visibility
+           }
         }
     }
 
@@ -145,11 +148,12 @@ function get_row_data(obj) {
             parseFloat(obj.children[1].value),
             parseFloat(obj.children[2].value),
             parseFloat(obj.children[3].value),
-            (obj.children[4].checked ? 1 : 0) + (obj.children[5].checked ? 2 : 0) + (obj.children[6].checked ? 4 : 0)
+            (obj.children[4].checked ? 1 : 0) + (obj.children[5].checked ? 2 : 0) + (obj.children[6].checked ? 4 : 0),
+            (obj.children[7].checked ? 1 : 0) + (obj.children[8].checked ? 2 : 0) + (obj.children[9].checked ? 4 : 0),
         ]
     }
     else {
-        return [ 0, 30, 30, 0, 0 ]
+        return [ 0, 30, 30, 0, 0, 7 ]
     }
 }
 
@@ -224,6 +228,8 @@ function add_item(call_update_hook = true) {
     a.addEventListener("focus", on_focus_change.bind(a))
     div.appendChild(a)
 
+
+    // locks
     a = document.createElement("input")
     a.type = "checkbox"
     a.className = "lock"
@@ -249,6 +255,38 @@ function add_item(call_update_hook = true) {
     a.className = "lock"
     a.value = "4"
     a.checked = defaults[6]
+    a.addEventListener("change", on_update.bind(a))
+    a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
+    div.appendChild(a)
+
+
+    // piece visibility
+    a = document.createElement("input")
+    a.type = "checkbox"
+    a.className = "piece-visibility"
+    a.value = "1"
+    a.checked = true // defaults[7]
+    a.addEventListener("change", on_update.bind(a))
+    a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
+    div.appendChild(a)
+
+    a = document.createElement("input")
+    a.type = "checkbox"
+    a.className = "piece-visibility"
+    a.value = "2"
+    a.checked = true // defaults[8]
+    a.addEventListener("change", on_update.bind(a))
+    a.addEventListener("keydown", on_key_down.bind(a))
+    a.addEventListener("focus", on_focus_change.bind(a))
+    div.appendChild(a)
+
+    a = document.createElement("input")
+    a.type = "checkbox"
+    a.className = "piece-visibility"
+    a.value = "4"
+    a.checked = true // defaults[9]
     a.addEventListener("change", on_update.bind(a))
     a.addEventListener("keydown", on_key_down.bind(a))
     a.addEventListener("focus", on_focus_change.bind(a))
@@ -376,7 +414,7 @@ function on_focus_change(event) {
 }
 
 function render() {
-    _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0], parseInt(document.getElementById("lock_selector").value), _focused_element_index)
+    _puzzle_renderer.render(0, 0, [ "x1", get_active_puzzle_data(), ["#0ff", "#0ff", "#04f", "#04f"], "hint", 0.0], parseInt(document.getElementById("lock_selector").value), parseInt(document.getElementById("piece-visibility_selector").value), _focused_element_index)
 }
 
 function editor_order_to_game_order(rows) {
@@ -384,7 +422,7 @@ function editor_order_to_game_order(rows) {
 
     let result = []
     for (let row of rows) {
-        result.push([row[0], row[1], row[2], row[3], row[4]])
+        result.push([row[0], row[1], row[2], row[3], row[4], row[5]])
     }
     return result
 }

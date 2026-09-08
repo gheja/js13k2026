@@ -7,11 +7,14 @@ class PuzzleBase {
     // @ts-ignore - "no initializer"
     public playerState: Array<any>
 
-    setup(data: any, lockIndex: number, startingSolvedProgress: number, playerState: Array<any>) {
+    setup(data: any, lockIndex: number, puzzleVisibilityIndex: number, startingSolvedProgress: number, playerState: Array<any>) {
         this.startingSolvedProgress = startingSolvedProgress
 
         let piece_index = 0
         for (let b of data) {
+            if ((b[5] & puzzleVisibilityIndex) == 0) {
+                continue
+            }
             this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: (b[4] & lockIndex) != 0})
             piece_index += 1
         }
@@ -294,7 +297,7 @@ class Puzzle extends PuzzleBase {
     public locked: boolean
     public wasSolvedEarlier: boolean = false
 
-    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, lockIndex: number, rotate: number=0, startingSolvedProgress: number=0, hint: string="") {
+    constructor(uid:string, x: number, y: number, data: any, colors: Array<string>, lockIndex: number, puzzleVisibilityIndex: number, rotate: number=0, startingSolvedProgress: number=0, hint: string="") {
         super()
 
         this.puzzleUid = uid
@@ -309,7 +312,7 @@ class Puzzle extends PuzzleBase {
         _knownPuzzles[uid] = [data, lockIndex, startingSolvedProgress]
 
         // playerState is passed but it possibly should be a local var
-        this.setup(data, lockIndex, startingSolvedProgress, this.playerState)
+        this.setup(data, lockIndex, puzzleVisibilityIndex, startingSolvedProgress, this.playerState)
 
         this.left = x
         this.top = y

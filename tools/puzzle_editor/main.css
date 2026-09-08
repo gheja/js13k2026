@@ -10,6 +10,9 @@ body {
     margin: 0;
     width: 50px;
 }
+.list_row input[type=checkbox] {
+    width: 20px;
+}
 
 #list_header span {
     font-size: 8pt;

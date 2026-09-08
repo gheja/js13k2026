@@ -33,42 +33,42 @@ class Game {
         this.activePuzzle = null
         this.puzzlesGroups = [
             [
-                new Puzzle("n1",     0,    0,   PUZZLE1, [ "#0ff", "#0ff", "#04f", "#04f" ], 1, 0, 0.99, "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked."), // first bars
-                new Puzzle("n2",   200,    0,   PUZZLE2, [ "#ff0", "#0f0", "#f00", "#00f" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
-                new Puzzle("n2a",  200,  200,   PUZZLE2, [ "#604", "#e00", "#0af", "#fae" ], 2, 90),
-                new Puzzle("n2b",    0,  200,   PUZZLE2, [ "#631", "#ea4", "#0df", "#cff" ], 4),
-                new Puzzle("n2c",    0,  400,   PUZZLE2, [ "#fad", "#f4b", "#0fd", "#087" ], 4),
-                new Puzzle("n4",   160,  420,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 1, 90), // first paralellograms
-                new Puzzle("n4a",  400,  400,   PUZZLE4, [ "#604", "#e00", "#0af", "#fae" ], 2), // first paralellograms
-                new Puzzle("n4b",  400,  215,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 4), // first paralellograms
+                new Puzzle("n1",     0,    0,   PUZZLE1, [ "#0ff", "#0ff", "#04f", "#04f" ], 1, 1, 0, 0.99, "Sort the blocks by selecting two of them to swap.<br/>The ones with the diamond shape are locked."), // first bars
+                new Puzzle("n2",   200,    0,   PUZZLE2, [ "#ff0", "#0f0", "#f00", "#00f" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("n2a",  200,  200,   PUZZLE2, [ "#604", "#e00", "#0af", "#fae" ], 2, 1, 90),
+                new Puzzle("n2b",    0,  200,   PUZZLE2, [ "#631", "#ea4", "#0df", "#cff" ], 4, 1),
+                new Puzzle("n2c",    0,  400,   PUZZLE2, [ "#fad", "#f4b", "#0fd", "#087" ], 4, 1),
+                new Puzzle("n4",   160,  420,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 1, 1, 90), // first paralellograms
+                new Puzzle("n4a",  400,  400,   PUZZLE4, [ "#604", "#e00", "#0af", "#fae" ], 2, 1), // first paralellograms
+                new Puzzle("n4b",  400,  215,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 4, 1), // first paralellograms
 
-                new Puzzle("n3",   400,   15,   PUZZLE3, [ "#f0f", "#80f", "#ff0", "#f80" ], 1), // first triangles
-                new Puzzle("n3a",  520,   15,   PUZZLE3, [ "#ff0", "#f80", "#f0f", "#80f" ], 2), // first triangles
-                new Puzzle("n3b",  500, -200,   PUZZLE3, [ "#604", "#e00", "#0af", "#fae" ], 4, 90), // first triangles
+                new Puzzle("n3",   400,   15,   PUZZLE3, [ "#f0f", "#80f", "#ff0", "#f80" ], 1, 1), // first triangles
+                new Puzzle("n3a",  520,   15,   PUZZLE3, [ "#ff0", "#f80", "#f0f", "#80f" ], 2, 1), // first triangles
+                new Puzzle("n3b",  500, -200,   PUZZLE3, [ "#604", "#e00", "#0af", "#fae" ], 4, 1, 90), // first triangles
 
-                new Puzzle("n6",   340, -200,   PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 1), // diamonds and triangles
-                new Puzzle("n6a",  170, -200,   PUZZLE6, [ "#631", "#ea4", "#0df", "#cff" ], 2, 90), // diamonds and triangles
-                new Puzzle("n6b",    0, -200,   PUZZLE6, [ "#604", "#e00", "#0af", "#fae" ], 4), // diamonds and triangles
+                new Puzzle("n6",   340, -200,   PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 1, 1), // diamonds and triangles
+                new Puzzle("n6a",  170, -200,   PUZZLE6, [ "#631", "#ea4", "#0df", "#cff" ], 2, 1, 90), // diamonds and triangles
+                new Puzzle("n6b",    0, -200,   PUZZLE6, [ "#604", "#e00", "#0af", "#fae" ], 4, 1), // diamonds and triangles
             ],
             [
-                new Puzzle("n7",  0, 0, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ], 1), // j-bird lite
+                new Puzzle("n7",  0, 0, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ], 1, 1), // j-bird lite
 
 
-                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
-                new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
 
-                new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
-                new Puzzle("x4",   200, 400,   PUZZLE2, [ "#163", "#4ea", "#f0f", "#fcf" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x4",   200, 400,   PUZZLE2, [ "#163", "#4ea", "#f0f", "#fcf" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
 
-                new Puzzle("x5",   0,  600,   PUZZLE2, [ "#7ff", "#088", "#79f", "#028" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
-                new Puzzle("x8",   200,600,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x5",   0,  600,   PUZZLE2, [ "#7ff", "#088", "#79f", "#028" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x8",   200,600,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
 
-                new Puzzle("x7",   0,  800,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
+                new Puzzle("x7",   0,  800,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
             ],
             [
-                new Puzzle("n5",  0,   0, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1), // diamonds tiled cubes
-                new Puzzle("n8",  400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 1), // hexagons-pentagons
-                new Puzzle("n9a",  200, 400,   PUZZLE9, [ "#f0f", "#60f", "#f60", "#ff0" ], 1), // hexagons-pentagons
+                new Puzzle("n5",  0,   0, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1, 1), // diamonds tiled cubes
+                new Puzzle("n8",  400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 1, 1), // hexagons-pentagons
+                new Puzzle("n9a",  200, 400,   PUZZLE9, [ "#f0f", "#60f", "#f60", "#ff0" ], 1, 1), // hexagons-pentagons
             ]
         ]
         this.player_uid = localStateGet("pu", getBigRandomNumber())
