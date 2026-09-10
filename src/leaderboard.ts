@@ -85,7 +85,7 @@ function leaderboard_add(data: Array<any>) {
 
     try {
         let d = _knownPuzzles[data[Lb1Index.PuzzleUid]]
-        puzzle.setup(d[0], d[1], d[2], data[Lb1Index.PlayerState])
+        puzzle.setup(d[0], d[1], d[2], d[3], data[Lb1Index.PlayerState])
         puzzle.shuffle()
         if (puzzle.isSolved()) {
             clog("puzzle solution validated")

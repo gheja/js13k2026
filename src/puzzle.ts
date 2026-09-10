@@ -309,7 +309,7 @@ class Puzzle extends PuzzleBase {
             this.newPlayerSession()
         }
 
-        _knownPuzzles[uid] = [data, lockIndex, startingSolvedProgress]
+        _knownPuzzles[uid] = [data, lockIndex, puzzleVisibilityIndex, startingSolvedProgress]
 
         // playerState is passed but it possibly should be a local var
         this.setup(data, lockIndex, puzzleVisibilityIndex, startingSolvedProgress, this.playerState)
@@ -326,6 +326,9 @@ class Puzzle extends PuzzleBase {
         let max_y = 0
 
         for (let b of data) {
+            if ((b[5] & puzzleVisibilityIndex) == 0) {
+                continue
+            }
             min_x = Math.min(min_x, b[1])
             min_y = Math.min(min_y, b[2])
             max_x = Math.max(max_x, b[1])
@@ -361,6 +364,9 @@ class Puzzle extends PuzzleBase {
 
         let piece_index = 0
         for (let b of data) {
+            if ((b[5] & puzzleVisibilityIndex) == 0) {
+                continue
+            }
             let n = (Math.floor(b[2]) * canvas.width + Math.floor(b[1])) * 4
             this.pieces.push({shape_index: b[0], color: `rgb(${pixel_data.data[n]},${pixel_data.data[n+1]},${pixel_data.data[n+2]})`, dom: null})
             piece_index += 1
