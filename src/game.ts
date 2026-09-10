@@ -64,6 +64,9 @@ class Game {
                 new Puzzle("x8",   200,600,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1),
 
                 new Puzzle("x7",   0,  800,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 1, 1),
+
+                new Puzzle("n10a",   200,  800,   PUZZLE10, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1, 15),
+                new Puzzle("n10b",   400,  800,   PUZZLE10, [ "#f80", "#f88", "#08f", "#88f" ], 2, 2, 15),
             ],
             [
                 new Puzzle("n5",  0,   0, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1, 1), // diamonds tiled cubes

@@ -11,6 +11,7 @@ var SHAPES = [
     'm 30 0 -15 26 -30 0 -15 -26 15 -26 30 0 z',
     'M -30 0 0 -17.35 30 0 15 26 h -30 z',
     'm 15 13.334 h -30 l -7.5 -13 22.5 -13 22.5 13 z',
+    'M -15 -15 H 15 V 15 H -15 Z',
 ];  
 
 var ShapeIndex = {
@@ -23,6 +24,7 @@ var ShapeIndex = {
     Hexagon: 6,
     SquishedPentagon: 7,
     MoreSquishedPentagon: 8,
+    Square2: 9,
     "0": "Triangle1",
     "1": "LockedIcon",
     "2": "Square1",
@@ -32,6 +34,7 @@ var ShapeIndex = {
     "6": "Hexagon",
     "7": "SquishedPentagon",
     "8": "MoreSquishedPentagon",
+    "9": "Square2",
 };  
 
 var PuzzleDataIndex = {
