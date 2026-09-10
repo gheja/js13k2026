@@ -83,14 +83,17 @@ class PuzzleRenderer{
         }
 
         let piece_index = 0
+        let highlight_piece_index = 0
         for (let i=0; i<data[PuzzleDataIndex.Pieces].length; i++) {
             let b = data[PuzzleDataIndex.Pieces][i]
             if ((b[5] & puzzleVisibility) == 0) {
+                highlight_piece_index += 1
                 continue
             }
             this.slots.push({shape_index: b[0], x: b[1], y: b[2], r: b[3], piece_index: piece_index, correct_piece_index: piece_index, locked: (b[4] & lockIndex) != 0})
-            this.pieces.push({shape_index: b[0], color: (piece_index == activePieceIndex ? "#fff" :_colors[i % _colors.length]) + "a", dom: null})
+            this.pieces.push({shape_index: b[0], color: (highlight_piece_index == activePieceIndex ? "#fff" :_colors[i % _colors.length]) + "a", dom: null})
             piece_index += 1
+            highlight_piece_index += 1
         }
 
         let path_data = ''
