@@ -5,6 +5,8 @@ Heavy hits on performance:
   - background animation, probably due to the filters/effects
 
 Reducing size:
+  - tilte screen transition is animated in css -- it is so faint it doesn't make much sense, could be removed
+
   - notes on background:
     - handling the SVG in JS by DOM is probably really wasteful -- should be string
     - drop background
