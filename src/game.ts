@@ -54,22 +54,24 @@ class Game {
                 new Puzzle("n7",  0, 0, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ], 1, 1), // j-bird lite
 
 
-                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 1, 1),
-                new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1),
+                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 4, 4),
+                new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 4, 4),
 
-                new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 1, 1),
-                new Puzzle("x4",   200, 400,   PUZZLE2, [ "#163", "#4ea", "#f0f", "#fcf" ], 1, 1),
+                new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 4, 4),
+                new Puzzle("x4",   200, 400,   PUZZLE2, [ "#163", "#4ea", "#f0f", "#fcf" ], 4, 4),
 
-                new Puzzle("x5",   0,  600,   PUZZLE2, [ "#7ff", "#088", "#79f", "#028" ], 1, 1),
-                new Puzzle("x8",   200,600,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1),
+                new Puzzle("x5",   0,  600,   PUZZLE2, [ "#7ff", "#088", "#79f", "#028" ], 4, 4),
+                new Puzzle("x8",   200,600,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 4, 4),
 
-                new Puzzle("x7",   0,  800,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 1, 1),
+                new Puzzle("x7",   0,  800,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 4, 4),
 
                 new Puzzle("n10a",   200,  800,   PUZZLE10, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1, 15),
                 new Puzzle("n10b",   400,  800,   PUZZLE10, [ "#f80", "#f88", "#08f", "#88f" ], 2, 2, 15),
 
                 new Puzzle("n11a",   200,  1100,   PUZZLE11, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1, 18.435),
                 new Puzzle("n11b",   400,  1100,   PUZZLE11, [ "#f0f", "#f65", "#4fb", "#fe0" ], 2, 2),
+
+                new Puzzle("n5b",  -100,   1100, PUZZLE5, [ "#f80", "#ff0", "#888", "#fff" ], 4, 4, 90), // diamonds tiled cubes
             ],
             [
                 new Puzzle("n5",  0,   0, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1, 1), // diamonds tiled cubes
