@@ -3,7 +3,7 @@ const IS_PROD_BUILD = false
 
 const LOCALSTORAGE_PREFIX = "hg26:"
 
-const NET_WS_BASE = "wss://relay.js13kgames.com/huenicorn/1"
+const NET_WS_BASE = "wss://relay.js13kgames.com/prism-tiles/1"
 
 const REACTIONS = [
     "&#x1F984;", // unicorn
