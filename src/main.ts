@@ -68,7 +68,7 @@ function init() {
 
     net_init()
     backgroundRun()
-    // document.getElementById("q1").style.display = "none"
+    document.getElementById("q1").style.display = "none"
     document.getElementById("q2").style.display = "block"
 }
 
@@ -77,4 +77,8 @@ function panic_puzzle_shuffle_failed() {
     window.location.reload()
 }
 
-window.addEventListener("load", init)
+function init2() {
+    window.setTimeout(init, 100)
+}
+
+window.addEventListener("load", init2)
