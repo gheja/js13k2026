@@ -71,4 +71,9 @@ function init() {
     document.getElementById("q2").style.display = "block"
 }
 
+// BUG: with some low chance shuffling might fail - give some chance to fix it
+function panic_puzzle_shuffle_failed() {
+    window.location.reload()
+}
+
 window.addEventListener("load", init)

@@ -7,6 +7,8 @@ class PuzzleBase {
     // @ts-ignore - "no initializer"
     public playerState: Array<any>
 
+    protected panicIfCannotShuffle: boolean = false // used only with local player puzzles
+
     setup(data: any, lockIndex: number, puzzleVisibilityIndex: number, startingSolvedProgress: number, playerState: Array<any>) {
         this.startingSolvedProgress = startingSolvedProgress
 
@@ -105,7 +107,7 @@ class PuzzleBase {
 
         // retry the puzzle from zero (but not resetting the random, or changing the seed!) from solved state
         // NOTE: there was a problem (bug?) that resulted in unshufflable puzzles for some reason, this is the fix
-        for (let retries=0; retries<50 && !shuffle_successful; retries++) {
+        for (let retries=0; retries<100 && !shuffle_successful; retries++) {
             // start from a solved position
             for (a=0; a<this.slots.length; a++) {
                 this.slots[a].piece_index = this.slots[a].correct_piece_index
@@ -242,6 +244,11 @@ class PuzzleBase {
             if (!IS_PROD_BUILD) {
                 alert(`ERROR: could not find a proper shuffle, giving up`)
             }
+
+            if (this.panicIfCannotShuffle) {
+                // this is really ugly but...
+                panic_puzzle_shuffle_failed()
+            }
             return
         }
 
@@ -310,6 +317,9 @@ class Puzzle extends PuzzleBase {
         }
 
         _knownPuzzles[uid] = [data, lockIndex, puzzleVisibilityIndex, startingSolvedProgress]
+
+        // try to handle if puzzle shuffling failed...
+        this.panicIfCannotShuffle = true
 
         // playerState is passed but it possibly should be a local var
         this.setup(data, lockIndex, puzzleVisibilityIndex, startingSolvedProgress, this.playerState)
