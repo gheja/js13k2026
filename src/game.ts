@@ -40,10 +40,10 @@ class Game {
                 new Puzzle("n2",   200,    0,   PUZZLE2, [ "#ff0", "#0f0", "#f00", "#00f" ], 1, 1, 0, 0.75, "Make sure the blocks create a gradient in all directions."), // first squares
                 new Puzzle("n2a",  170,  200,   PUZZLE2, [ "#604", "#e00", "#0af", "#fae" ], 2, 2, 90),
                 new Puzzle("n2b",  -20,  200,   PUZZLE2, [ "#631", "#ea4", "#0df", "#cff" ], 2, 2, 90),
-                new Puzzle("n2c",  -20,  430,   PUZZLE2, [ "#fad", "#f4b", "#0fd", "#087" ], 2, 2, 90),
-                new Puzzle("n4",   160,  450,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 1, 1, 90), // first paralellograms
-                new Puzzle("n4a",  400,  450,   PUZZLE4, [ "#604", "#e00", "#0af", "#fae" ], 2, 1), // first paralellograms
-                new Puzzle("n4b",  400,  250,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 4, 1), // first paralellograms
+                new Puzzle("n2c",   30,  380,   PUZZLE2, [ "#fad", "#f4b", "#0fd", "#087" ], 4, 4, 90),
+                new Puzzle("n4",   230,  450,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 1, 1, 90), // first paralellograms
+                new Puzzle("n4a",  420,  450,   PUZZLE4, [ "#604", "#e00", "#0af", "#fae" ], 2, 1), // first paralellograms
+                new Puzzle("n4b",  420,  250,   PUZZLE4, [ "#ff0", "#f0f", "#0ff", "#60f" ], 4, 1), // first paralellograms
 
                 new Puzzle("n3",   400,   15,   PUZZLE3, [ "#f0f", "#80f", "#ff0", "#f80" ], 1, 1), // first triangles
                 new Puzzle("n3a",  520,   15,   PUZZLE3, [ "#ff0", "#f80", "#f0f", "#80f" ], 2, 2), // first triangles
