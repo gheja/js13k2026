@@ -56,7 +56,6 @@ class Game {
             [
                 new Puzzle("n7a",    0,   0, PUZZLE7,  [ "#fff", "#fff", "#fe0", "#f60" ], 2, 2), // j-bird lite
                 new Puzzle("n7",   200,   0, PUZZLE7,  [ "#fff", "#fff", "#f0f", "#0ff" ], 1, 1), // j-bird lite
-                // new Puzzle("n7a",  200, 0, PUZZLE7, [ "#fff", "#fff", "#fe0", "#f60" ], 1, 1, 180), // j-bird lite
                 new Puzzle("n11a", 400,   0, PUZZLE11, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1), // 18.435 deg
                 new Puzzle("n11b", 350, 270,   PUZZLE11, [ "#f0f", "#f65", "#4fb", "#fe0" ], 2, 2),
                 new Puzzle("n11c",   0, 230,   PUZZLE11, [ "#fca", "#f84", "#79f", "#028" ], 2, 2),
@@ -67,27 +66,11 @@ class Game {
                 new Puzzle("n5",     0,   900, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1, 1), // diamonds tiled cubes
                 new Puzzle("n7b",  420,   930, PUZZLE7, [ "#fff", "#fff", "#028", "#4fb" ], 2, 1, 90), // j-bird lite
 
-/*                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 4, 4),
-                new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 4, 4),
-
-                new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 4, 4),
-                new Puzzle("x4",   200, 400,   PUZZLE2, [ "#163", "#4ea", "#f0f", "#fcf" ], 4, 4),
-
-                new Puzzle("x5",   0,  700,   PUZZLE2, [ "#7ff", "#088", "#79f", "#028" ], 4, 4),
-                new Puzzle("x8",   200,700,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 4, 4),
-
-                new Puzzle("x7",   0,  900,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 4, 4),
-
-                new Puzzle("x7a",   400,  400,   PUZZLE2, [ "#0af", "#069", "#6cf", "#379" ], 4, 4),
-                new Puzzle("x7b",   600,  400,   PUZZLE2, [ "#e00", "#900", "#e66", "#944" ], 4, 4),
-
-*/
 
             ],
             [
                 new Puzzle("n10a",     0,  0,   PUZZLE10, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1, 15),
                 new Puzzle("n10c",   270,  0,   PUZZLE10, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1, 15),
-                // "#f0f", "#60f", "#f60", "#ff0"
 
                 new Puzzle("n10b",   540,  0,   PUZZLE10, [ "#f80", "#f88", "#08f", "#88f" ], 2, 2, 15),
 
@@ -97,6 +80,14 @@ class Game {
 
                 new Puzzle("n8b",     0, 600,   PUZZLE8,  [ "#631", "#ea4", "#0df", "#cff" ], 4, 4), // hexagons-pentagons
                 new Puzzle("n11d",  500, 600,   PUZZLE11, [ "#163", "#4ea", "#f0f", "#fcf" ], 4, 4, 90),
+            ],
+            [
+                new Puzzle("n3x",  20,    0,  PUZZLE3,  [ "#f00", "#900", "#f66", "#944" ], 4, 4, 15), // first triangles
+                new Puzzle("n10x",  0,  150,  PUZZLE10, [ "#f80", "#950", "#fb6", "#974" ], 2, 2, 105),
+                new Puzzle("n2x",  30,  380,  PUZZLE2,  [ "#ff0", "#990", "#ff6", "#993" ], 4, 4, 105),
+                new Puzzle("n11x",  0,  590,  PUZZLE11, [ "#0f0", "#090", "#6f6", "#393" ], 4, 4, 105),
+                new Puzzle("n8x", -25,  890,  PUZZLE8,  [ "#05f", "#039", "#69f", "#359" ], 4, 4, 15), // hexagons-pentagons
+                new Puzzle("n5x", -50, 1200,  PUZZLE5,  [ "#80f", "#409", "#b6f", "#649" ], 2, 2, 15), // diamonds tiled cubes
             ]
         ]
         this.player_uid = localStateGet("pu", getBigRandomNumber())
@@ -106,6 +97,7 @@ class Game {
         this.puzzlesGroups[0][0].unlock()
         this.puzzlesGroups[1][0].unlock()
         this.puzzlesGroups[2][0].unlock()
+        this.puzzlesGroups[3][0].unlock()
 
         this.gfx = new Gfx()
         this.gfx.render()
@@ -336,16 +328,17 @@ class Game {
                 // _chapter1Button.style.display = ""
                 _chapter2Button.style.display = (total_solved >= CHAPTER_2_UNLOCK_AFTER) ? "" : "none"
                 _chapter3Button.style.display = (total_solved >= CHAPTER_3_UNLOCK_AFTER) ? "" : "none"
+                _chapter4Button.style.display = (total_solved >= CHAPTER_4_UNLOCK_AFTER) ? "" : "none"
                 _starStatsBox.innerHTML = "Stars: " + collected_stars + "/" + max_stars
 
                 clog(`total_puzzles = ${total_puzzles}, total_solved = ${total_solved}, all_solved_in_this_chapter=${all_solved_in_this_chapter}`)
 
                 if (total_puzzles == total_solved) {
-                        this.popupMessages.push('Thank you for playing!')
+                    this.popupMessages.push('Congrats! And thank you for playing :)')
                 }
                 else {
                     // BUG: this triggers every time the change happens
-                    if (total_solved == CHAPTER_2_UNLOCK_AFTER || total_solved == CHAPTER_3_UNLOCK_AFTER) {
+                    if (total_solved == CHAPTER_2_UNLOCK_AFTER || total_solved == CHAPTER_3_UNLOCK_AFTER || total_solved == CHAPTER_4_UNLOCK_AFTER) {
                         this.popupMessages.push('A new Chapter is available')
                     }
 

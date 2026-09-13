@@ -29,8 +29,9 @@ enum ShapeIndex {
 
 const CHAPTER_2_UNLOCK_AFTER = 10
 const CHAPTER_3_UNLOCK_AFTER = 20
+const CHAPTER_4_UNLOCK_AFTER = 30
 
-const PUZZLE_GROUP_COLORS = ["#012", "#200", "#202" ]
+const PUZZLE_GROUP_COLORS = ["#012", "#200", "#202", "#221400" ]
 
 // n1
 const PUZZLE1 =  [[4,80,30,0,7,7],[4,80,56,0,0,7],[4,80,82,0,0,7],[4,80,108,0,0,7],[4,80,134,0,7,7]]

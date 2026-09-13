@@ -9,7 +9,7 @@ let _mainMenu: HTMLDivElement
 let _chapter1Button: HTMLDivElement
 let _chapter2Button: HTMLDivElement
 let _chapter3Button: HTMLDivElement
-// let _catPuzzleButton: HTMLDivElement
+let _chapter4Button: HTMLDivElement
 let _reactionSelectBox: HTMLDivElement
 let _leaderboardBox: HTMLDivElement
 let _leaderboardSubmitBox: HTMLDivElement
@@ -30,8 +30,8 @@ function init() {
     _chapter1Button = document.getElementById("oa") as HTMLDivElement
     _chapter2Button = document.getElementById("ob") as HTMLDivElement
     _chapter3Button = document.getElementById("oc") as HTMLDivElement
-    // _catPuzzleButton = document.getElementById("od") as HTMLDivElement
-    _starStatsBox = document.getElementById("od") as HTMLSpanElement
+    _chapter4Button = document.getElementById("od") as HTMLDivElement
+    _starStatsBox = document.getElementById("oe") as HTMLSpanElement
     _reactionSelectBox = document.getElementById("p4") as HTMLDivElement
     _leaderboardBox = document.getElementById("l") as HTMLDivElement
     _leaderboardSubmitBox = document.getElementById("p6") as HTMLDivElement
@@ -53,6 +53,7 @@ function init() {
     _chapter1Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 0))
     _chapter2Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 1))
     _chapter3Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 2))
+    _chapter4Button.addEventListener("click", _game.setPuzzleGroup.bind(_game, 3))
 
     // init reaction buttons
     for (let i=0; i<REACTIONS.length; i++) {
