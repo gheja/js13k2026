@@ -380,6 +380,12 @@ class Game {
                 _winMenu.style.opacity = "0"
                 _winMenu.style.display = "block"
                 _leaderboardBox.style.display = net_is_connected() ? "block" : "none"
+
+                // don't show the leaderboard for the tutorial puzzles
+                if (this.activePuzzle && (this.activePuzzle.puzzleUid == "n1" || this.activePuzzle.puzzleUid == "n2")) {
+                    _leaderboardBox.style.display = "none"
+                }
+
                 _leaderboardSubmitBox.style.display = "block" 
             break
 
