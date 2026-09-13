@@ -54,9 +54,20 @@ class Game {
                 new Puzzle("n6b",    0, -200,   PUZZLE6, [ "#604", "#e00", "#0af", "#fae" ], 4, 1), // diamonds and triangles
             ],
             [
-                new Puzzle("n7",  0, 0, PUZZLE7, [ "#fff", "#fff", "#f0f", "#0ff" ], 1, 1), // j-bird lite
+                new Puzzle("n7a",    0,   0, PUZZLE7,  [ "#fff", "#fff", "#fe0", "#f60" ], 2, 2), // j-bird lite
+                new Puzzle("n7",   200,   0, PUZZLE7,  [ "#fff", "#fff", "#f0f", "#0ff" ], 1, 1), // j-bird lite
+                // new Puzzle("n7a",  200, 0, PUZZLE7, [ "#fff", "#fff", "#fe0", "#f60" ], 1, 1, 180), // j-bird lite
+                new Puzzle("n11a", 400,   0, PUZZLE11, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1), // 18.435 deg
+                new Puzzle("n11b", 350, 270,   PUZZLE11, [ "#f0f", "#f65", "#4fb", "#fe0" ], 2, 2),
+                new Puzzle("n11c",   0, 230,   PUZZLE11, [ "#fca", "#f84", "#79f", "#028" ], 2, 2),
 
-                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 4, 4),
+                new Puzzle("n5b",  -20, 600,   PUZZLE5, [ "#f80", "#ff0", "#888", "#fff" ], 4, 4, 90), // diamonds tiled cubes
+                new Puzzle("n5c",  300, 620,   PUZZLE5, [ "#7ff", "#088", "#79f", "#028" ], 4, 4), // diamonds tiled cubes
+
+                new Puzzle("n5",     0,   900, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1, 1), // diamonds tiled cubes
+                new Puzzle("n7b",  420,   930, PUZZLE7, [ "#fff", "#fff", "#028", "#4fb" ], 2, 1, 90), // j-bird lite
+
+/*                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 4, 4),
                 new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 4, 4),
 
                 new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 4, 4),
@@ -72,14 +83,10 @@ class Game {
 
                 new Puzzle("n10a",   200,  900,   PUZZLE10, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1, 15),
                 new Puzzle("n10b",   400,  900,   PUZZLE10, [ "#f80", "#f88", "#08f", "#88f" ], 2, 2, 15),
+*/
 
-                new Puzzle("n11a",   200,  1300,   PUZZLE11, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1, 18.435),
-                new Puzzle("n11b",   400,  1300,   PUZZLE11, [ "#f0f", "#f65", "#4fb", "#fe0" ], 2, 2),
-
-                new Puzzle("n5b",  -100,   1300, PUZZLE5, [ "#f80", "#ff0", "#888", "#fff" ], 4, 4, 90), // diamonds tiled cubes
             ],
             [
-                new Puzzle("n5",  0,   0, PUZZLE5, [ "#ff0", "#f0f", "#f60", "#60f" ], 1, 1), // diamonds tiled cubes
                 new Puzzle("n8",  400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 1, 1), // hexagons-pentagons
                 new Puzzle("n8a",  600, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 2, 2), // hexagons-pentagons
                 new Puzzle("n8b",  800, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 4, 4), // hexagons-pentagons
