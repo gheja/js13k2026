@@ -110,3 +110,45 @@ Basket: &#x1F5D1; 🗑
 
         this.puzzlesGroups = [
         this.puzzles = this.puzzlesGroups[0]
+
+---
+
+/*
+            [
+                new Puzzle("n2x",   0,    0,  PUZZLE2,  [ "#f00", "#900", "#f66", "#944" ], 4, 4, 90),
+                new Puzzle("n3x",   0,  300,  PUZZLE3,  [ "#f80", "#950", "#fb6", "#974" ], 4, 4), // first triangles
+                new Puzzle("n5x",   0,  600,  PUZZLE5,  [ "#ff0", "#990", "#ff6", "#993" ], 2, 2), // diamonds tiled cubes
+                new Puzzle("n8x",   0,  900,  PUZZLE8,  [ "#0f0", "#090", "#6f6", "#393" ], 4, 4), // hexagons-pentagons
+                new Puzzle("n10x",  0, 1200,  PUZZLE10, [ "#05f", "#039", "#69f", "#359" ], 2, 2, 105),
+                new Puzzle("n11x",  0, 1500,  PUZZLE11, [ "#80f", "#409", "#b6f", "#649" ], 4, 4, 90),
+            ]
+*/
+/*
+            [
+                new Puzzle("n3x",   0,    0,  PUZZLE3,  [ "#f80", "#950", "#fb6", "#974" ], 4, 4, 15), // first triangles
+                new Puzzle("n10x",  0,  150,  PUZZLE10, [ "#05f", "#039", "#69f", "#359" ], 2, 2, 105),
+                new Puzzle("n2x",   0,  380,  PUZZLE2,  [ "#f00", "#900", "#f66", "#944" ], 4, 4, 105),
+                new Puzzle("n11x",  0,  900,  PUZZLE11, [ "#80f", "#409", "#b6f", "#649" ], 4, 4, 105),
+                new Puzzle("n8x",   0, 1200,  PUZZLE8,  [ "#0f0", "#090", "#6f6", "#393" ], 4, 4, 15), // hexagons-pentagons
+                new Puzzle("n5x",   0, 1500,  PUZZLE5,  [ "#ff0", "#990", "#ff6", "#993" ], 2, 2, 15), // diamonds tiled cubes
+            ]
+*/
+
+                // "#f0f", "#60f", "#f60", "#ff0"
+
+
+/*                new Puzzle("x6",   0,  200,   PUZZLE2, [ "#be0", "#ff0", "#f5a", "#f60" ], 4, 4),
+                new Puzzle("x3",   200,  200,   PUZZLE2, [ "#f0f", "#f65", "#4fb", "#fe0" ], 4, 4),
+
+                new Puzzle("x1",   0,  400,   PUZZLE2, [ "#fca", "#f84", "#79f", "#028" ], 4, 4),
+                new Puzzle("x4",   200, 400,   PUZZLE2, [ "#163", "#4ea", "#f0f", "#fcf" ], 4, 4),
+
+                new Puzzle("x5",   0,  700,   PUZZLE2, [ "#7ff", "#088", "#79f", "#028" ], 4, 4),
+                new Puzzle("x8",   200,700,   PUZZLE2, [ "#f80", "#ff0", "#888", "#fff" ], 4, 4),
+
+                new Puzzle("x7",   0,  900,   PUZZLE2, [ "#f80", "#f88", "#08f", "#88f" ], 4, 4),
+
+                new Puzzle("x7a",   400,  400,   PUZZLE2, [ "#0af", "#069", "#6cf", "#379" ], 4, 4),
+                new Puzzle("x7b",   600,  400,   PUZZLE2, [ "#e00", "#900", "#e66", "#944" ], 4, 4),
+
+*/
