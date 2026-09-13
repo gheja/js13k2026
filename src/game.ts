@@ -49,7 +49,7 @@ class Game {
                 new Puzzle("n3a",  520,   15,   PUZZLE3, [ "#ff0", "#f80", "#f0f", "#80f" ], 2, 2), // first triangles
                 new Puzzle("n3b",  470, -170,   PUZZLE3, [ "#604", "#e00", "#0af", "#fae" ], 4, 4, 90), // first triangles
 
-                new Puzzle("n6",   340, -200,   PUZZLE6, [ "#f0f", "#f60", "#60f", "#ff0" ], 1, 1), // diamonds and triangles
+                new Puzzle("n6",   340, -200,   PUZZLE6, [ "rgb(46, 34, 46)", "#f60", "#60f", "#ff0" ], 1, 1), // diamonds and triangles
                 new Puzzle("n6a",  170, -200,   PUZZLE6, [ "#631", "#ea4", "#0df", "#cff" ], 2, 1, 90), // diamonds and triangles
                 new Puzzle("n6b",    0, -200,   PUZZLE6, [ "#604", "#e00", "#0af", "#fae" ], 4, 1), // diamonds and triangles
             ],
@@ -81,17 +81,22 @@ class Game {
                 new Puzzle("x7a",   400,  400,   PUZZLE2, [ "#0af", "#069", "#6cf", "#379" ], 4, 4),
                 new Puzzle("x7b",   600,  400,   PUZZLE2, [ "#e00", "#900", "#e66", "#944" ], 4, 4),
 
-                new Puzzle("n10a",   200,  900,   PUZZLE10, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1, 15),
-                new Puzzle("n10b",   400,  900,   PUZZLE10, [ "#f80", "#f88", "#08f", "#88f" ], 2, 2, 15),
 */
 
             ],
             [
-                new Puzzle("n8",  400, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 1, 1), // hexagons-pentagons
-                new Puzzle("n8a",  600, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 2, 2), // hexagons-pentagons
-                new Puzzle("n8b",  800, 0,   PUZZLE8, [ "#f0f", "#60f", "#f60", "#ff0" ], 4, 4), // hexagons-pentagons
-                new Puzzle("n9a",  200, 400,   PUZZLE9, [ "#f0f", "#60f", "#f60", "#ff0" ], 1, 1), // hexagons-pentagons
+                new Puzzle("n10a",     0,  0,   PUZZLE10, [ "#f0f", "#f65", "#4fb", "#fe0" ], 1, 1, 15),
+                new Puzzle("n10c",   270,  0,   PUZZLE10, [ "#f80", "#ff0", "#888", "#fff" ], 1, 1, 15),
+                // "#f0f", "#60f", "#f60", "#ff0"
 
+                new Puzzle("n10b",   540,  0,   PUZZLE10, [ "#f80", "#f88", "#08f", "#88f" ], 2, 2, 15),
+
+                new Puzzle("n8",    -30, 300,   PUZZLE8,  [ "#f0f", "#60f", "#f60", "#ff0" ], 1, 1), // hexagons-pentagons
+                new Puzzle("n9a",   310, 340,   PUZZLE9,  [ "#7ff", "#088", "#79f", "#028" ], 1, 1), // hexagons-pentagons
+                new Puzzle("n8a",   500, 300,   PUZZLE8,  [ "#f0f", "#60f", "#f60", "#ff0" ], 2, 2, 90), // hexagons-pentagons
+
+                new Puzzle("n8b",     0, 600,   PUZZLE8,  [ "#631", "#ea4", "#0df", "#cff" ], 4, 4), // hexagons-pentagons
+                new Puzzle("n11d",  500, 600,   PUZZLE11, [ "#163", "#4ea", "#f0f", "#fcf" ], 4, 4, 90),
             ]
         ]
         this.player_uid = localStateGet("pu", getBigRandomNumber())
