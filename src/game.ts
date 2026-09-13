@@ -301,12 +301,16 @@ class Game {
                     }
                 }
 
+                let max_stars = 0
+                let collected_stars = 0
                 let total_solved = 0
                 let total_puzzles = 0
                 for (let i=0; i<this.puzzlesGroups.length; i++) {
                     for (let p of this.puzzlesGroups[i]) {
                         if (p.state == PuzzleState.StoppedFinished) {
                             total_solved += 1
+                            max_stars += 3
+                            collected_stars += p.playerState[PlayerStateIndex.StarsReceived]
                         }
                         total_puzzles += 1
                     }
@@ -315,6 +319,8 @@ class Game {
                 // _chapter1Button.style.display = ""
                 _chapter2Button.style.display = (total_solved >= CHAPTER_2_UNLOCK_AFTER) ? "" : "none"
                 _chapter3Button.style.display = (total_solved >= CHAPTER_3_UNLOCK_AFTER) ? "" : "none"
+                _starStatsBox.innerHTML = "Stars: " + collected_stars + "/" + max_stars
+
                 clog(`total_puzzles = ${total_puzzles}, total_solved = ${total_solved}, all_solved_in_this_chapter=${all_solved_in_this_chapter}`)
 
                 if (total_puzzles == total_solved) {
