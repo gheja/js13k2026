@@ -27,6 +27,9 @@ enum ShapeIndex {
     Square3,
 }
 
+const CHAPTER_2_UNLOCK_AFTER = 10
+const CHAPTER_3_UNLOCK_AFTER = 20
+
 const PUZZLE_GROUP_COLORS = ["#012", "#200", "#202" ]
 
 // n1

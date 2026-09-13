@@ -21,9 +21,12 @@ class Game {
         [ TransitionState.EnteringWinScreen, TransitionState.WinScreen ],
         [ TransitionState.SwitchingPuzzleGroup, TransitionState.SwitchingPuzzleGroup2 ],
         [ TransitionState.SwitchingPuzzleGroup2, TransitionState.UpdateMainScreen ],
+        [ TransitionState.PopupMessageShow, TransitionState.PopupMessageFinishing ],
+        [ TransitionState.PopupMessageFinishing, TransitionState.PopupMessageFinished ],
     ]
 
     public puzzleUnlocksPending: number = 0
+    private popupMessages: Array<string> = []
 
     constructor() {
         // #fca, #f84, #02f / #79f #028
@@ -289,7 +292,76 @@ class Game {
                 _mainMenu.style.opacity = "1"
                 _background.style.opacity = "1"
                 this.state = GameState.MainScreen
+
+                let all_solved_in_this_chapter = true
+                for (let p of this.puzzles) {
+                    if (p.state != PuzzleState.StoppedFinished) {
+                        all_solved_in_this_chapter = false
+                        break
+                    }
+                }
+
+                let total_solved = 0
+                let total_puzzles = 0
+                for (let i=0; i<this.puzzlesGroups.length; i++) {
+                    for (let p of this.puzzlesGroups[i]) {
+                        if (p.state == PuzzleState.StoppedFinished) {
+                            total_solved += 1
+                        }
+                        total_puzzles += 1
+                    }
+                }
+
+                // _chapter1Button.style.display = ""
+                _chapter2Button.style.display = (total_solved >= CHAPTER_2_UNLOCK_AFTER) ? "" : "none"
+                _chapter3Button.style.display = (total_solved >= CHAPTER_3_UNLOCK_AFTER) ? "" : "none"
+                clog(`total_puzzles = ${total_puzzles}, total_solved = ${total_solved}, all_solved_in_this_chapter=${all_solved_in_this_chapter}`)
+
+                if (total_puzzles == total_solved) {
+                        this.popupMessages.push('Thank you for playing!')
+                }
+                else {
+                    // BUG: this triggers every time the change happens
+                    if (total_solved == CHAPTER_2_UNLOCK_AFTER || total_solved == CHAPTER_3_UNLOCK_AFTER) {
+                        this.popupMessages.push('A new Chapter is available')
+                    }
+
+                    if (all_solved_in_this_chapter) {
+                        this.popupMessages.push('All puzzles are solved in this Chapter.')
+                    }
+                }
+
+                if (this.popupMessages.length > 0) {
+                    _popupMessageBox.style.display = "block"
+                    this.transitionStart(TransitionState.PopupMessageShow)
+
+                    // don't let the transition proceed
+                    return
+                }
             break
+
+            case TransitionState.PopupMessageShow:
+                if (this.popupMessages.length > 0) {
+                    _popupMessageBox.innerHTML = this.popupMessages.shift()
+                    _popupMessageBox.style.opacity = "1"
+                }
+                time = 5000
+            break
+
+            case TransitionState.PopupMessageFinishing:
+                if (this.popupMessages.length > 0) {
+                    this.transitionStart(TransitionState.PopupMessageShow)
+
+                    // don't let the transition proceed
+                    return
+                }
+                _popupMessageBox.style.opacity = "0"
+            break
+
+            case TransitionState.PopupMessageFinished:
+                _popupMessageBox.style.display = "none"
+            break
+
 
             case TransitionState.PeekPuzzle:
                 this.paused = true

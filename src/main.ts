@@ -9,10 +9,11 @@ let _mainMenu: HTMLDivElement
 let _chapter1Button: HTMLDivElement
 let _chapter2Button: HTMLDivElement
 let _chapter3Button: HTMLDivElement
-let _catPuzzleButton: HTMLDivElement
+// let _catPuzzleButton: HTMLDivElement
 let _reactionSelectBox: HTMLDivElement
 let _leaderboardBox: HTMLDivElement
 let _leaderboardSubmitBox: HTMLDivElement
+let _popupMessageBox: HTMLDivElement
 
 // this will be needed when validating puzzles from the leaderboard
 let _knownPuzzles: Record<string, Array<any>> = {}
@@ -28,10 +29,11 @@ function init() {
     _chapter1Button = document.getElementById("oa") as HTMLDivElement
     _chapter2Button = document.getElementById("ob") as HTMLDivElement
     _chapter3Button = document.getElementById("oc") as HTMLDivElement
-    _catPuzzleButton = document.getElementById("od") as HTMLDivElement
+    // _catPuzzleButton = document.getElementById("od") as HTMLDivElement
     _reactionSelectBox = document.getElementById("p4") as HTMLDivElement
     _leaderboardBox = document.getElementById("l") as HTMLDivElement
     _leaderboardSubmitBox = document.getElementById("p6") as HTMLDivElement
+    _popupMessageBox = document.getElementById("r") as HTMLDivElement
     _game = new Game()
 
     // @ts-ignore - "possibly null"

@@ -28,6 +28,9 @@ enum TransitionState {
     WinScreen,
     SwitchingPuzzleGroup,
     SwitchingPuzzleGroup2,
+    PopupMessageShow,
+    PopupMessageFinishing,
+    PopupMessageFinished,
 }
 
 enum PlayerStateIndex {
