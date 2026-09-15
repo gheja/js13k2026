@@ -12,9 +12,9 @@ Note: There are a few early puzzles that are more difficult than they should be,
 
 ## Controls
 
-Touch or mouse - touch the puzzle you want to play, then touch one tile then another one to swap them.
+**Touch or mouse** - touch the puzzle you want to play, then touch one tile then another one to swap them.
 
-Menu is in the top right corner.
+**Menu** is in the top right corner.
 
 The **Peek** function will show you the finished puzzle but will limit the stars you can get for solving that puzzle to **1 star**.
 
@@ -34,4 +34,4 @@ This game is avilable on Wavedash: https://wavedash.com/games/prism-tiles
 
 ## Notes
 
-If you liked this game you might enjoy the ones that inspired this one, like I Love Hue ([Play Store](https://play.google.com/store/apps/details?id=com.zutgames.ilovehue), [App Store](https://apps.apple.com/us/app/i-love-hue/id1081075274)), I Love Hue Too ([Play Store](https://play.google.com/store/apps/details?id=com.zutgames.ilovehue2), [App Store](https://apps.apple.com/us/app/i-love-hue-too/id1395332051)), Colorma ([Play Store](https://play.google.com/store/apps/details?id=com.logisk.chroma), [App Store](https://apps.apple.com/us/app/colorma/id6471999662))
+If you liked this game you might enjoy the ones that inspired this one, like *I Love Hue* ([Play Store](https://play.google.com/store/apps/details?id=com.zutgames.ilovehue), [App Store](https://apps.apple.com/us/app/i-love-hue/id1081075274)), *I Love Hue Too* ([Play Store](https://play.google.com/store/apps/details?id=com.zutgames.ilovehue2), [App Store](https://apps.apple.com/us/app/i-love-hue-too/id1395332051)), *Colorma* ([Play Store](https://play.google.com/store/apps/details?id=com.logisk.chroma), [App Store](https://apps.apple.com/us/app/colorma/id6471999662))
