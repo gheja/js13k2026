@@ -4,11 +4,11 @@
 
 Form beautiful gradients by rearranging the tiles.
 
-Try to do it in as few steps as possible to claim your place on the Leaderboard!
+Try to do it in as few steps as possible to claim your place on the *Weekly Leaderboard*!
 
 There are **30+ puzzles** in **4 chapters**, good luck!
 
-*Note: There are a few early puzzles that are more difficult than they should be, keep going, it will get easier :)*
+*Note: a few of the early puzzles are more difficult than they should be, keep going, it will get easier :)*
 
 ## Controls
 
@@ -18,11 +18,11 @@ There are **30+ puzzles** in **4 chapters**, good luck!
 
 The **Peek** option will show you the finished puzzle but will limit the stars you can get for solving that puzzle to **1 star**.
 
-All puzzles are shuffled randomly but always have the same *minimal steps needed to solve* - if you solve in this many steps, you get **3 stars**.
+All puzzles are shuffled randomly but always have the same *minimal steps needed to solve* that results in **3 stars**.
 
-## Leaderboard
+## Weekly Leaderboard
 
-The game has a weekly Leaderboard, it resets on every Sunday at 13:00 CET.
+The Weekly Leaderboard is reset every week on Sunday at 13:00 CET.
 
 ## Wavedash
 
