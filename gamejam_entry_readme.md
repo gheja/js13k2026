@@ -6,9 +6,9 @@ Form beautiful gradients by rearranging the tiles.
 
 Try to do it in as few steps as possible to claim your place on the Leaderboard!
 
-There are 30+ puzzles in 4 chapters, good luck!
+There are **30+ puzzles** in **4 chapters**, good luck!
 
-Note: There are a few early puzzles that are more difficult than they should be, keep going, it will get easier :)
+*Note: There are a few early puzzles that are more difficult than they should be, keep going, it will get easier :)*
 
 ## Controls
 
@@ -16,7 +16,7 @@ Note: There are a few early puzzles that are more difficult than they should be,
 
 **Menu** is in the top right corner.
 
-The **Peek** function will show you the finished puzzle but will limit the stars you can get for solving that puzzle to **1 star**.
+The **Peek** option will show you the finished puzzle but will limit the stars you can get for solving that puzzle to **1 star**.
 
 All puzzles are shuffled randomly but always have the same *minimal steps needed to solve* - if you solve in this many steps, you get **3 stars**.
 
